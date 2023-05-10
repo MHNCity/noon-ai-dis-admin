@@ -1,0 +1,580 @@
+@font-face {
+    font-family: 'S-CoreDream-3Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'S-CoreDream-4Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-4Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'S-CoreDream-5Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-5Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'S-CoreDream-6Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-6Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'S-CoreDream-8Heavy';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-8Heavy.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SpoqaHanSansNeo-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SpoqaHanSansNeo-Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SpoqaHanSansNeo-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.select_area{
+    width: 100%;
+    height: 380px;
+    display: flex;
+}
+
+.image_select,
+.video_select {
+    width: 372px;
+    height: 180px;
+    border-radius: 24px;
+    display: flex;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 18px 0 rgba(0, 0, 0, 0.16);
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+} 
+
+.image_select:hover,
+.video_select:hover {
+    transform: translateY(-14px);
+}
+
+.image_select {
+    margin: auto 42px auto auto;
+}
+
+.video_select { 
+    margin: auto auto auto 42px;
+}
+
+.image_select img,
+.video_select img {
+    width: 120px;
+    height: 120px;
+    margin: auto 8px auto 40px;
+}
+
+.image_select .textArea,
+.video_select .textArea {
+    display: flex;
+    width: auto;
+    height: auto;
+    flex-direction: column;
+}
+
+.video_select .textArea p,
+.image_select .textArea p {  
+    font-family: SpoqaHanSansNeo-Medium;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    margin: 64px auto 2px 0;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: left;
+    color: #595959;
+}
+
+.video_select .textArea h1,
+.image_select .textArea h1 {    
+    font-family: SpoqaHanSansNeo;
+    font-size: 32px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.25;
+    margin: 0;
+    letter-spacing: -0.8px;
+    text-align: center;
+    color: #16284d;
+}
+
+.logTable {
+    width: 100%;
+    height: 616px;
+    display: flex;
+    flex-direction: column;  
+    background-color: #e9f6ff;
+}
+
+.logTable .titleArea {
+    width: 988px;
+    height: auto;
+    display: flex;
+    margin: 90px auto 20px
+}
+
+.logTable .titleArea .title {
+    margin: 0 auto 0 0;
+    display: flex;
+}
+
+.logTable .titleArea .title img {
+    width: 40px;
+    height: 40px;
+    margin: 0 4px 0 0;
+}
+
+.logTable .titleArea .title .login_user {
+    margin: 0;
+    width: auto;
+}
+
+.logTable .titleArea .title p {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 24px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.25;
+    letter-spacing: normal;
+    text-align: left;
+    margin: auto 0;
+    color: #595959;
+}
+
+.logTable .titleArea .title p1 {
+    display: none;
+}
+
+.logTable .titleArea .plusArea {
+    margin: 0 24px 0 auto;
+    display: flex;
+}
+
+.logTable .titleArea .plusArea a {
+    display: flex;
+}
+
+.logTable .titleArea .plusArea a p {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: left;
+    margin: auto 2px auto 0;
+    color: #595959;
+}
+
+.logTable .titleArea .plusArea a img {
+    width: 26px;
+    height: 26px;
+    margin: auto 0;
+}
+
+.logTable .logArea {
+    width: 988px;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 24px;
+    box-shadow: 0 0 18px 0 rgba(0, 0, 0, 0.16);
+    background-color: #fff;
+}
+
+.logTable .logArea .logHeader {
+    width: 940px;
+    height: 62px;
+    margin: 0 auto;
+    display: flex;
+    border-bottom: 1px solid #707070;
+}
+
+.logTable .logArea .logHeader h3 {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: center;
+    color: #16284d;
+    margin: auto;
+}
+
+.logTable .logArea .mainLog {
+    width: 940px;
+    height: auto;
+    margin: 0 auto 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.logTable .logArea .mainLog .logContent {
+    display: flex;
+    height: 57px;  
+    border-bottom: solid 1px #bcc5cb;
+}
+
+.logTable .logArea .mainLog .m_logContent {
+    display: none;
+}
+
+.logTable .logArea .mainLog .logContent p {
+    font-family: SpoqaHanSansNeo-Regular;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: center;
+    color: #595959;
+}
+
+.logTable .logArea .logHeader .id_content,
+.logTable .logArea .mainLog .logContent .id_content {
+    width: 68px;
+    margin: auto;
+    text-align: center;
+}
+
+.logTable .logArea .logHeader .type_content,
+.logTable .logArea .mainLog .logContent .type_content {
+    width: 88px;
+    margin: auto;
+    text-align: center;
+}
+
+.logTable .logArea .logHeader .name_content,
+.logTable .logArea .mainLog .logContent .name_content {
+    width: 360px;
+    margin: auto;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.logTable .logArea .mainLog .logContent .name_content p {
+    width: auto;
+    margin: auto 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.logTable .logArea .mainLog .logContent .name_content label {
+    width: 62px;
+    font-family: SpoqaHanSansNeo-Regular;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: left;
+    margin: 0 0 0 4px;
+    color: #595959;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.logTable .logArea .logHeader .date_content,
+.logTable .logArea .mainLog .logContent .date_content {
+    width: 96px;
+    margin: auto;
+    text-align: center;
+}
+.logTable .logArea .logHeader .rest_content,
+.logTable .logArea .mainLog .logContent .rest_content {
+    width: 96px;
+    margin: auto;
+    text-align: center;
+}
+
+.logTable .logArea .logHeader .status_content,
+.logTable .logArea .mainLog .logContent .status_content {
+    width: 96px;
+    margin: auto;
+    text-align: center;
+}
+
+.logTable .logArea .logHeader .detail_content,
+.logTable .logArea .mainLog .logContent .detail_content {
+    width: 66px;
+    margin: auto;
+    text-align: center;
+}
+
+.logTable .logArea .logHeader .id_content,
+.logTable .logArea .logHeader .type_content,
+.logTable .logArea .logHeader .name_content,
+.logTable .logArea .logHeader .date_content,
+.logTable .logArea .logHeader .rest_content,
+.logTable .logArea .logHeader .status_content,
+.logTable .logArea .logHeader .detail_content {
+    margin: 24px auto 20px;
+}
+
+
+.logTable .logArea .mainLog .logContent .detail_content .detailInfo {
+    width: 64px;
+    height: 24px;
+    margin: auto;
+    border-radius: 13px;
+    display: flex;
+    cursor: pointer;  
+    background-color: #3fa9f5;
+}
+
+.logTable .logArea .mainLog .logContent .detail_content .detailInfo.disable {
+    pointer-events: none;
+    background-color: #595959;
+}
+
+.logTable .logArea .mainLog .logContent .detail_content .detailInfo p {  
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 12px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.25;
+    letter-spacing: normal;
+    text-align: center;
+    color: #fff;
+    margin: auto;
+}
+
+@media(max-width:600px){
+    .select_area {
+        width: 100%;
+        height: 340px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .image_select, 
+    .video_select {
+        width: 272px;
+        height: 134px;
+        margin: 0;
+        border-radius: 24px;
+        box-shadow: 0 0 10px 0 rgba(89, 89, 89, 0.3);
+        background-color: #fff;
+        display: flex;
+        cursor: pointer;
+        transition: all 0.3s ease-out;
+    }
+
+    .image_select {
+        margin: 28px auto 16px;
+    }
+    
+    .video_select {
+        margin: 0 auto 28px;
+    }
+
+    .image_select img,
+    .video_select img {
+        width: 94px;
+        height: 94px;
+        margin: auto 20px auto;
+    }
+    
+    .image_select .textArea,
+    .video_select .textArea {
+        display: flex;
+        width: auto;
+        height: 94px;
+        flex-direction: column;
+        margin: auto 0;
+    }
+
+    .video_select .textArea p,
+    .image_select .textArea p {
+        font-family: SpoqaHanSansNeo-Medium;
+        font-size: 14px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.29;
+        letter-spacing: normal;
+        text-align: left;
+        color: #595959;
+        margin: 24px 0 4px;
+    }
+
+    .video_select .textArea h1,
+    .image_select .textArea h1 {
+        font-family: SpoqaHanSansNeo-Bold;
+        font-size: 24px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.25;
+        letter-spacing: -0.6px;
+        text-align: left;
+        color: #16284d;
+        margin: 0;
+    }
+
+    .logTable {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        background-color: #e9f6ff;
+    }
+
+    .logTable .titleArea {
+        width: 100%;
+        height: auto;
+        display: flex;
+        margin: 37px auto 0;
+    }
+
+    .logTable .titleArea .title {
+        margin: 0 16px 0 auto;
+        display: flex;
+    }
+    
+    .logTable .titleArea .plusArea {
+        margin: 0 auto 0 0;
+        display: flex;
+    }
+
+    .logTable .titleArea .title p {
+        display: none;
+    }
+
+    .logTable .titleArea .title p1 {
+        font-family: SpoqaHanSansNeo-Bold;
+        font-size: 20px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.22;
+        letter-spacing: normal;
+        text-align: left;
+        color: #595959;
+        display: block;
+        margin: auto 0;
+    }
+
+    .logTable .logArea {
+        width: 272px;
+        height: auto;
+        margin: 0 auto 38px;
+        border-radius: 24px;
+        box-shadow: 0 0 10px 0 rgba(89, 89, 89, 0.3);
+        background-color: #fff;
+    }
+
+    .logTable .logArea .logHeader {
+        display: none;
+    }
+
+    .logTable .logArea .mainLog {
+        width: 240px;
+        height: auto;
+        margin: 13px auto 4px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .logTable .logArea .mainLog .logContent {
+        display: none;
+    }
+
+    .logTable .logArea .mainLog .m_logContent {
+        display: flex;
+        flex-direction: column;
+        height: 71px;
+        margin: 3px 2px 12px;
+        border-bottom: solid 1px #bcc5cb;
+    }
+
+    .logTable .logArea .mainLog .m_logContent .name_content {
+        width: 236px;    
+        height: 40px;
+        margin: 0 auto 6px;
+    }
+
+    .logTable .logArea .mainLog .m_logContent .name_content p {
+        font-family: SpoqaHanSansNeo-Medium;
+        font-size: 14px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        letter-spacing: -0.14px;
+        text-align: left;
+        color: #595959;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        word-wrap: break-word;
+        line-height: 1.429em;
+        height: 2.858em;
+        margin: 0;
+    }
+
+    .logTable .logArea .mainLog .m_logContent .etc_content {
+        width: 236px;    
+        height: 13px;
+        margin: 0 auto 12px;
+        display: flex;
+    }
+
+    .logTable .logArea .mainLog .m_logContent .etc_content p {
+        font-family: SpoqaHanSansNeo-Regular;
+        font-size: 10px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.3;
+        letter-spacing: -0.1px;
+        text-align: left;
+        color: #595959;
+        margin: 0;
+    }
+
+    .logTable .logArea .mainLog .m_logContent .etc_content .type_content,
+    .logTable .logArea .mainLog .m_logContent .etc_content .date_content,
+    .logTable .logArea .mainLog .m_logContent .etc_content .rest_content {
+        margin: 0 10px 0 0;
+    }
+}

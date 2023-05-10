@@ -1,0 +1,5 @@
+2023-04-26 09:30:41 [noon-ai-dis-was] error: [DIS-API] POST /first-login -  Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'COUNT(1) CNT FROM admin WHERE account_name=NULL AND is_lock=0' at line 1
+2023-04-26 09:31:20 [noon-ai-dis-was] error: [DIS-API] POST /first-login -  Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'COUNT(1) CNT FROM admin WHERE account_name=NULL AND is_lock='0'' at line 1
+2023-04-26 10:03:30 [noon-ai-dis-was] error: [DIS-API] POST /first-login -  ReferenceError: curDatetime is not defined
+2023-04-26 10:20:34 [noon-ai-dis-was] error: [DIS-API] POST /first-login -  TypeError: Cannot read properties of undefined (reading 'login_fail_count')
+2023-04-26 10:24:06 [noon-ai-dis-was] error: [DIS-API] POST /first-login -  Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?' at line 1

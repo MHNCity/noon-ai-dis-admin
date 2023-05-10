@@ -1,0 +1,255 @@
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 20;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+.modal.active{
+    display: block;
+}
+
+.layerPopupBox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: none;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 20;
+    display: none;
+}
+
+.layerPopupBox.active {
+    display: flex;
+    justify-content: center;
+}
+
+.layerPopupBox .info_inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px #666;
+    background: #FFFFFF;
+    border: 1px solid #EBEDF2;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+.layerPopupBox .info_inner .saveContent {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.layerPopupBox .info_inner .saveContent .saveHeader {
+    margin: 54px auto 42px;
+}
+
+.layerPopupBox .info_inner .saveContent .saveHeader h1 {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 34px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.25;
+    letter-spacing: normal;
+    text-align: left;
+    color: #16284d;
+    margin: 0 auto;
+}
+
+.layerPopupBox .info_inner .saveContent .saveBody {
+    width: 294px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.layerPopupBox .info_inner .saveContent .saveBody .bodyHeader {
+    width: 294px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto 18px;
+}
+
+.layerPopupBox .info_inner .saveContent .saveBody .bodyHeader p {
+    width: 294px;
+    margin: 0 auto 12px;
+    object-fit: contain;
+    font-family: SpoqaHanSansNeo-Regular;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: left;
+    color: #212121;
+}
+
+.layerPopupBox .info_inner .saveContent .saveBody .bodyHeader input {
+    width: 266px;
+    height: 18px;
+    margin: 0 auto;
+    padding: 11px 14px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 10px 0 rgb(0 0 0 / 16%);
+    background-color: #fff;
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 14px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: left;
+    color: #16284d;
+}
+
+.layerPopupBox .info_inner .saveContent .saveBody .bodyHeader input::placeholder {
+    font-family: SpoqaHanSansNeo-Light;
+    font-size: 14px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: left;
+    color: #707070;
+}
+
+.layerPopupBox .info_inner .saveContent .saveBody .saveFooter {
+    width: 294px;
+    height: auto;
+    display: flex;
+    margin: 6px auto 54px;
+}
+
+.layerPopupBox .info_inner .saveContent .saveBody .saveFooter .infoConfir {
+    width: 140px;
+    height: 40px;
+    margin: 0 14px 0 0;
+    border-radius: 20px;
+    box-shadow: 0 0 10px 0 rgb(0 0 0 / 16%);
+    background-color: #3fa9f5;
+    display: flex;
+    cursor: pointer;
+}
+
+.layerPopupBox .info_inner .saveContent .saveBody .saveFooter .infoConfir p,
+.layerPopupBox .info_inner .saveContent .saveBody .saveFooter .cancel p {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: center;
+    color: #fff;
+    margin: auto;
+}
+
+.layerPopupBox .info_inner .saveContent .saveBody .saveFooter .cancel {
+    width: 140px;
+    height: 40px;
+    margin: 0;
+    display: flex;
+    border-radius: 20px;
+    box-shadow: 0 0 10px 0 rgb(0 0 0 / 16%);
+    background-color: #16284d;
+    cursor: pointer;
+}
+
+@media(max-width:600px){
+    .layerPopupBox .info_inner {
+        width: 288px;
+        height: auto;
+        margin: auto;
+        border-radius: 24px;
+        box-shadow: 0 0 30px 0 rgb(0 0 0 / 16%);
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .layerPopupBox .info_inner .saveContent .saveHeader {
+        margin: 28px auto 24px;
+    }
+
+    .layerPopupBox .info_inner .saveContent .saveHeader h1 {
+        font-size: 28px;
+    }
+
+    .layerPopupBox .info_inner .saveContent .saveBody {
+        width: 240px;
+    }
+
+    .layerPopupBox .info_inner .saveContent .saveBody .bodyHeader {
+        width: 240px;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto 18px;
+    }
+
+    .layerPopupBox .info_inner .saveContent .saveBody .bodyHeader p {
+        width: 240px;
+        margin: 0 auto 12px;
+        object-fit: contain;
+        font-family: SpoqaHanSansNeo-Regular;
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.29;
+        letter-spacing: -0.14px;
+        text-align: left;
+        color: #212121;
+    }
+
+    .layerPopupBox .info_inner .saveContent .saveBody .bodyHeader input {
+        width: 212px;
+        height: 18px;
+        margin: 0 auto;
+    }
+
+    .layerPopupBox .info_inner .saveContent .saveBody .saveFooter {
+        width: 240px;
+        height: auto;
+        display: flex;
+        margin: 6px auto 24px;
+    }
+
+    .layerPopupBox .info_inner .saveContent .saveBody .saveFooter .infoConfir,
+    .layerPopupBox .info_inner .saveContent .saveBody .saveFooter .cancel {
+        width: 114px;
+        height: 40px;
+        margin: 0 12px 0 0;
+    }
+}

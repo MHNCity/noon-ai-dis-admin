@@ -1,0 +1,1101 @@
+@font-face {
+    font-family: 'S-CoreDream-4Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-4Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'S-CoreDream-5Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-5Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'S-CoreDream-6Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-6Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SpoqaHanSansNeo-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SpoqaHanSansNeo-Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SpoqaHanSansNeo-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.sub_content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+}
+
+.subHeader {
+    margin: 100px auto 20px;
+    width: 988px;
+    height: 40px;
+    display: flex;
+}
+
+.subHeader .subkey_modi,
+.subHeader .sub_add {
+    margin: auto auto auto 0;
+    width: 160px;
+    height: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.16);
+    background-color: #3fa9f5;
+    display: flex;
+    cursor: pointer;
+}
+
+.subHeader .sub_add {
+    margin: auto 0;
+    background-color: #16284d;
+}
+
+.subHeader .subkey_modi p,
+.subHeader .sub_add p {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: left;
+    color: #fff;
+    margin: auto;
+}
+
+.sub_table {
+    width: 988px;
+    height: auto;
+    min-height: 376px;
+    display: flex;
+    margin: 0 auto 105px;
+    border-radius: 24px;
+    box-shadow: 0 0 18px 0 rgba(0, 0, 0, 0.16);
+    background-color: #fff;
+}
+
+.sub_table .subList {
+    width: 988px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.sub_table .subList .listHeader {
+    width: 100%;
+    height: auto;
+    display: flex;
+}
+
+.sub_table .subList .listHeader .headArea {
+    width: 940px;
+    height: 62px;
+    display: flex;
+    border-bottom: solid 1px #707070;
+    margin: 0 auto;
+}
+
+.sub_table .subList .listHeader .headArea .number_head,
+.sub_table .subList .listHeader .headArea .id_head,
+.sub_table .subList .listHeader .headArea .name_head,
+.sub_table .subList .listHeader .headArea .last_head,
+.sub_table .subList .listHeader .headArea .create_head,
+.sub_table .subList .listHeader .headArea .pass_head,
+.sub_table .subList .listHeader .headArea .auth_head,
+.sub_table .subList .listHeader .headArea .del_head {
+    height: 18px;
+    display: flex;
+    margin: 24px auto 20px;
+}
+
+.sub_table .subList .listHeader .headArea .number_head {
+    width: 50px;
+}
+
+.sub_table .subList .listHeader .headArea .id_head {
+    width: 150px;
+}
+
+.sub_table .subList .listHeader .headArea .name_head {
+    width: 100px;
+}
+
+.sub_table .subList .listHeader .headArea .last_head {
+    width: 150px;
+}
+
+.sub_table .subList .listHeader .headArea .create_head {
+    width: 150px;
+}
+
+.sub_table .subList .listHeader .headArea .pass_head {
+    width: 122px;
+}
+
+.sub_table .subList .listHeader .headArea .auth_head {
+    width: 122px;
+}
+
+.sub_table .subList .listHeader .headArea .del_head {
+    width: 122px;
+}
+
+.sub_table .subList .listHeader .headArea h3 {
+    height: 18px;
+    margin: auto;  
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: center;
+    color: #16284d;
+}
+
+.sub_table .subList .listContent {
+    width: 940px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto 24px;
+}
+
+.sub_table .subList .listContent .tableContent {
+    width: 100%;
+    height: 57px;
+    display: flex;
+    border-bottom: solid 1px #bcc5cb;
+}
+
+.sub_table .subList .listContent .tableContent .number_content,
+.sub_table .subList .listContent .tableContent .id_content,
+.sub_table .subList .listContent .tableContent .name_content,
+.sub_table .subList .listContent .tableContent .last_content,
+.sub_table .subList .listContent .tableContent .create_content,
+.sub_table .subList .listContent .tableContent .pass_content,
+.sub_table .subList .listContent .tableContent .auth_content,
+.sub_table .subList .listContent .tableContent .del_content {
+    height: 57px;
+    display: flex;
+    margin: auto;
+}
+
+.sub_table .subList .listContent .tableContent .number_content {
+    width: 50px;
+}
+
+.sub_table .subList .listContent .tableContent .id_content {
+    width: 150px;
+}
+
+.sub_table .subList .listContent .tableContent .name_content {
+    width: 100px;
+}
+
+.sub_table .subList .listContent .tableContent .last_content {
+    width: 150px;
+}
+
+.sub_table .subList .listContent .tableContent .create_content {
+    width: 150px;
+}
+
+.sub_table .subList .listContent .tableContent .pass_content {
+    width: 122px;
+}
+
+.sub_table .subList .listContent .tableContent .auth_content {
+    width: 122px;
+}
+
+.sub_table .subList .listContent .tableContent .del_content {
+    width: 122px;
+}
+
+.sub_table .subList .listContent .tableContent p {
+    font-family: SpoqaHanSansNeo-Regular;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: center;
+    color: #595959;
+    margin: auto;
+}
+
+.sub_table .subList .listContent .tableContent .pass_content .pass_modi {
+    width: 64px;
+    height: 24px;
+    margin: auto;
+    border-radius: 13px;
+    background-color: #3fa9f5;
+    display: flex;
+    cursor: pointer;
+}
+
+.sub_table .subList .listContent .tableContent .pass_content .pass_modi p {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 12px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.25;
+    letter-spacing: normal;
+    text-align: center;
+    color: #fff;
+    margin: auto;
+}
+
+.sub_table .subList .listContent .tableContent .auth_content .auth_modi {
+    width: 64px;
+    height: 24px;
+    margin: auto;
+    border-radius: 13px;
+    background-color: #16284d;
+    display: flex;
+    cursor: pointer;
+}
+
+.sub_table .subList .listContent .tableContent .auth_content .auth_modi p {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 12px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.25;
+    letter-spacing: normal;
+    text-align: center;
+    color: #fff;
+    margin: auto;
+}
+
+.sub_table .subList .listContent .tableContent .del_content .delBtn {
+    width: 64px;
+    height: 24px;
+    margin: auto;
+    border-radius: 13px;
+    background-color: #595959;
+    display: flex;
+    cursor: pointer;
+}
+
+.sub_table .subList .listContent .tableContent .del_content .delBtn p {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 12px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.25;
+    letter-spacing: normal;
+    text-align: center;
+    color: #fff;
+    margin: auto;
+}
+
+.add_content {
+    width: auto;
+    height: auto;
+    display: flex;
+}
+
+.add_content .addArea {
+    width: 400px;
+    height: auto;
+    margin: 100px auto 100px;
+    border-radius: 24px;
+    box-shadow: 0 0 30px 0 rgb(0 0 0 / 16%);
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.add_content .addArea h1 {
+    margin: 54px auto 42px;
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 34px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.25;
+    letter-spacing: normal;
+    text-align: left;
+    color: #16284d;
+}
+
+.add_content .addArea .addBody {
+    width: 294px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto 18px;
+}
+
+.add_content .addArea .addBody p {
+    width: 294px;
+    margin: 0 auto 12px;
+    object-fit: contain;
+    font-family: SpoqaHanSansNeo-Regular;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: left;
+    color: #212121;
+}
+
+.add_content .addArea .addBody input {
+    width: 266px;
+    height: 18px;
+    margin: 0 auto;
+    padding: 11px 14px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 10px 0 rgb(0 0 0 / 16%);
+    background-color: #fff;
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 14px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: left;
+    color: #16284d;
+}
+
+.add_content .addArea .btnArea {
+    width: 294px;
+    height: auto;
+    display: flex;
+    margin: 30px auto 54px;
+}
+
+.add_content .addArea .btnArea .addSave {
+    width: 140px;
+    height: 40px;
+    margin: 0 14px 0 0;
+    border-radius: 20px;
+    box-shadow: 0 0 10px 0 rgb(0 0 0 / 16%);
+    background-color: #3fa9f5;
+    display: flex;
+    cursor: pointer;
+}
+
+.add_content .addArea .btnArea .addSave p {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: center;
+    color: #fff;
+    margin: auto;
+}
+
+.add_content .addArea .btnArea .addCancel {
+    width: 140px;
+    height: 40px;
+    margin: 0;
+    display: flex;
+    border-radius: 20px;
+    box-shadow: 0 0 10px 0 rgb(0 0 0 / 16%);
+    background-color: #16284d;
+    cursor: pointer;
+}
+
+.add_content .addArea .btnArea .addCancel p {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: center;
+    color: #fff;
+    margin: auto;
+}
+
+.layerPopupBox .inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px #666;
+    background: #FFFFFF;
+    border: 1px solid #EBEDF2;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+.layerPopupBox .auth_inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px #666;
+    background: #FFFFFF;
+    border: 1px solid #EBEDF2;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+.layerPopupBox .key_inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px #666;
+    background: #FFFFFF;
+    border: 1px solid #EBEDF2;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+.layerPopupBox .inner .passContent,
+.layerPopupBox .inner .delContent,
+.layerPopupBox .inner .addContent,
+.layerPopupBox .auth_inner .authContent,
+.layerPopupBox .key_inner .keyContent {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.layerPopupBox .inner .passContent .passHeader,
+.layerPopupBox .inner .delContent .delHeader,
+.layerPopupBox .inner .addContent .addHeader,
+.layerPopupBox .auth_inner .authContent .authHeader,
+.layerPopupBox .key_inner .keyContent .keyHeader {
+    margin: 54px auto 42px;
+}
+
+.layerPopupBox .inner .passContent .passHeader h1,
+.layerPopupBox .inner .delContent .delHeader h1,
+.layerPopupBox .inner .addContent .addHeader h1,
+.layerPopupBox .auth_inner .authContent .authHeader h1,
+.layerPopupBox .key_inner .keyContent .keyHeader h1 {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 34px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.25;
+    letter-spacing: normal;
+    text-align: left;
+    color: #16284d;
+    margin: 0 auto;
+}
+
+.layerPopupBox .inner .passContent .passHeader h2 {
+    display: none;
+}
+
+.layerPopupBox .inner .passContent .passBody,
+.layerPopupBox .inner .delContent .delBody,
+.layerPopupBox .inner .addContent .addBody,
+.layerPopupBox .auth_inner .authContent .authBody,
+.layerPopupBox .key_inner .keyContent .keyBody {
+    width: 294px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.layerPopupBox .inner .passContent .passBody .bodyHeader,
+.layerPopupBox .inner .delContent .delBody .bodyHeader,
+.layerPopupBox .auth_inner .addContent .addBody .authArea {
+    width: 294px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto 18px;
+}
+
+.layerPopupBox .auth_inner .authContent .authBody .authArea {
+    width: 294px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto 18px;
+}
+
+.layerPopupBox .key_inner .keyContent .keyBody .keyArea {
+    width: 294px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto 18px;
+}
+
+.layerPopupBox .auth_inner .authContent .authBody .authArea .bucketAuth,
+.layerPopupBox .auth_inner .authContent .authBody .authArea .dbAuth{
+    display: none;
+    flex-direction: column;
+    margin: 0 0 24px 0;
+}
+
+.layerPopupBox .auth_inner .authContent .authBody .authArea .enc_dec_Auth {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+.layerPopupBox .auth_inner .authContent .authBody .authArea .bucketAuth h1,
+.layerPopupBox .auth_inner .authContent .authBody .authArea .dbAuth h1,
+.layerPopupBox .auth_inner .authContent .authBody .authArea .enc_dec_Auth h1 {
+    width: 294px;
+    margin: 0 auto 10px;
+    object-fit: contain;
+    font-family: SpoqaHanSansNeo-Regular;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: left;
+    color: #212121;
+}
+
+.layerPopupBox .auth_inner .authContent .authBody .authArea .bucketAuth input,
+.layerPopupBox .auth_inner .authContent .authBody .authArea .dbAuth input,
+.layerPopupBox .auth_inner .authContent .authBody .authArea .enc_dec_Auth input {
+    margin: 0 4px 0 0;
+}
+
+.layerPopupBox .auth_inner .authContent .authBody .authArea .bucketAuth label,
+.layerPopupBox .auth_inner .authContent .authBody .authArea .dbAuth label,
+.layerPopupBox .auth_inner .authContent .authBody .authArea .enc_dec_Auth label {
+    font-family: SpoqaHanSansNeo-Medium;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: left;
+    color: #16284d;
+    margin: auto 10px auto 0;
+}
+
+.layerPopupBox .inner .passContent .passBody .bodyHeader p,
+.layerPopupBox .inner .delContent .delBody .bodyHeader p,
+.layerPopupBox .inner .addContent .addBody .bodyHeader p,
+.layerPopupBox .auth_inner .authContent .authBody .authArea p {
+    width: 294px;
+    margin: 0 auto 12px;
+    object-fit: contain;
+    font-family: SpoqaHanSansNeo-Regular;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: left;
+    color: #212121;
+}
+
+.layerPopupBox .key_inner .keyContent .keyBody .keyArea p {
+    width: 294px;
+    margin: 0 auto 12px;
+    object-fit: contain;
+    font-family: SpoqaHanSansNeo-Regular;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: left;
+    color: #212121;
+}
+
+.layerPopupBox .key_inner .keyContent .keyBody .keyArea input,
+.layerPopupBox .inner .passContent .passBody .bodyHeader input {
+    width: 266px;
+    height: 18px;
+    margin: 0 auto;
+    padding: 11px 14px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 10px 0 rgb(0 0 0 / 16%);
+    background-color: #fff;
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 14px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: left;
+    color: #16284d;
+}
+
+.layerPopupBox .key_inner .keyContent .keyBody .keyArea input::placeholder {  
+    font-family: SpoqaHanSansNeo-Light;
+    font-size: 14px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: left;
+    color: #707070;
+}
+
+.layerPopupBox .inner .passContent .passBody .passFooter,
+.layerPopupBox .inner .delContent .delBody .delFooter,
+.layerPopupBox .inner .addContent .addBody .addFooter,
+.layerPopupBox .auth_inner .authContent .authBody .authFooter,
+.layerPopupBox .key_inner .keyContent .keyBody .keyFooter {
+    width: 294px;
+    height: auto;
+    display: flex;
+    margin: 24px auto 54px;
+}
+
+.layerPopupBox .inner .passContent .passBody .passFooter .passConfig,
+.layerPopupBox .inner .delContent .delBody .delFooter .delConfig,
+.layerPopupBox .inner .addContent .addBody .addFooter .addConfig,
+.layerPopupBox .auth_inner .authContent .authBody .authFooter .authConfig,
+.layerPopupBox .key_inner .keyContent .keyBody .keyFooter .keyConfig {
+    width: 140px;
+    height: 40px;
+    margin: 0 14px 0 0;
+    border-radius: 20px;
+    box-shadow: 0 0 10px 0 rgb(0 0 0 / 16%);
+    background-color: #3fa9f5;
+    display: flex;
+    cursor: pointer;
+}
+
+.layerPopupBox .inner .passContent .passBody .passFooter .passConfig p,
+.layerPopupBox .inner .delContent .delBody .delFooter .delConfig p,
+.layerPopupBox .inner .addContent .addBody .addFooter .addConfig p,
+.layerPopupBox .auth_inner .authContent .authBody .authFooter .authConfig p,
+.layerPopupBox .key_inner .keyContent .keyBody .keyFooter .keyConfig p {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: center;
+    color: #fff;
+    margin: auto;
+}
+
+.layerPopupBox .inner .passContent .passBody .passFooter .passConfig input,
+.layerPopupBox .inner .delContent .delBody .delFooter .delConfig input,
+.layerPopupBox .inner .addContent .addBody .addFooter .addConfig input {
+    width: 266px;
+    height: 18px;
+    margin: 0 auto;
+    padding: 11px 14px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 10px 0 rgb(0 0 0 / 16%);
+    background-color: #fff;
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 14px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: left;
+    color: #16284d;
+}
+
+.layerPopupBox .inner .passContent .passBody .passFooter .cancel,
+.layerPopupBox .inner .delContent .delBody .delFooter .cancel,
+.layerPopupBox .inner .addContent .addBody .addFooter .cancel,
+.layerPopupBox .auth_inner .authContent .authBody .authFooter .cancel,
+.layerPopupBox .key_inner .keyContent .keyBody .keyFooter .cancel {
+    width: 140px;
+    height: 40px;
+    margin: 0;
+    display: flex;
+    border-radius: 20px;
+    box-shadow: 0 0 10px 0 rgb(0 0 0 / 16%);
+    background-color: #16284d;
+    cursor: pointer;
+}
+
+.layerPopupBox .inner .passContent .passBody .passFooter .cancel p,
+.layerPopupBox .inner .delContent .delBody .delFooter .cancel p,
+.layerPopupBox .inner .addContent .addBody .addFooter .cancel p,
+.layerPopupBox .auth_inner .authContent .authBody .authFooter .cancel p,
+.layerPopupBox .key_inner .keyContent .keyBody .keyFooter .cancel p {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: center;
+    color: #fff;
+    margin: auto;
+}
+
+@media(max-width:600px){
+    .subHeader {
+        margin: 28px auto 14px;
+        width: 272px;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .add_content .addArea {
+        width: 272px;
+        height: auto;
+        margin: 40px auto;
+        border-radius: 24px;
+        box-shadow: 0 0 10px 0 rgb(89 89 89 / 30%);
+        background-color: #fff;
+    }
+
+    .add_content .addArea h1 {
+        margin: 28px auto 14px;
+        font-size: 28px;
+    }
+
+    .add_content .addArea .addBody {
+        width: 240px;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto 18px;
+    }
+
+    .add_content .addArea .addBody p {
+        width: 240px;
+        margin: 0 auto 12px;
+        object-fit: contain;
+        font-family: SpoqaHanSansNeo-Regular;
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.29;
+        letter-spacing: -0.14px;
+        text-align: left;
+        color: #212121;
+    }
+
+    .add_content .addArea .addBody input {
+        width: 212px;
+        height: 18px;
+        margin: 0 auto;
+    }
+
+    .add_content .addArea .btnArea {
+        width: 240px;
+        height: auto;
+        display: flex;
+        margin: 6px auto 24px;
+    }
+
+    .add_content .addArea .btnArea .addSave,
+    .add_content .addArea .btnArea .addCancel {
+        width: 114px;
+        height: 40px;
+        margin: 0 12px 0 0;
+    }
+    
+    .add_content .addArea .btnArea .addCancel {
+        margin: 0;
+    }
+
+    .add_content .addArea .btnArea .addSave p,
+    .add_content .addArea .btnArea .addCancel p {
+        font-family: SpoqaHanSansNeo-Bold;
+        font-size: 18px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.29;
+        letter-spacing: normal;
+        text-align: center;
+        color: #fff;
+        margin: auto;
+    }
+
+    .subHeader .subkey_modi, 
+    .subHeader .sub_add {
+        width: 272px;
+        height: 40px;
+        margin: 0 0 14px;
+        border-radius: 20px;
+        box-shadow: 0 0 10px 0 rgb(0 0 0 / 16%);
+        display: flex;
+        cursor: pointer;
+    }
+
+    .sub_table {
+        width: 272px;
+        height: auto;
+        margin: 0 auto 28px;
+        border-radius: 24px;
+        box-shadow: 0 0 10px 0 rgb(89 89 89 / 30%);
+        background-color: #fff;
+    }
+
+    .sub_table .subList .listHeader {
+        display: none;
+    }
+
+    .sub_table .subList .listContent {
+        width: 240px;
+        height: auto;
+        margin: 13px auto 13px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sub_table .subList .listContent .tableContent {
+        width: 100%;
+        height: auto;
+        margin: 3px auto 12px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sub_table .subList .listContent .tableContent .id_content {
+        width: 240px;
+        height: auto;
+        margin: auto 0 12px auto;
+    }
+
+    .sub_table .subList .listContent .tableContent .id_content p {
+        font-family: SpoqaHanSansNeo-Medium;
+        font-size: 14px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        letter-spacing: -0.14px;
+        text-align: left;
+        color: #595959;
+        margin: 0;
+    }
+
+    .sub_table .subList .listContent .tableContent .middle_content {
+        width: 240px;
+        height: 13px;
+        margin: 0 auto 12px;
+        display: flex;
+    }
+
+    .sub_table .subList .listContent .tableContent .bottom_content {
+        width: 240px;
+        height: auto;
+        margin: 0 auto 12px;
+        display: flex;
+    }
+
+    .sub_table .subList .listContent .tableContent .number_content, 
+    .sub_table .subList .listContent .tableContent .name_content, 
+    .sub_table .subList .listContent .tableContent .last_content, 
+    .sub_table .subList .listContent .tableContent .create_content,
+    .sub_table .subList .listContent .tableContent .pass_content, 
+    .sub_table .subList .listContent .tableContent .auth_content, 
+    .sub_table .subList .listContent .tableContent .del_content {
+        width: auto;
+        height: auto;
+        margin: 0 10px 0 0;
+    }
+
+    .sub_table .subList .listContent .tableContent .number_content p, 
+    .sub_table .subList .listContent .tableContent .name_content p, 
+    .sub_table .subList .listContent .tableContent .last_content p, 
+    .sub_table .subList .listContent .tableContent .create_content p {
+        font-family: SpoqaHanSansNeo-Regular;
+        font-size: 10px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.3;
+        letter-spacing: -0.1px;
+        text-align: left;
+        color: #595959;
+        margin: 0;
+    }
+
+    .layerPopupBox .inner,
+    .layerPopupBox .auth_inner,
+    .layerPopupBox .key_inner {
+        width: 288px;
+        height: auto;
+        margin: auto;
+        border-radius: 24px;
+        box-shadow: 0 0 30px 0 rgb(0 0 0 / 16%);
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .layerPopupBox .inner .passContent .passHeader,
+    .layerPopupBox .auth_inner .authContent .authHeader, 
+    .layerPopupBox .key_inner .keyContent .keyHeader {
+        margin: 28px auto 24px;
+    }
+
+    .layerPopupBox .inner .passContent .passHeader h1 {
+        display: none;
+    }
+
+    .layerPopupBox .auth_inner .authContent .authHeader h1, 
+    .layerPopupBox .key_inner .keyContent .keyHeader h1 {
+        font-size: 28px;
+    }
+
+    .layerPopupBox .inner .passContent .passHeader h2 {
+        font-family: SpoqaHanSansNeo-Bold;
+        font-size: 28px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.25;
+        letter-spacing: normal;
+        text-align: center;
+        color: #16284d;
+        margin: 0 auto;
+        display: block;
+    }
+
+    .layerPopupBox .inner .passContent .passBody, 
+    .layerPopupBox .auth_inner .authContent .authBody, 
+    .layerPopupBox .key_inner .keyContent .keyBody {
+        width: 240px;
+    }
+
+    .layerPopupBox .key_inner .keyContent .keyBody .keyArea,
+    .layerPopupBox .inner .passContent .passBody .bodyHeader,
+    .layerPopupBox .auth_inner .authContent .authBody .authArea {
+        width: 240px;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto 18px;
+    }
+
+    .layerPopupBox .key_inner .keyContent .keyBody .keyArea p,
+    .layerPopupBox .inner .passContent .passBody .bodyHeader p,  
+    .layerPopupBox .auth_inner .authContent .authBody .authArea p,
+    .layerPopupBox .auth_inner .authContent .authBody .authArea .bucketAuth h1, 
+    .layerPopupBox .auth_inner .authContent .authBody .authArea .dbAuth h1, 
+    .layerPopupBox .auth_inner .authContent .authBody .authArea .enc_dec_Auth h1 {
+        width: 240px;
+        margin: 0 auto 12px;
+        object-fit: contain;
+        font-family: SpoqaHanSansNeo-Regular;
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.29;
+        letter-spacing: -0.14px;
+        text-align: left;
+        color: #212121;
+    }
+
+    .layerPopupBox .key_inner .keyContent .keyBody .keyArea input, 
+    .layerPopupBox .inner .passContent .passBody .bodyHeader input {
+        width: 212px;
+        height: 18px;
+        margin: 0 auto;
+    }
+
+    .layerPopupBox .inner .passContent .passBody .passFooter, 
+    .layerPopupBox .auth_inner .authContent .authBody .authFooter, 
+    .layerPopupBox .key_inner .keyContent .keyBody .keyFooter {
+        width: 240px;
+        height: auto;
+        display: flex;
+        margin: 6px auto 24px;
+    }
+
+    .layerPopupBox .inner .passContent .passBody .passFooter .passConfig, 
+    .layerPopupBox .auth_inner .authContent .authBody .authFooter .authConfig, 
+    .layerPopupBox .key_inner .keyContent .keyBody .keyFooter .keyConfig {
+        width: 114px;
+        height: 40px;
+        margin: 0 12px 0 0;
+    }
+
+    .layerPopupBox .inner .passContent .passBody .passFooter .cancel, 
+    .layerPopupBox .auth_inner .authContent .authBody .authFooter .cancel, 
+    .layerPopupBox .key_inner .keyContent .keyBody .keyFooter .cancel {
+        width: 114px;
+        height: 40px;
+        margin: 0;
+    }
+
+    .layerPopupBox .inner .passContent .passBody .passFooter .passConfig p, 
+    .layerPopupBox .auth_inner .authContent .authBody .authFooter .authConfig p, 
+    .layerPopupBox .key_inner .keyContent .keyBody .keyFooter .keyConfig p,
+    .layerPopupBox .inner .passContent .passBody .passFooter .cancel p, 
+    .layerPopupBox .auth_inner .authContent .authBody .authFooter .cancel p, 
+    .layerPopupBox .key_inner .keyContent .keyBody .keyFooter .cancel p {
+        font-family: SpoqaHanSansNeo-Bold;
+        font-size: 18px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.29;
+        letter-spacing: normal;
+        text-align: center;
+        color: #fff;
+        margin: auto;
+    }
+
+}

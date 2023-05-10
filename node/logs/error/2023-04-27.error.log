@@ -1,0 +1,4 @@
+2023-04-27 14:24:48 [noon-ai-dis-was] error: [DIS-API] GET /manager/init-password -  Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE id = '2023-04-27 14:24:48'' at line 1
+2023-04-27 16:01:09 [noon-ai-dis-was] error: [DIS-API] POST /first-login -  TypeError: Cannot read properties of undefined (reading 'login_fail_count')
+2023-04-27 16:01:25 [noon-ai-dis-was] error: [DIS-API] POST /first-login -  TypeError: Cannot read properties of undefined (reading 'login_fail_count')
+2023-04-27 16:03:53 [noon-ai-dis-was] error: [DIS-API] POST /first-login -  TypeError: Cannot read properties of undefined (reading 'login_fail_count')

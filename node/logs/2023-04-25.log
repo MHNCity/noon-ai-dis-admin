@@ -1,0 +1,50 @@
+2023-04-25 16:48:46 [noon-ai-dis-was] info: [DIS-API] GET /env -  환경변수 조회 완료
+2023-04-25 16:48:47 [noon-ai-dis-was] info: [DIS-API] GET /env -  환경변수 조회 완료
+2023-04-25 16:48:48 [noon-ai-dis-was] info: [DIS-API] GET /env -  환경변수 조회 완료
+2023-04-25 16:48:48 [noon-ai-dis-was] info: [DIS-API] GET /env -  환경변수 조회 완료
+2023-04-25 16:48:48 [noon-ai-dis-was] info: [DIS-API] GET /env -  환경변수 조회 완료
+2023-04-25 16:48:48 [noon-ai-dis-was] info: [DIS-API] GET /env -  환경변수 조회 완료
+2023-04-25 16:49:13 [noon-ai-dis-was] info: [DIS-API] GET /env -  환경변수 조회 완료
+2023-04-25 16:49:14 [noon-ai-dis-was] info: [DIS-API] GET /env -  환경변수 조회 완료
+2023-04-25 16:49:27 [noon-ai-dis-was] info: [DIS-API] GET /env -  환경변수 조회 완료
+2023-04-25 16:50:13 [noon-ai-dis-was] info: [DIS-API] GET /env -  환경변수 조회 완료
+2023-04-25 16:50:39 [noon-ai-dis-was] info: [DIS-API] GET /env -  환경변수 조회 완료
+2023-04-25 16:51:25 [noon-ai-dis-was] info: [DIS-API] GET /env -  환경변수 조회 완료
+2023-04-25 16:51:28 [noon-ai-dis-was] error: [DIS-API] POST /first-login -  Error: Table 'dev-dis.admin' doesn't exist
+2023-04-25 16:51:50 [noon-ai-dis-was] info: [DIS-API] GET /env -  환경변수 조회 완료
+2023-04-25 16:51:53 [noon-ai-dis-was] error: [DIS-API] POST /first-login -  ReferenceError: adminPool is not defined
+2023-04-25 16:52:20 [noon-ai-dis-was] info: [DIS-API] GET /env -  환경변수 조회 완료
+2023-04-25 16:54:09 [noon-ai-dis-was] info: [DIS-API] GET /env -  환경변수 조회 완료
+2023-04-25 17:01:09 [noon-ai-dis-was] info: [DIS-API] GET /env -  환경변수 조회 완료
+2023-04-25 17:01:35 [noon-ai-dis-was] info: [DIS-API] GET /env -  환경변수 조회 완료
+2023-04-25 17:02:39 [noon-ai-dis-was] info: [DIS-API] GET /env -  환경변수 조회 완료
+2023-04-25 17:02:51 [noon-ai-dis-was] info: [NCP-API] POST /secondary-email-send -  메일 발송 실패
+2023-04-25 17:04:14 [noon-ai-dis-was] info: [DIS-API] GET /env -  환경변수 조회 완료
+2023-04-25 17:04:19 [noon-ai-dis-was] info: [NCP-API] POST /secondary-email-send -  메일 발송 실패
+2023-04-25 17:06:46 [noon-ai-dis-was] info: [NCP-API] POST /secondary-email-send -  메일 발송 실패
+2023-04-25 17:07:33 [noon-ai-dis-was] info: [DIS-API] GET /env -  환경변수 조회 완료
+2023-04-25 17:07:38 [noon-ai-dis-was] info: [NCP-API] POST /secondary-email-send -  완료
+2023-04-25 17:18:43 [noon-ai-dis-was] info: [DIS-API] GET /env -  환경변수 조회 완료
+2023-04-25 17:18:44 [noon-ai-dis-was] info: [DIS-API] GET /env -  환경변수 조회 완료
+2023-04-25 17:18:55 [noon-ai-dis-was] info: [NCP-API] POST /secondary-email-send -  완료
+2023-04-25 17:20:04 [noon-ai-dis-was] info: [DIS-API] GET /env -  환경변수 조회 완료
+2023-04-25 17:20:07 [noon-ai-dis-was] info: [DIS-API] GET /env -  환경변수 조회 완료
+2023-04-25 17:20:14 [noon-ai-dis-was] info: [NCP-API] POST /secondary-email-send -  완료
+2023-04-25 17:21:36 [noon-ai-dis-was] info: [DIS-API] GET /env -  환경변수 조회 완료
+2023-04-25 17:21:43 [noon-ai-dis-was] info: [NCP-API] POST /secondary-email-send -  완료
+2023-04-25 17:21:57 [noon-ai-dis-was] info: [DIS-API] POST /login -  관리자 이민형 로그인 완료
+2023-04-25 17:21:57 [noon-ai-dis-was] info: [DIS-API] GET /signup/request -  가입요청 목록 조회 완료
+2023-04-25 17:21:57 [noon-ai-dis-was] info: [DIS-API] GET /user -  유저 정보조회 완료
+2023-04-25 17:22:11 [noon-ai-dis-was] info: [DIS-API] GET /logout -  관리자 이민형 로그아웃 완료
+2023-04-25 17:22:11 [noon-ai-dis-was] info: [DIS-API] GET /env -  환경변수 조회 완료
+2023-04-25 17:22:12 [noon-ai-dis-was] info: [DIS-API] GET /env -  환경변수 조회 완료
+2023-04-25 17:22:16 [noon-ai-dis-was] info: [DIS-API] GET /env -  환경변수 조회 완료
+2023-04-25 17:22:19 [noon-ai-dis-was] info: [DIS-API] GET /env -  환경변수 조회 완료
+2023-04-25 17:22:32 [noon-ai-dis-was] info: [DIS-API] GET /env -  환경변수 조회 완료
+2023-04-25 17:22:54 [noon-ai-dis-was] info: [DIS-API] GET /env -  환경변수 조회 완료
+2023-04-25 17:23:21 [noon-ai-dis-was] info: [DIS-API] GET /env -  환경변수 조회 완료
+2023-04-25 17:23:26 [noon-ai-dis-was] info: [DIS-API] POST /login -  관리자 이민형 로그인 완료
+2023-04-25 17:23:26 [noon-ai-dis-was] info: [DIS-API] GET /signup/request -  가입요청 목록 조회 완료
+2023-04-25 17:23:26 [noon-ai-dis-was] info: [DIS-API] GET /user -  유저 정보조회 완료
+2023-04-25 17:32:02 [noon-ai-dis-was] info: [DIS-API] GET /signup/request -  가입요청 목록 조회 완료
+2023-04-25 17:32:02 [noon-ai-dis-was] info: [DIS-API] GET /user -  유저 정보조회 완료

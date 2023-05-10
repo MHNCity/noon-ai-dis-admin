@@ -1,0 +1,643 @@
+@font-face {
+    font-family: 'S-CoreDream-3Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'S-CoreDream-4Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-4Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'S-CoreDream-5Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-5Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'S-CoreDream-6Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-6Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'S-CoreDream-8Heavy';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-8Heavy.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SpoqaHanSansNeo-Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SpoqaHanSansNeo-Thin';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Thin.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SpoqaHanSansNeo-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SpoqaHanSansNeo-Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SpoqaHanSansNeo-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.footer {
+    width: 100%;
+    height: 336px;
+    display: flex;
+    background-color: #16284d;
+}
+
+.footer .logo {
+    width: 198px;
+    height: auto;
+    margin: 90px 54px auto auto;
+}
+
+.footer .logo img {
+    width: 100%;
+}
+
+.footer .upBtn {
+    display: none;
+}
+
+.footer .textArea {
+    width: 736px;
+    height: auto;
+    margin: 94px auto auto 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer .textArea .footer_menu {
+    width: auto;
+    height: auto;
+    margin: 0 0 24px;
+    display: flex;
+}
+
+.footer .textArea .footer_menu label {  
+    margin: 0;
+    font-family: SpoqaHanSansNeo-Medium;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: left;
+    color: #fff;
+}
+
+.footer .textArea .footer_menu .privacy,
+.footer .textArea .footer_menu .servicePrivacy,
+.footer .textArea .footer_menu .emailPrivacy {  
+    cursor: pointer;
+}
+
+.footer .textArea .footer_menu p {  
+    margin: 0 12px;
+    font-family: SpoqaHanSansNeo-Thin;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: left;
+    color: #fff;
+}
+
+.footer .textArea .companyInfo {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 24px;
+}
+
+.footer .textArea .companyInfo .loc {  
+    margin: 0 0 8px;
+}
+
+.footer .textArea .companyInfo .loc p {  
+    font-family: SpoqaHanSansNeo-Regular;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: left;
+    color: #c2c2c2;
+    margin: 0;
+}
+
+.footer .textArea .companyInfo .ceo_num {  
+    display: flex;
+    margin: 0 0 8px;
+}
+
+.footer .textArea .companyInfo .ceo_num label {    
+    font-family: SpoqaHanSansNeo-Regular;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: left;
+    color: #c2c2c2;
+    margin: 0;
+}
+
+.footer .textArea .companyInfo .ceo_num .info {
+    margin: 0;
+}
+
+.footer .textArea .companyInfo .ceo_num p {    
+    font-family: SpoqaHanSansNeo-Thin;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: left;
+    color: #c2c2c2;
+    margin: 0 12px;
+}
+
+.footer .textArea .call_num {
+    display : flex;
+    margin : 0 0 24px
+}
+
+.footer .textArea .call_num label {
+    font-family: SpoqaHanSansNeo-Thin;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: left;
+    color: #c2c2c2;
+    margin: 0;
+}
+
+.footer .textArea .call_num .num {
+    margin: 0;
+}
+
+.footer .textArea .call_num p {
+    font-family: SpoqaHanSansNeo-Regular;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: left;
+    color: #c2c2c2;
+    margin: 0 12px;
+}
+
+.footer .textArea .inc {
+    display: flex;
+}
+
+.footer .textArea .inc p {  
+    font-family: SpoqaHanSansNeo-Light;
+    font-size: 12px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.67;
+    letter-spacing: normal;
+    text-align: left;
+    color: #fff;
+    margin: 0;
+}
+
+.layerPopupBox .privacyInner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1080px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px #666;
+    background: #FFFFFF;
+    border: 1px solid #EBEDF2;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.layerPopupBox .privacyInner .privacyHeader {
+    margin: 12px 12px 12px 36px;
+    width: auto;
+    height: 44px;
+    max-height: 702px;
+    display: flex;
+}
+
+.layerPopupBox .privacyInner .privacyHeader .privacyCancel {
+    display: flex;
+    margin: 0 0 0 auto;
+    width: 44px;
+    height: 44px;
+    border-radius: 22px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+.layerPopupBox .privacyInner .privacyHeader .privacyCancel:hover {
+    background-color: #3fa9f5;
+    cursor: pointer;
+}
+
+.layerPopupBox .privacyInner .privacyHeader .privacyCancel .privacyCancel_hover {  
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+    margin: auto;
+    display: none;
+    cursor: pointer;
+}
+
+.layerPopupBox .privacyInner .privacyHeader .privacyCancel .privacyCancel_nohover {  
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+    margin: auto;
+    display: block;
+    cursor: pointer;
+}
+
+.layerPopupBox .privacyInner .privacyHeader .privacyCancel:hover .privacyCancel_hover {
+    display: block;
+}
+
+.layerPopupBox .privacyInner .privacyHeader .privacyCancel:hover .privacyCancel_nohover {
+    display: none;
+}
+
+.layerPopupBox .privacyInner .privacyContentHeader {
+    display: flex;
+    flex-direction: column;
+    margin: -38px auto 24px;
+    width: 1012px;
+    height: auto;
+}
+
+.layerPopupBox .privacyInner .privacyContentHeader h1 {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 34px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.25;
+    letter-spacing: normal;
+    text-align: left;
+    color: #16284d;
+    margin: 0 auto;
+}
+
+.layerPopupBox .privacyInner .privacyContentHeader p {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: left;
+    margin: 24px auto 0;
+    color: #595959;
+}
+
+.layerPopupBox .privacyInner .privacyContent {
+    margin: 0 auto 36px;
+    width: 1012px;
+    height: auto;
+    max-height: 702px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.layerPopupBox .privacyInner .privacyContent h3 {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: left;
+    margin: 0 auto 12px 0;
+    color: #595959;
+}
+
+.layerPopupBox .privacyInner .privacyContent span {
+    font-family: SpoqaHanSansNeo-Medium;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: left;
+    margin: 0 auto 12px 0;
+    color: #595959;
+}
+
+.layerPopupBox .privacyInner .privacyContent p {
+    font-family: SpoqaHanSansNeo-Light;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.57;
+    letter-spacing: normal;
+    text-align: left;
+    color: #595959;
+    margin: 0 auto 0 0;
+}
+
+.layerPopupBox .privacyInner .privacyContent::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.layerPopupBox .privacyInner .privacyContent::-webkit-scrollbar-track {
+    background-color: #bcc5cb;
+}
+
+.layerPopupBox .privacyInner .privacyContent::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background-color: #707070;
+}
+
+.layerPopupBox .privacyInner .privacyContent::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+}
+
+@media(max-width:600px){
+    .footer {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        background-color: #16284d;
+        position: relative;
+    }
+
+    .footer .upBtn {
+        display: flex;
+        width: 36px;
+        height: 36px;
+        border-radius: 22px;
+        background-color: #3fa9f5;
+        position: absolute;
+        top: 30px;
+        right: 16px;;
+    }
+
+    .footer .upBtn img {  
+        width: 20px !important;
+        height: 20px !important;
+        object-fit: contain !important;
+        margin: auto !important;
+    }
+
+    
+    .footer .logo {
+        display: flex;
+        width: auto;
+        height: 36px;
+        margin: 30px 16px 8px;
+    }
+
+    .footer .logo img {
+        width: 142px;
+        height: auto;
+        margin: auto auto auto 0;
+        object-fit: contain;
+    }
+
+    .footer .textArea {
+        width: auto;
+        height: auto;
+        margin: 0 16px 40px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .footer .textArea .footer_menu {
+        width: auto;
+        height: auto;
+        margin: 0 0 16px;
+        display: block;
+    }
+
+    .footer .textArea .footer_menu label {
+        margin: 0;
+        font-family: SpoqaHanSansNeo-Medium;
+        font-size: 14px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.29;
+        letter-spacing: -0.14px;
+        text-align: left;
+        color: #fff;
+        float: left;
+    }
+
+    .footer .textArea .footer_menu p {
+        margin: 0 12px;
+        font-family: SpoqaHanSansNeo-Thin;
+        font-size: 14px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.29;
+        letter-spacing: -0.14px;
+        text-align: left;
+        color: #fff;
+        float: left;
+    }
+
+    .footer .textArea .companyInfo {
+        margin: 0;
+    }
+
+    .footer .textArea .companyInfo .loc {
+        margin: 0 0 12px;
+    }
+
+    .footer .textArea .companyInfo .ceo_num {
+        display: block;
+        margin: 0 0 12px;
+    }
+
+    .footer .textArea .companyInfo .ceo_num p {
+        float: left;
+    }
+
+    .footer .textArea .companyInfo .ceo_num p:nth-child(4n) {
+        display: none;
+    }
+
+    .footer .textArea .companyInfo .ceo_num p:nth-child(3n) {
+        margin: 0 20px 0 0;
+    }
+
+    .footer .textArea .call_num {
+        display: flex;
+        margin: 0 0 16px;
+    }
+
+    .layerPopupBox .privacyInner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 314px;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 2px 2px 10px #666;
+        background: #FFFFFF;
+        border: 1px solid #EBEDF2;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .layerPopupBox .privacyInner .privacyHeader {
+        margin: 12px 12px 12px 36px;
+        width: auto;
+        height: 32px;
+        display: flex;
+    }
+    
+    .layerPopupBox .privacyInner .privacyHeader .privacyCancel {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .layerPopupBox .privacyInner .privacyHeader .privacyCancel:hover {
+        background-color: #3fa9f5;
+        cursor: pointer;
+    }
+    
+    .layerPopupBox .privacyInner .privacyHeader .privacyCancel .privacyCancel_hover {  
+        width: 14px;
+        height: 14px;
+    }
+    
+    .layerPopupBox .privacyInner .privacyHeader .privacyCancel .privacyCancel_nohover {  
+        width: 14px;
+        height: 14px;
+    }
+    
+    .layerPopupBox .privacyInner .privacyHeader .privacyCancel:hover .privacyCancel_hover {
+        display: block;
+    }
+    
+    .layerPopupBox .privacyInner .privacyHeader .privacyCancel:hover .privacyCancel_nohover {
+        display: none;
+    }
+    
+    .layerPopupBox .privacyInner .privacyContentHeader {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto 14px;
+        width: 292px;
+        height: auto;
+    }
+    
+    .layerPopupBox .privacyInner .privacyContentHeader h1 {
+        font-family: SpoqaHanSansNeo-Bold;
+        font-size: 24px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.25;
+        letter-spacing: normal;
+        text-align: left;
+        color: #16284d;
+        margin: 0 auto;
+    }
+    
+    .layerPopupBox .privacyInner .privacyContentHeader p {
+        font-family: SpoqaHanSansNeo-Bold;
+        font-size: 14px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.29;
+        letter-spacing: normal;
+        text-align: left;
+        margin: 24px auto 0;
+        color: #595959;
+    }
+    
+    .layerPopupBox .privacyInner .privacyContent {
+        margin: 0 auto 18px;
+        width: 292px;
+        height: auto;
+        max-height: 320px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .layerPopupBox .privacyInner .privacyContent h3 {
+        font-size: 14px;
+    }
+    
+    .layerPopupBox .privacyInner .privacyContent span {
+        font-size: 12px;
+    }
+    
+    .layerPopupBox .privacyInner .privacyContent p {
+        font-size: 10px;
+    }
+    
+}

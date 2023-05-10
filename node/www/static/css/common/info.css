@@ -1,0 +1,661 @@
+@font-face {
+    font-family: 'S-CoreDream-4Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-4Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'S-CoreDream-5Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-5Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'S-CoreDream-6Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-6Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SpoqaHanSansNeo-Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SpoqaHanSansNeo-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SpoqaHanSansNeo-Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SpoqaHanSansNeo-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.info_content {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.info_content .infoHeader {
+    width: 988px;
+    height: 40px;
+    margin: 100px auto 30px;
+    display: flex;
+}
+
+.info_content .infoHeader img {
+    width: 40px;
+    height: 40px;
+    margin: 0 4px 0 0;
+    object-fit: contain;
+}
+
+.info_content .infoHeader h1 {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 24px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.25;
+    letter-spacing: normal;
+    text-align: left;
+    color: #595959;
+    margin: 7px 8px 3px 0;
+}
+
+.info_content .infoHeader p {
+    font-family: SpoqaHanSansNeo-Regular;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.25;
+    letter-spacing: -0.12px;
+    text-align: left;
+    color: #3fa9f5;
+    margin: 17px 0 8px;
+}
+
+.info_content .infoHeader .m_textArea {
+    display: none;
+}
+
+.info_content .infoArea {
+    width: 940px;
+    height: auto;
+    border-top: solid 1px #707070;
+    border-bottom: solid 1px #707070;
+    display: flex;
+    margin: 0 auto 30px;
+}
+
+.info_content .infoArea .userinfoFirst {
+    width: auto;
+    height: auto;
+    margin: 30px 108px 14px 22px;
+    display: flex;
+    flex-direction: column;
+}
+
+.info_content .infoArea .userinfoSecond {
+    width: auto;
+    height: auto;
+    margin: 30px 22px 14px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.info_content .infoArea .infoBody {
+    display: flex;
+    height: auto;
+    position: relative;
+}
+
+.info_content .infoArea .userinfoFirst .infoBody p {
+    width: 88px;
+    height: 18px;
+    margin: 11px 0;
+    font-family: SpoqaHanSansNeo-Regular;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: left;
+    color: #595959;
+}
+
+.info_content .infoArea .userinfoFirst .infoBody .none_text {
+    width: 88px;
+    display: none;
+}
+
+.info_content .infoArea .userinfoFirst .infoBody .auth_send {
+    width: 290px;
+    height: 34px;
+    margin: 0 0 30px;
+    border-radius: 50px;
+    background-color: #3fa9f5;
+    display: none;
+    cursor: pointer;
+}
+
+.info_content .infoArea .userinfoFirst .infoBody .auth_send p {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: center;
+    color: #fff;
+    margin: auto;
+}
+
+.info_content .infoArea .userinfoFirst .infoBody .view_emailValid {
+    display: none;
+    width: 160px;
+    margin: 0 10px 30px 0;
+}
+
+.info_content .infoArea .userinfoFirst .infoBody .auth_config {
+    width: 96px;
+    height: 34px;
+    margin: 0 0 30px;
+    border-radius: 50px;
+    background-color: #3fa9f5;
+    display: none;
+    cursor: pointer;
+}
+
+.info_content .infoArea .userinfoFirst .infoBody .auth_config p {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: center;
+    color: #fff;
+    margin: auto;
+}
+
+.info_content .infoArea .userinfoFirst .infoBody .valid_text {
+    width: 88px;
+    height: 18px;
+    margin: 11px 0;
+    font-family: SpoqaHanSansNeo-Regular;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: left;
+    color: #595959;
+    display: none;
+}
+
+.info_content .infoArea .userinfoFirst .infoBody .none_text.active,
+.info_content .infoArea .userinfoFirst .infoBody .auth_send.active,
+.info_content .infoArea .userinfoFirst .infoBody .valid_text.active,
+.info_content .infoArea .userinfoFirst .infoBody .view_emailValid.active,
+.info_content .infoArea .userinfoFirst .infoBody .auth_config.active {
+    display: flex;
+}
+
+.info_content .infoArea .userinfoSecond .infoBody p {
+    width: 100px;
+    height: 18px;
+    margin: 11px 12px 11px 0;
+    font-family: SpoqaHanSansNeo-Regular;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: left;
+    color: #595959;
+    position: relative;
+}
+
+.info_content .infoArea .infoBody .email_error,
+.info_content .infoArea .infoBody .phone_error {
+    font-family: SpoqaHanSansNeo-Regular;
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.25;
+    letter-spacing: -0.12px;
+    text-align: left;
+    color: #3fa9f5;
+    margin: 0;
+    display: none;
+    position: absolute;
+    left: 100px;
+    top: 42px;
+}
+
+.info_content .infoArea .infoBody .email_error.active,
+.info_content .infoArea .infoBody .phone_error.active {
+    display: block;
+}
+
+.info_content .infoArea .userinfoSecond .infoBody p {
+    width: 100px;
+    height: 18px;
+    margin: 11px 12px 11px 0;
+    font-family: SpoqaHanSansNeo-Regular;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: left;
+    color: #595959;
+}
+
+.info_content .infoArea .infoBody.head p {
+    margin-top: 2px;
+    margin-bottom: 1px;
+}
+
+.info_content .infoArea .infoBody h1 {
+    width: 294px;
+    height: 21px;
+    margin: 0 0 23px;
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 16px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.31;
+    letter-spacing: normal;
+    text-align: left;
+    color: #16284d;
+}
+
+.info_content .infoArea .infoBody input {
+    width: 266px;
+    height: 12px;
+    padding: 11px 12px;
+    margin: 0 0 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
+    border: none;
+    background-color: #fff;
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 14px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: left;
+    color: #16284d;
+}
+
+.info_content .infoArea .infoBody input::placeholder {  
+    font-family: SpoqaHanSansNeo-Light;
+    font-size: 14px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: left;
+    color: #707070;
+}
+
+.info_content .infoArea .infoBody input::placeholder {  
+    font-family: SpoqaHanSansNeo-Light;
+    font-size: 14px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: left;
+    color: #707070;
+}
+
+.info_content .btnArea {
+    display: flex;
+    height: 30px;
+    margin: 0 auto 129px;
+}
+
+.info_content .btnArea .infoSave {
+    width: 160px;
+    height: 30px;
+    margin: 0 24px 0 0;
+    display: flex;
+    border-radius: 15px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
+    background-color: #3fa9f5;
+    cursor: pointer;
+}
+
+.info_content .btnArea .infoSave p {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: center;
+    color: #fff;
+    margin: auto;
+}
+
+.info_content .btnArea .infoCancel {
+    width: 160px;
+    height: 30px;
+    margin: 0;
+    display: flex;
+    border-radius: 15px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
+    background-color: #16284d;
+    cursor: pointer;
+}
+
+.info_content .btnArea .infoCancel p {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: center;
+    color: #fff;
+    margin: auto;
+}
+
+.layerPopupBox .inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px #666;
+    background: #FFFFFF;
+    border: 1px solid #EBEDF2;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+.layerPopupBox .inner .saveContent {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.layerPopupBox .inner .saveContent .saveHeader {
+    margin: 24px auto;
+}
+
+.layerPopupBox .inner .saveContent .saveHeader h1 {
+    margin: 0;
+    font-weight: S-CoreDream-6Bold;
+}
+
+.layerPopupBox .inner .saveContent .saveBody {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.layerPopupBox .inner .saveContent .saveBody .bodyHeader {
+    display: flex;
+    margin: 0 auto 8px 0;
+}
+
+.layerPopupBox .inner .saveContent .saveBody .bodyHeader p {
+    margin: 0 12px 0 0;
+    font-family: SpoqaHanSansNeo-Regular;
+}
+
+.layerPopupBox .inner .saveContent .saveBody .saveFooter {
+    display: flex;
+    margin: 12px auto 24px;
+}
+
+.layerPopupBox .inner .saveContent .saveBody .saveFooter .infoConfir {
+    margin: 0 24px 0 0;
+    width: 120px;
+    height: 30px;
+    background-color: deepskyblue;
+    border-radius: 5px;
+    display: flex;
+    cursor: pointer;
+}
+
+.layerPopupBox .inner .saveContent .saveBody .saveFooter .infoConfir p {
+    color: white;
+    font-family: S-CoreDream-6Bold;
+    margin: auto;
+}
+
+.layerPopupBox .inner .saveContent .saveBody .saveFooter .cancel {
+    margin: 0;
+    width: 120px;
+    height: 30px;
+    background-color: #909090;
+    border-radius: 5px;
+    display: flex;
+    cursor: pointer;
+}
+
+.layerPopupBox .inner .saveContent .saveBody .saveFooter .cancel p {
+    color: white;
+    font-family: S-CoreDream-6Bold;
+    margin: auto;
+}
+
+@media(max-width:600px){
+    .info_content .infoHeader {
+        width: 288px;
+        height: auto;
+        display: flex;
+        margin: 28px auto 11px;
+    }
+
+    .info_content .infoHeader h1 {
+        display: none;
+    }
+
+    .info_content .infoHeader p {
+        display: none;
+    }
+
+    .info_content .infoHeader .m_textArea {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .info_content .infoHeader .m_textArea p1 {
+        font-family: SpoqaHanSansNeo-Bold;
+        font-size: 20px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.25;
+        letter-spacing: normal;
+        text-align: left;
+        color: #595959;
+        margin: 8px 0 2px;
+    }
+
+    .info_content .infoHeader .m_textArea label1 {
+        width: 210px;
+        font-family: SpoqaHanSansNeo-Regular;
+        font-size: 12px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.25;
+        letter-spacing: -0.12px;
+        text-align: left;
+        color: #3fa9f5;
+    }
+
+    .info_content .infoArea {
+        width: 288px;
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto 14px;
+    }
+
+    .info_content .infoArea .infoBody {
+        display: flex;
+        flex-direction: column;
+        width: 272px;
+        height: auto;
+        margin: 0 auto 20px;
+    }
+
+    .info_content .infoArea .userinfoFirst .infoBody p,
+    .info_content .infoArea .userinfoSecond .infoBody p {
+        width: auto;
+        height: 18px;
+        font-family: SpoqaHanSansNeo-Regular;
+        font-size: 14px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.29;
+        letter-spacing: normal;
+        text-align: left;
+        color: #595959;
+        margin: 0 0 4px;
+    }
+
+    .info_content .infoArea .userinfoFirst .infoBody .valid_text {
+        width: auto;
+        height: 18px;
+        font-family: SpoqaHanSansNeo-Regular;
+        font-size: 14px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.29;
+        letter-spacing: normal;
+        text-align: left;
+        color: #595959;
+        margin: 0 0 4px;
+    }
+
+    .info_content .infoArea .infoBody h1 {
+        width: 272px;
+        height: auto;
+        margin: 0;
+        font-family: SpoqaHanSansNeo-Bold;
+        font-size: 14px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.31;
+        letter-spacing: normal;
+        text-align: left;
+        color: #16284d;
+    }
+
+    .info_content .infoArea .infoBody .email_error, .info_content .infoArea .infoBody .phone_error {
+        left: 0px;
+        top: 66px;
+    }
+
+    .info_content .infoArea .infoBody input {
+        width: 248px;
+        height: 18px;
+        margin: 0 auto;
+    }
+
+    .info_content .infoArea .userinfoFirst .infoBody .none_text.active.active {
+        display: none;
+    }
+
+    .info_content .infoArea .userinfoFirst .infoBody .auth_send {
+        width: 272px;
+        height: 34px;
+        margin: 0 auto;
+    }
+
+    .info_content .infoArea .userinfoFirst .infoBody .auth_config {
+        width: 272px;
+        height: 34px;
+        margin: 0 auto;
+    }
+
+    .info_content .infoArea .userinfoFirst .infoBody .view_emailValid {
+        width: 248px;
+        height: 18px;
+        margin: 0 auto 10px;
+    }
+
+    .info_content .infoArea .userinfoFirst {
+        width: 272px;
+        height: auto;
+        margin: 19px auto 4px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .info_content .infoArea .userinfoSecond {
+        width: 272px;
+        height: auto;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .info_content .btnArea {
+        width: 240px;
+        height: auto;
+        display: flex;
+        margin: 0 auto 24px;
+    }
+
+    .info_content .btnArea .infoSave {
+        width: 114px;
+        height: 40px;
+        margin: 0 12px 0 0;
+        border-radius: 20px;
+    }
+
+    .info_content .btnArea .infoCancel {
+        width: 114px;
+        height: 40px;
+        border-radius: 20px;
+    }
+}

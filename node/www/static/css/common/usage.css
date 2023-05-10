@@ -1,0 +1,1061 @@
+@font-face {
+    font-family: 'S-CoreDream-4Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-4Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'S-CoreDream-5Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-5Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'S-CoreDream-6Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-6Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SpoqaHanSansNeo-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SpoqaHanSansNeo-Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SpoqaHanSansNeo-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.log_content {
+    display: flex;
+    flex-direction: column;
+}
+
+.log_content .search_area {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 388px;
+}
+
+.log_content .search_area .searchHeader {
+    width: 988px;
+    display: flex;
+    margin: 100px auto 20px;
+}
+
+.log_content .search_area .searchHeader img {
+    width: 40px;
+    height: 40px;
+    margin: 0 4px 0 0;
+}
+
+.log_content .search_area .searchHeader p {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 24px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.25;
+    letter-spacing: normal;
+    text-align: left;
+    color: #595959;
+    margin: auto 0;
+}
+
+.log_content .search_area .searchHeader .login_user {
+    width: auto;
+    height: auto;
+    margin: auto 0;
+}
+
+.log_content .search_area .searchHeader label {
+    font-family: SpoqaHanSansNeo-Regular;
+    height: 15px;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.25;
+    letter-spacing: -0.12px;
+    text-align: left;
+    color: #3fa9f5;
+    margin: auto 0 8px 8px;
+}
+
+.log_content .search_area .searchHeader .m_textArea {
+    display: none;
+}
+
+.log_content .search_area .searchContent {
+    width: 988px;
+    margin: 0 auto 38px;
+    display: flex;
+    flex-direction: column;
+}
+
+.log_content .search_area .searchContent .searchFirst {
+    width: 100%;
+    display: flex;
+    margin: 0 auto 4px;
+}
+
+.log_content .search_area .searchContent .searchFirst h1 {
+    margin: auto auto auto 20px;
+    height: 22px;
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.22;
+    letter-spacing: normal;
+    text-align: left;
+    color: #595959;
+}
+
+.log_content .search_area .searchContent .searchFirst .refreshArea {
+    display: flex;
+    margin: 0 20px 0 auto;
+    height: 26px;
+}
+
+.log_content .search_area .searchContent .searchFirst .refreshArea p {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: right;
+    color: #595959;
+    margin: auto 0;
+}
+
+.log_content .search_area .searchContent .searchFirst .refreshArea a {
+    width: 26px;
+    height: 26px;
+    margin: auto 0;
+}
+
+.log_content .search_area .searchContent .searchFirst .refreshArea a img {
+    width: 100%;
+    height: 100%;
+    margin: auto 0;
+}
+
+.log_content .search_area .searchContent .searchSecond {
+    width: 100%;
+    height: 104px;
+    margin: auto 0;
+    border-top: solid 1px #707070;
+    border-bottom: solid 1px #707070;
+    display: flex;
+    flex-direction: column;
+}
+
+.log_content .search_area .searchContent .searchSecond .searchTop {
+    display: flex;
+    margin: 24px auto 16px 24px;
+}
+
+.log_content .search_area .searchContent .searchSecond .searchTop .searchFile {
+    display: flex;
+    height: 18px;
+    margin: 0 146px 0 0;
+}
+
+.log_content .search_area .searchContent .searchSecond .searchTop .searchFile_first {
+    display: flex;
+}
+
+.log_content .search_area .searchContent .searchSecond .searchTop .searchFile_second {
+    display: flex;
+}
+
+.log_content .search_area .searchContent .searchSecond .searchTop .searchFile h1 {
+    width: 72px;
+    height: 18px;
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: left;
+    color: #3fa9f5;
+    margin: 0 20px 0 0;
+}
+
+.log_content .search_area .searchContent .searchSecond .searchTop .searchFile input[type="radio"] {
+    width: 14px;
+    height: 14px;
+    margin: auto 6px auto 0;
+    border: solid 1px #595959;
+    border-radius: 50%;
+    /* appearance: none; */
+    cursor: pointer;
+    position: relative;
+}
+
+.log_content .search_area .searchContent .searchSecond .searchTop .searchFile label {
+    font-family: SpoqaHanSansNeo-Medium;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: left;
+    color: #16284d;
+    margin: auto 28px auto 0;
+}
+
+.log_content .search_area .searchContent .searchSecond .searchBottom {
+    display: flex;
+    margin: 0 auto 16px 24px;
+}
+
+.log_content .search_area .searchContent .searchSecond .searchBottom .searchDate {
+    display: flex;
+    height: 30px;
+}
+
+.log_content .search_area .searchContent .searchSecond .searchBottom .searchDate h1 {
+    width: 72px;
+    height: 18px;
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: left;
+    color: #3fa9f5;
+    margin: auto 20px auto 0;
+}
+
+.log_content .search_area .searchContent .searchSecond .searchBottom .searchDate .dateFirst {
+    display: flex;
+    margin: auto auto auto 0;
+}
+
+.log_content .search_area .searchContent .searchSecond .searchBottom .searchDate .dateFirst #startVal {
+    width: 164px;
+    height: 30px;
+    margin: 0;
+    border-radius: 5px;
+    border: solid 1px #bcc5cb;
+    background-color: #fff;
+    padding: 0 8px;
+}
+
+.log_content .search_area .searchContent .searchSecond .searchBottom .searchDate .dateFirst input[type=month]::-webkit-datetime-edit-text { 
+    font-family: SpoqaHanSansNeo-Regular;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: left;
+    color: #595959;
+} 
+  
+.log_content .search_area .searchContent .searchSecond .searchBottom .searchDate .dateFirst input[type=month]::-webkit-datetime-edit-month-field{ 
+    font-family: SpoqaHanSansNeo-Regular;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: left;
+    color: #595959;
+} 
+  
+.log_content .search_area .searchContent .searchSecond .searchBottom .searchDate .dateFirst input[type=month]::-webkit-datetime-edit-day-field {
+    font-family: SpoqaHanSansNeo-Regular;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: left;
+    color: #595959;
+} 
+  
+.log_content .search_area .searchContent .searchSecond .searchBottom .searchDate .dateFirst input[type=month]::-webkit-datetime-edit-year-field { 
+    font-family: SpoqaHanSansNeo-Regular;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: left;
+    color: #595959;
+}
+
+.log_content .search_area .searchContent .searchSecond .searchBottom .searchDate .dateFirst p {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: left;
+    color: #bcc5cb;
+    margin: auto 4px;
+}
+
+.log_content .search_area .searchContent .searchThird {
+    display: flex;
+    height: 30px;
+    margin: 14px 20px 40px auto;
+}
+
+.log_content .search_area .searchContent .searchThird label {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: left;
+    color: #595959;
+    margin: auto 24px auto 0;
+}
+
+.log_content .search_area .searchContent .searchThird .search {
+    width: 90px;
+    height: 30px;
+    margin: 0;
+    border-radius: 15px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
+    background-color: #3fa9f5;
+    display: flex;
+    cursor: pointer;
+}
+
+.log_content .search_area .searchContent .searchThird .search p  {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: center;
+    color: #fff;
+    margin: auto;
+}
+
+.logArea {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;  
+    background-color: #e9f6ff;
+    padding: 60px 0 113px;
+}
+
+.usageBox {
+    width: 988px;
+    height: auto;
+    margin: 0 auto 30px;
+    border-radius: 24px;
+    box-shadow: 0 0 18px 0 rgba(0, 0, 0, 0.16);
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.usageBox .textArea {
+    width: auto;
+    height: 22px;
+    margin: 24px auto 8px 44px;
+    display: flex;
+}
+
+.usageBox .textArea p {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.22;
+    letter-spacing: normal;
+    text-align: left;
+    color: #595959;
+    margin: 0;
+}
+
+.usageBox .tbHeader {
+    width: 940px;
+    height: 42px;
+    display: flex;
+    margin: 0 auto;
+    background-color: #f2f2f2;
+    border: solid 1px #707070;
+}
+
+.usageBox .tbHeader div {
+    display: flex;
+    background-color: #f2f2f2;
+    border-right: solid 1px #bcc5cb;
+}
+
+.usageBox .tbHeader .user_header {
+    width: 120px;
+    height: 100%;
+}
+
+.usageBox .tbHeader .encrypt_upload_header {
+    width: 200px;
+    height: 100%;
+}
+
+.usageBox .tbHeader .decrypt_upload_header {
+    width: 200px;
+    height: 100%;
+}
+
+.usageBox .tbHeader .encrypt_download_header {
+    width: 200px;
+    height: 100%;
+}
+
+.usageBox .tbHeader .total_download_header {
+    width: 200px;
+    height: 100%;
+    border-right: none;
+}
+
+
+.usageBox .tbHeader .encrypt_charge_header {
+    width: calc(988px/4);
+    height: 100%;
+}
+
+.usageBox .tbHeader .decrypt_charge_header {
+    width: calc(988px/4);
+    height: 100%;
+}
+
+.usageBox .tbHeader .download_charge_header {
+    width: calc(988px/4);
+    height: 100%;
+}
+
+.usageBox .tbHeader .total_charge_header {
+    width: calc(988px/4);
+    height: 100%;
+    border-right: none;
+}
+
+
+.usageBox .tbHeader div h3 {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: center;
+    color: #16284d;
+    margin: auto;
+}
+
+.usageBox .tbBody {
+    width: 940px;
+    height: auto;
+    margin: 0 auto 24px;
+    display: flex;
+    flex-direction: column;
+    border-right: solid 1px #707070;
+    border-left: solid 1px #707070;
+    border-bottom: solid 1px #707070;
+}
+
+.usageBox .tbBody .tbContent {
+    width: 100%;
+    height: 38px;
+    margin: 0 auto;
+    display: flex;
+    border-bottom: solid 1px #bcc5cb;
+}
+
+.usageBox .tbBody .tbContent:nth-last-child(1) {
+    border-bottom: none;
+}
+
+.usageBox .tbBody .tbContent div {
+    display: flex;
+    border-right: solid 1px #bcc5cb;
+}
+
+.usageBox .tbBody .tbContent .user_content {
+    width: 120px;
+    height: 100%;
+}
+
+.usageBox .tbBody .tbContent .encrypt_upload_content {
+    width: 200px;
+    height: 100%;
+}
+
+.usageBox .tbBody .tbContent .decrypt_upload_content {
+    width: 200px;
+    height: 100%;
+}
+
+.usageBox .tbBody .tbContent .encrypt_download_content {
+    width: 200px;
+    height: 100%;
+}
+
+.usageBox .tbBody .tbContent .total_download_content {
+    width: 200px;
+    height: 100%;
+    border-right: none;
+}
+
+
+.usageBox .tbBody .tbContent .encrypt_charge_content {
+    width: calc(988px/4);
+    height: 100%;
+}
+
+.usageBox .tbBody .tbContent .decrypt_charge_content {
+    width: calc(988px/4);
+    height: 100%;
+}
+
+.usageBox .tbBody .tbContent .download_charge_content {
+    width: calc(988px/4);
+    height: 100%;
+}
+
+.usageBox .tbBody .tbContent .total_charge_content {
+    width: calc(988px/4);
+    height: 100%;
+    border-right: none;
+}
+
+
+.usageBox .tbBody .tbContent div p {
+    font-family: SpoqaHanSansNeo-Regular;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: center;
+    color: #595959;
+    margin: auto;
+}
+
+.logArea {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;  
+    background-color: #e9f6ff;
+}
+
+.logTable {
+    width: 988px;
+    height: auto;
+    margin: 60px auto 188px;
+    border-radius: 24px;
+    box-shadow: 0 0 18px 0 rgba(0, 0, 0, 0.16);
+    background-color: #fff;
+}
+
+.logTable .logHeader {
+    width: 946px;
+    height: 62px;
+    margin: 0 auto;
+    display: flex;
+    border-bottom: 1px solid #707070;
+}
+
+.logTable .logHeader h3 {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: center;
+    color: #16284d;
+    margin: auto;
+}
+
+.logTable .mainLog {
+    width: 946px;
+    height: auto;
+    margin: 0 auto 24px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    position: relative;
+}
+
+.logTable .mainLog .logContent {
+    display: none;
+    height: 58px;  
+    border-bottom: solid 1px #bcc5cb;
+}
+
+.logTable .mainLog .logContent.active {
+    display: flex;
+}
+
+.logTable .mainLog .logContent p {
+    font-family: SpoqaHanSansNeo-Regular;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: center;
+    color: #595959;
+}
+
+.logTable .logHeader .id_header,
+.logTable .mainLog .logContent .id_content {
+    width: 68px;
+    margin: auto;
+    text-align: center;
+}
+
+.logTable .logHeader .user_header,
+.logTable .mainLog .logContent .user_content {
+    width: 68px;
+    margin: auto;
+    text-align: center;
+}
+
+.logTable .logHeader .file_header,
+.logTable .mainLog .logContent .file_content {
+    width: 360px;
+    margin: auto;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.logTable .mainLog .logContent .file_content p {
+    width: auto;
+    margin: auto 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.logTable .logHeader .type_header,
+.logTable .mainLog .logContent .type_content {
+    width: 88px;
+    margin: auto;
+    text-align: center;
+}
+
+.logTable .logHeader .extension_header,
+.logTable .mainLog .logContent .extension_content {
+    width: 96px;
+    margin: auto;
+    text-align: center;
+}
+
+.logTable .logHeader .date_content,
+.logTable .mainLog .logContent .date_content {
+    width: 96px;
+    margin: auto;
+    text-align: center;
+}
+
+.logTable .logHeader .size_header,
+.logTable .mainLog .logContent .size_content {
+    width: 66px;
+    margin: auto;
+    text-align: center;
+}
+
+.logTable .btn-wrap {
+    width: 100%;
+    height: auto;
+    margin: -6px auto 18px;
+    display: flex;
+}
+
+.logTable .btn-wrap a {
+    display: flex;
+    margin: auto;
+}
+
+.logTable .btn-wrap a p {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: left;
+    margin: auto 2px auto 0;
+    color: #595959;
+}
+
+.logTable .btn-wrap a img {
+    width: 26px;
+    height: 26px;
+    margin: auto 0;
+}
+
+@media(max-width:600px){
+    .log_content .search_area {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+    }
+
+    .log_content .search_area .searchHeader {
+        width: 288px;
+        display: flex;
+        margin: 28px auto 11px;
+    }
+
+    .log_content .search_area .searchHeader p {
+        display: none;
+    }
+
+    .log_content .search_area .searchHeader label {
+        display: none;
+    }
+
+    .log_content .search_area .searchHeader .m_textArea {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .log_content .search_area .searchHeader .m_textArea p1 {
+        font-family: SpoqaHanSansNeo-Bold;
+        font-size: 20px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.25;
+        letter-spacing: normal;
+        text-align: left;
+        color: #595959;
+        margin: 8px 0 2px;
+    }
+
+    .log_content .search_area .searchHeader .m_textArea label1 {
+        width: 210px;
+        font-family: SpoqaHanSansNeo-Regular;
+        font-size: 12px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.25;
+        letter-spacing: -0.12px;
+        text-align: left;
+        color: #3fa9f5;
+    }
+
+    .log_content .search_area .searchContent {
+        width: 288px;
+        margin: 0 auto 28px;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .log_content .search_area .searchContent .searchFirst {
+        width: 100%;
+        display: flex;
+        margin: 0 auto 12px;
+    }
+
+    .log_content .search_area .searchContent .searchFirst h1 {
+        margin: 0 auto 0 8px;
+        height: 20px;
+        font-family: SpoqaHanSansNeo-Bold;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.31;
+        letter-spacing: normal;
+        text-align: left;
+        color: #595959;
+    }
+
+    .log_content .search_area .searchContent .searchFirst .refreshArea {
+        display: flex;
+        margin: 0 8px 0 auto;
+        height: 20px;
+    }
+
+    .log_content .search_area .searchContent .searchFirst .refreshArea a {
+        width: 20px;
+        height: 20px;
+        margin: auto 0 auto 6px;
+    }
+
+    .log_content .search_area .searchContent .searchSecond {
+        width: 100%;
+        height: auto;
+        margin: auto 0;
+        border-top: solid 1px #707070;
+        border-bottom: solid 1px #707070;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .log_content .search_area .searchContent .searchSecond .searchTop {
+        display: flex;
+        flex-direction: column;
+        margin: 19px 8px 16px;
+    }
+
+    .log_content .search_area .searchContent .searchSecond .searchTop .searchFile {
+        display: flex;
+        flex-direction: column;
+        width: 272px;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .log_content .search_area .searchContent .searchSecond .searchTop .searchFile h1 {
+        margin: 0 0 4px;
+    }
+
+    .log_content .search_area .searchContent .searchSecond .searchTop .searchFile_first {
+        margin: 0 0 16px;
+    }
+
+    .log_content .search_area .searchContent .searchSecond .searchTop .searchFile label {
+        font-family: SpoqaHanSansNeo-Medium;
+        font-size: 14px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.29;
+        letter-spacing: normal;
+        text-align: left;
+        color: #16284d;
+        margin: auto 12px auto 0;
+    }
+
+    .log_content .search_area .searchContent .searchSecond .searchTop .searchFile .encrypt_upload {
+        margin: auto 8px auto 0;
+    }
+
+    .log_content .search_area .searchContent .searchSecond .searchTop .searchFile .decrypt_upload {
+        margin: auto 20px auto 0;
+    }
+
+    .log_content .search_area .searchContent .searchSecond .searchBottom {
+        display: flex;
+        margin: 0 8px 20px;
+    }
+
+    .log_content .search_area .searchContent .searchSecond .searchBottom .searchDate {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .log_content .search_area .searchContent .searchSecond .searchBottom .searchDate h1 {
+        width: 72px;
+        height: 18px;
+        font-family: SpoqaHanSansNeo-Bold;
+        font-size: 14px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.29;
+        letter-spacing: normal;
+        text-align: left;
+        color: #3fa9f5;
+        margin: 0 0 4px;
+    }
+
+    .log_content .search_area .searchContent .searchSecond .searchBottom .searchDate .dateFirst #startVal {
+        width: 108px;
+        height: 18px;
+        border-radius: 5px;
+        border: solid 1px #bcc5cb;
+        background-color: #fff;
+        padding: 6px 10px;
+    }
+
+    .log_content .search_area .searchContent .searchThird {
+        display: flex;
+        height: 30px;
+        margin: 14px auto 0;
+    }
+
+    .log_content .search_area .searchContent .searchThird .search {
+        width: 240px;
+        height: 30px;
+        border-radius: 20px;
+        box-shadow: 0 0 10px 0 rgb(0 0 0 / 16%);
+        background-color: #3fa9f5;
+        display: flex;
+        cursor: pointer;
+    }
+
+    .logArea {
+        width: auto;
+        padding: 29px 0 39px;
+        overflow-x: auto;
+    }
+
+    .m_logArea {
+        width: auto;
+        overflow-x: auto;
+    }
+
+    .m_logArea::-webkit-scrollbar {
+        width: 0px;
+        height: 0px;
+    }
+    
+    .m_logArea::-webkit-scrollbar-track {
+        background-color: none;
+    }
+    
+    .m_logArea::-webkit-scrollbar-thumb {
+        border-radius: 0px;
+        background-color: none;
+    }
+    
+    .m_logArea::-webkit-scrollbar-button {
+        width: 0;
+        height: 0;
+    }
+
+    .usageBox {
+        margin: 0 24px 30px;
+        border-radius: 24px;
+        box-shadow: 0 0 10px 0 rgb(89 89 89 / 30%);
+        background-color: #fff;
+    }
+
+    .logArea .logTable {
+        width: 272px;
+        height: auto;
+        margin: 29px auto 39px;
+        border-radius: 24px;
+        box-shadow: 0 0 10px 0 rgb(89 89 89 / 30%);
+        background-color: #fff;
+    }
+
+    .logTable .logHeader {
+        display: none;
+    }
+
+    .logArea .logTable .mainLog {
+        width: 240px;
+        height: auto;
+        margin: 13px auto 4px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .logArea .logTable .mainLog .m_logContent {
+        display: none;
+        flex-direction: column;
+        height: 71px;
+        margin: 3px 2px 12px;
+        border-bottom: solid 1px #bcc5cb;
+    }
+
+    .logArea .logTable .mainLog .m_logContent.active {
+        display: flex;
+    }
+
+    .logArea .logTable .mainLog .m_logContent .file_content {
+        width: 236px;
+        height: 40px;
+        margin: auto 0 auto auto;;
+    }
+
+    .logArea .logTable .mainLog .m_logContent .file_content p {
+        font-family: SpoqaHanSansNeo-Medium;
+        font-size: 14px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        letter-spacing: -0.14px;
+        text-align: left;
+        color: #595959;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        word-wrap: break-word;
+        line-height: 1.429em;
+        height: 2.858em;
+        margin: 0;
+    }
+
+    .logArea .logTable .mainLog .m_logContent .etc_content {
+        width: 236px;
+        height: 13px;
+        margin: 0 auto 12px;
+        display: block;
+    }
+
+    .logArea .logTable .mainLog .m_logContent .etc_content .user_content, 
+    .logArea .logTable .mainLog .m_logContent .etc_content .type_content, 
+    .logArea .logTable .mainLog .m_logContent .etc_content .extension_content, 
+    .logArea .logTable .mainLog .m_logContent .etc_content .size_content, 
+    .logArea .logTable .mainLog .m_logContent .etc_content .date_content {
+        margin: 0 10px 0 0;
+        float: left;
+    }
+
+    .logArea .logTable .mainLog .m_logContent .etc_content p {
+        font-family: SpoqaHanSansNeo-Regular;
+        font-size: 10px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.3;
+        letter-spacing: -0.1px;
+        text-align: left;
+        color: #595959;
+        margin: 0;
+    }
+}

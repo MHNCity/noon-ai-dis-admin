@@ -1,0 +1,315 @@
+body {
+    margin: 0;
+    padding-top: 100px;
+    overflow: auto;
+    -webkit-text-size-adjust: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.nodata {
+    width: 100%;
+    height: 57px;
+    display: flex;
+    border-bottom: solid 1px #bcc5cb;
+}
+
+.nodata p {
+    font-family: SpoqaHanSansNeo-Regular;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: center;
+    color: #595959;
+    margin: auto;
+}
+
+.swal2-popup {
+    width: 400px !important;
+    border-radius: 24px !important;
+    padding: 0 0 40px !important;
+}
+
+.swal2-icon {
+    margin: 50px auto 0 !important;
+}
+
+.swal2-icon.swal2-success [class^=swal2-success-line] {
+    z-index: 3 !important;
+    background-color: #fff !important;
+}
+
+.swal2-icon.swal2-success .swal2-success-ring {
+    border: 0.25em solid #3fa9f5 !important;
+    background-color: #3fa9f5 !important;
+}
+
+.swal2-icon.swal2-error {
+    border-color: #f64957 !important;
+    background-color: #f64957 !important;
+    color: #fff !important;
+}
+
+.swal2-icon.swal2-error [class^=swal2-x-mark-line] {
+    background-color: #fff !important;
+}
+
+.swal2-title {
+    font-family: SpoqaHanSansNeo-Bold !important;
+    font-size: 24px !important;
+    color: #16284d !important;
+    padding: 0 !important;
+    margin: 40px auto 0 !important;
+    max-width: 294px !important;
+}
+
+.swal2-html-container {
+    font-family: SpoqaHanSansNeo-Medium !important;
+    font-size: 18px !important;
+    color: #595959 !important;
+    margin: 12px auto 0 !important;
+    max-width: 294px !important;
+}
+
+.swal2-actions {
+    margin: 0 auto !important;
+    flex-direction: column !important;
+}
+
+.swal2-styled.swal2-confirm {
+    width: 294px !important;
+    height: 40px !important;
+    margin: 40px auto 0 !important;
+    padding: 0 !important;
+    border-radius: 20px !important;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16) !important;
+    background-color: #3fa9f5 !important;
+    color: #fff;
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.22;
+    letter-spacing: normal;
+    text-align: center;
+}
+
+.swal2-styled.swal2-deny {
+    width: 294px !important;
+    height: 40px !important;
+    margin: 40px auto 0 !important;
+    padding: 0 !important;
+    border-radius: 20px !important;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16) !important;
+    background-color: #f64957 !important;
+    color: #fff;
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.22;
+    letter-spacing: normal;
+    text-align: center;
+}
+
+.swal2-cancel {
+    width: 294px !important;
+    height: 40px !important;
+    margin: 12px auto 0 !important;
+    padding: 0 !important;
+    border-radius: 20px !important;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16) !important;
+    background-color: #16284d !important;
+    color: #fff;
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.22;
+    letter-spacing: normal;
+    text-align: center;
+}
+
+.swal2-input {
+    width: 266px !important;
+    height: 40px !important;
+    margin: 18px auto 0 !important;
+    padding: 11px 14px !important;
+    border-radius: 5px !important;
+    border: none !important;
+    box-shadow: 0 0 10px 0 rgb(0 0 0 / 16%) !important;
+    background-color: #fff !important;
+    font-family: SpoqaHanSansNeo-Bold !important;
+    font-size: 14px !important;
+    font-weight: 300 !important;
+    font-stretch: normal !important;
+    font-style: normal !important;
+    line-height: 1.29 !important;
+    letter-spacing: -0.14px !important;
+    text-align: left !important;
+    color: #16284d !important;
+}
+
+#download {
+    width: 294px !important;
+    height: 40px !important;
+    margin: 40px auto 0 !important;
+    padding: 0 !important;
+    border-radius: 20px !important;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16) !important;
+    background-color: #3fa9f5 !important;
+}
+
+#download p {
+    color: #fff;
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.22;
+    letter-spacing: normal;
+    text-align: center;
+}
+
+.swal2-input::placeholder {
+    font-family: SpoqaHanSansNeo-Light !important;
+    font-size: 14px !important;
+    font-weight: 300 !important;
+    font-stretch: normal !important;
+    font-style: normal !important;
+    line-height: 1.29 !important;
+    letter-spacing: -0.14px !important;
+    text-align: left !important;
+    color: #707070 !important;
+}
+
+.swal2-actions {
+    margin: 24px 0 0 !important;
+}
+
+@media(max-width:600px){
+    body {
+        padding-top: 52px;
+    }
+
+    .swal2-popup {
+        width: 288px !important;
+        border-radius: 24px !important;
+        padding: 0 0 28px !important;
+    }
+    
+    .swal2-icon {
+        margin: 38px auto 0 !important;
+    }
+    
+    .swal2-icon.swal2-success [class^=swal2-success-line] {
+        z-index: 3 !important;
+        background-color: #fff !important;
+    }
+    
+    .swal2-icon.swal2-success .swal2-success-ring {
+        border: 0.25em solid #3fa9f5 !important;
+        background-color: #3fa9f5 !important;
+    }
+    
+    .swal2-icon.swal2-error {
+        border-color: #f64957 !important;
+        background-color: #f64957 !important;
+        color: #fff !important;
+    }
+    
+    .swal2-icon.swal2-error [class^=swal2-x-mark-line] {
+        background-color: #fff !important;
+    }
+    
+    .swal2-title {
+        font-family: SpoqaHanSansNeo-Bold !important;
+        font-size: 20px !important;
+        color: #16284d !important;
+        padding: 0 !important;
+        margin: 28px auto 0 !important;
+        max-width: 240px !important;
+    }
+    
+    .swal2-html-container {
+        font-family: SpoqaHanSansNeo-Medium !important;
+        font-size: 14px !important;
+        color: #595959 !important;
+        margin: 8px auto 0 !important;
+        max-width: 240px !important;
+    }
+    
+    .swal2-actions {
+        margin: 0 auto !important;
+    }
+    
+    .swal2-styled.swal2-confirm {
+        width: 240px !important;
+        height: 40px !important;
+        margin: 31px auto 0 !important;
+        padding: 0 !important;
+        border-radius: 20px !important;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16) !important;
+        background-color: #3fa9f5 !important;
+        color: #fff;
+        font-family: SpoqaHanSansNeo-Bold;
+        font-size: 18px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.22;
+        letter-spacing: normal;
+        text-align: center;
+    }
+    
+    .swal2-styled.swal2-deny {
+        width: 240px !important;
+        height: 40px !important;
+        margin: 31px auto 0 !important;
+        padding: 0 !important;
+        border-radius: 20px !important;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16) !important;
+        background-color: #f64957 !important;
+        color: #fff;
+        font-family: SpoqaHanSansNeo-Bold;
+        font-size: 18px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.22;
+        letter-spacing: normal;
+        text-align: center;
+    }
+    
+    .swal2-cancel {
+        width: 240px !important;
+        height: 40px !important;
+        margin: 12px auto 0 !important;
+        padding: 0 !important;
+        border-radius: 20px !important;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16) !important;
+        background-color: #16284d !important;
+        color: #fff;
+        font-family: SpoqaHanSansNeo-Bold;
+        font-size: 18px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.22;
+        letter-spacing: normal;
+        text-align: center;
+    }
+
+    .swal2-input {
+        width: 212px !important;
+    }
+}

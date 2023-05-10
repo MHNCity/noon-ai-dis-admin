@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="kor" dir="ltr">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="./static/css/common/base.css" type="text/css" />
+    <link rel="stylesheet" href="./static/css/common/usage.css" type="text/css" />
+    <link rel="stylesheet" href="./static/css/common/header.css" type="text/css" />
+    <link rel="stylesheet" href="./static/css/common/footer.css" type="text/css" />
+    <link rel="stylesheet" href="./static/css/common/modal.css" type="text/css" />
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/DIS.Web.Common.js"></script>
+    <script type="text/javascript" src="js/DIS.Web.Init.js"></script>
+    <script type="text/javascript" src="js/DIS.Web.RequestTable.js"></script>
+    <script type="text/javascript" src="js/DIS.Web.Auth.js"></script>
+    <script src="./static/js/sweetalert/sweetalert.js"></script>
+    <script src="./static/js/common/common.js"></script>
+    <script src="./static/js/common/header.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="header_content">
+            <div class="logo">
+              <a href="/join">
+                <img src="./static/imgs/common/new_header_logo.png">
+              </a>
+            </div>
+          <div class="flow">
+          </div>
+          <div class="login_user">
+          </div>
+          <div class="menuBtn">
+            <img class="menu_nohover" src="./static/imgs/common/header_menu.png">
+            <img class="menu_hover" src="./static/imgs/common/header_menu_hover.png">
+            <div id="myDropdown" class="dropdown-content">
+                <a href="/join">가입 승인</a>
+                <a href="/usage">미터링</a>
+                <a href="/admin_manage">관리자 계정 관리</a>
+                <a href="/quit">이용자 회원 탈퇴</a>
+                <div id="logout">로그아웃</div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="log_content">
+        <div class="search_area">
+            <div class="searchHeader">
+                <img src="./static/imgs/log/usage_icon.png">
+                <p>서비스 이용 관리</p>
+                <label>진행한 모든 기능에 대한 사용량을 확인 할 수 있습니다.</label>
+            </div>
+            <div class="searchContent">
+                <div class="searchFirst">
+                    <h1>검색</h1>
+                    <div class="refreshArea">
+                        <p>검색초기화</p>
+                        <a href="/usage"><img src="./static/imgs/log/refresh_icon.png"></a>
+                    </div>
+                </div>
+                <div class="searchSecond">
+                    <div class="searchTop">
+                        <div class="searchFile">
+                            <h1>타입</h1>
+                            <input class="search_filter" type="radio" name="search_filter" value="encrypt_upload"><label class="encrypt_upload" for="encrypt_upload">비식별화 요청</label>
+                            <input class="search_filter" type="radio" name="search_filter" value="encrypt_download"><label class="encrypt_download" for="encrypt_download">비식별화 파일 다운로드</label>
+                            <input class="search_filter" type="radio" name="search_filter" value="decrypt_upload"><label class="decrypt_upload" for="decrypt_upload">복호화 요청</label>
+                            <input class="search_filter" type="radio" name="search_filter" value="all_count" checked><label class="all_count" for="all_count">월별 사용량</label>
+                        </div>
+                    </div>
+                    <div class="searchBottom">
+                        <div class="searchDate">
+                            <h1>날짜</h1>
+                            <div class="dateFirst">
+                                <input id="startVal" data-placeholder="YYYY.MM" type="month">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="searchThird">
+                    <div class="search">
+                        <p>검 색</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="logArea">
+            <!-- <div class="logTable">
+                <div class="logHeader">
+                    <div class="id_content"><h3>NO.</h3></div>
+                    <div class="type_content"><h3>분류</h3></div>
+                    <div class="name_content"><h3>파일명</h3></div>
+                    <div class="date_content"><h3>업로드 일자</h3></div>
+                    <div class="rest_content"><h3>복호화 여부</h3></div>
+                    <div class="status_content"><h3>진행도</h3></div>
+                    <div class="detail_content"></div>
+                </div>
+                <div class="mainLog">
+                </div>
+                <div id="enc_more" class="btn-wrap"><a href="javascript:;" class="morebutton"><p>더보기</p><img src="./static/imgs/main/plus_icon.png"></a></div>
+            </div> -->
+        </div>
+    </div>
+    <div class="footer">
+      <div class="logo">
+        <img src="./static/imgs/common/footer_logo.png">
+      </div>
+      <div class="textArea">
+        <div class="footer_menu">
+          <label>개인정보처리방침</label>
+          <p>|</p>
+          <label>서비스이용약관</label>
+          <p>|</p>
+          <label>이메일무단수집거부</label>
+        </div>
+        <div class="companyInfo">
+          <div class="loc">
+            <p>[04794] 서울특별시 성동구 아차산로 103 (성수동2가, 영동테크노타워) 609호</p>
+          </div>
+          <div class="ceo_num">
+            <p class="info">대표 :&nbsp;<label>조판희</label></p>
+            <p>|</p>
+            <p class="info">사업자번호 :&nbsp;<label>120-87-43532</label></p>
+            <p>|</p>
+            <p class="info">통신판매업신고번호 :&nbsp;<label>제0000-서울성동-0000호</label></p>
+          </div>
+          <div class="call_num">
+            <p class="num">Tel :&nbsp;<label>070-7553-2372</label></p>
+            <p>|</p>
+            <p class="num">Fax :&nbsp;<label>02-2051-2370</label></p>
+          </div>
+          <div class="inc">
+            <p>(주)엠에이치엔씨티  © mhncity Inc. all rights reserved</p>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+
+<div id="saveConfir" class="modal">
+    <div id="wrap">
+        <div class="layerPopupBox active">
+            <div class="info_inner">
+                <div class="saveContent">
+                    <div class="saveHeader">
+                        <h1>비밀번호 입력</h1>
+                    </div>
+                    <div class="saveBody">
+                        <div class="bodyHeader">
+                            <p>현재 비밀번호 : </p>
+                            <input type="password" class="cur_password" autofocus>
+                        </div>
+                        <div class="saveFooter">
+                            <div class="infoConfir">
+                                <p>확인</p>
+                            </div>
+                            <div class="cancel">
+                                <p>취소</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>

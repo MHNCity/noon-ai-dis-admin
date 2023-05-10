@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="kor" dir="ltr">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="./static/css/common/base.css" />
+    <link rel="stylesheet" type="text/css" href="./static/css/test.css" />
+    <link rel="stylesheet" type="text/css" href="./static/css/common/header.css" />
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/DIS.Web.Common.js"></script>
+    <script type="text/javascript" src="js/DIS.Web.Init.js"></script>
+    <script type="text/javascript" src="js/DIS.Web.Admin.js"></script>
+    <script type="text/javascript" src="js/DIS.Web.Auth.js"></script>
+    <script src="./static/js/common/common.js"></script>
+    <script src="./static/js/common/header.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="header_content">
+            <div class="logo">
+              <a href="/join">
+                <img src="./static/imgs/common/new_header_logo.png">
+              </a>
+            </div>
+          <div class="flow">
+          </div>
+          <div class="login_user">
+          </div>
+          <div class="menuBtn">
+            <img class="menu_nohover" src="./static/imgs/common/header_menu.png">
+            <img class="menu_hover" src="./static/imgs/common/header_menu_hover.png">
+            <div id="myDropdown" class="dropdown-content">
+                <a href="/join">가입 승인</a>
+                <a href="/usage">미터링</a>
+                <a href="/admin_manage">관리자 계정 관리</a>
+                <a href="/quit">이용자 회원 탈퇴</a>
+                <div id="logout">로그아웃</div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="req_content">
+        <div class="reqTable">
+            <div class="reqHeader">
+                <div class="num_header">
+                    <h3>ID</h3>
+                </div>
+                <div class="company_header">
+                    <h3>기관명</h3>
+                </div>
+                <div class="email_header">
+                    <h3>이메일</h3>
+                </div>
+                <div class="user_header">
+                    <h3>신청자 이름</h3>
+                </div>
+                <div class="phone_header">
+                    <h3>전화번호</h3>
+                </div>
+                <div class="yes_header">
+                    <h3>승인</h3>
+                </div>
+                <div class="no_header">
+                    <h3>탈퇴</h3>
+                </div>
+            </div>
+            <div class="reqBody">
+                <div class="reqContent">
+                    <div class="num_content">
+                        <p>No</p>
+                    </div>
+                    <div class="company_content">
+                        <p>기관명</p>
+                    </div>
+                    <div class="email_content">
+                        <p>이메일</p>
+                    </div>
+                    <div class="user_content">
+                        <p>신청자 이름</p>
+                    </div>
+                    <div class="phone_content">
+                        <p>전화번호</p>
+                    </div>
+                    <div class="yes_content">
+                        <div class="yesBtn">
+                            <p>승인</p>
+                        </div>
+                    </div>
+                    <div class="no_content">
+                        <div class="noBtn">
+                            <p>비승인</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    
+</script>
+
+</html>

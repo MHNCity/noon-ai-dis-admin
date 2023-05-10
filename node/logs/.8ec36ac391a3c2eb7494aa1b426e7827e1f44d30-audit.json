@@ -1,0 +1,125 @@
+{
+    "keep": {
+        "days": false,
+        "amount": 30
+    },
+    "auditLog": "/app/node/logs/.8ec36ac391a3c2eb7494aa1b426e7827e1f44d30-audit.json",
+    "files": [
+        {
+            "date": 1664525610524,
+            "name": "/app/node/logs/2022-09-30.exception.log",
+            "hash": "785e92c8a10850cf4884dfce00cb2d3e1d8e34872e08964837a0a18ba193f659"
+        },
+        {
+            "date": 1664937113286,
+            "name": "/app/node/logs/2022-10-05.exception.log",
+            "hash": "27f94257dffe33433f4b72a626a5cb30d047b3d4ba78df6d58aaedf76ade218a"
+        },
+        {
+            "date": 1665651078514,
+            "name": "/app/node/logs/2022-10-13.exception.log",
+            "hash": "467c978911f190eb11b22ed821473151a7e77f02edc13f83933c2b2f80cdff71"
+        },
+        {
+            "date": 1665704977532,
+            "name": "/app/node/logs/2022-10-14.exception.log",
+            "hash": "570ddc31bce3d24eb74e1937c15ca918a0d3199ae5f8f8c87031ec5e53796ef1"
+        },
+        {
+            "date": 1666006497874,
+            "name": "/app/node/logs/2022-10-17.exception.log",
+            "hash": "16a34ea57ac561a624e45efe3d87818903ad9e382ae8c8fce5df74cbcc832517"
+        },
+        {
+            "date": 1666056121482,
+            "name": "/app/node/logs/2022-10-18.exception.log",
+            "hash": "81d1527ba7b46c2c9adff48ea33b351582eb5512b79ddfccbb3cab9132f9e08f"
+        },
+        {
+            "date": 1666579127204,
+            "name": "/app/node/logs/2022-10-24.exception.log",
+            "hash": "d18976a64eab3925e72123781c5fe97a4d7f3c15c913312ffac47e8e50490565"
+        },
+        {
+            "date": 1666858646428,
+            "name": "/app/node/logs/2022-10-27.exception.log",
+            "hash": "c87fef969b6994d76adc114e85d2a47f440f2f7f0ab72e9a32f8e0b317562625"
+        },
+        {
+            "date": 1667207296533,
+            "name": "/app/node/logs/2022-10-31.exception.log",
+            "hash": "602e495bdc8b1997db721fc91a77269ae4205347e3228e5112976892059d624f"
+        },
+        {
+            "date": 1667262148459,
+            "name": "/app/node/logs/2022-11-01.exception.log",
+            "hash": "c61d06d5a3120ad0f05ec143fdf73ad249150f836b9f8538c88fd56e204056e6"
+        },
+        {
+            "date": 1667374879554,
+            "name": "/app/node/logs/2022-11-02.exception.log",
+            "hash": "f2a54e15a12fabb8ac4e74ccba6242172a89663196d6a5ade4c63d3b9942d877"
+        },
+        {
+            "date": 1667894475302,
+            "name": "/app/node/logs/2022-11-08.exception.log",
+            "hash": "a54a638d66e947a64a2e01352c98bd6d8f8967f70b0f4ec564199cf045c49d57"
+        },
+        {
+            "date": 1669889212543,
+            "name": "/app/node/logs/2022-12-01.exception.log",
+            "hash": "287e10491d8b7645c6836c97ba85201a55fca6e9e2437346ba080dc1ad0a8724"
+        },
+        {
+            "date": 1670850183804,
+            "name": "/app/node/logs/2022-12-12.exception.log",
+            "hash": "3bc208bc9602bc8ad5679d97b196b904a189cedb57aa7a57cf007ed7c00fad42"
+        },
+        {
+            "date": 1680075981731,
+            "name": "/app/node/logs/2023-03-29.exception.log",
+            "hash": "3db0e53016f02a3e2ad487c81e19d11023d6062034ac5bb7b54d7f7c32f7c337"
+        },
+        {
+            "date": 1682381357577,
+            "name": "/app/node/logs/2023-04-25.exception.log",
+            "hash": "40aa832eea240093423f3a2bfe6147b6a78b695a10a2d93134edb40138024645"
+        },
+        {
+            "date": 1682466506138,
+            "name": "/app/node/logs/2023-04-26.exception.log",
+            "hash": "c926f6d4df1ea3cbc90314acc797177319b7a75193ddae39c095a88c4c3a9534"
+        },
+        {
+            "date": 1682556292690,
+            "name": "/app/node/logs/2023-04-27.exception.log",
+            "hash": "66169ba87b852e487c093ada5ddee4238812cd9a7d69e405c88ecb06555aa360"
+        },
+        {
+            "date": 1682642779022,
+            "name": "/app/node/logs/2023-04-28.exception.log",
+            "hash": "0e00968a58481d99cf497418bada07efda831fb25e52f1a90e421110381d2db3"
+        },
+        {
+            "date": 1683002835887,
+            "name": "/app/node/logs/2023-05-02.exception.log",
+            "hash": "694f718d82a329f39b0cf18c1f19de3f405f8f08ed1c750ae0d151b07dbaa523"
+        },
+        {
+            "date": 1683509249655,
+            "name": "/app/node/logs/2023-05-08.exception.log",
+            "hash": "b271627d742212db0a7f7e819c0cd472eb911398012a97445d6c9d40ed0ad94b"
+        },
+        {
+            "date": 1683589279963,
+            "name": "/app/node/logs/2023-05-09.exception.log",
+            "hash": "b7f41798e85285991d444e8ebb801462da8643e8e20ab0d41076a43aff088a75"
+        },
+        {
+            "date": 1683697815785,
+            "name": "/app/node/logs/2023-05-10.exception.log",
+            "hash": "db7d0ab26f0c8bad6a912dab6175731a574171f24f210c488295cce2dbf6b218"
+        }
+    ],
+    "hashType": "sha256"
+}

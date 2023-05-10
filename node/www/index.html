@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="kor" dir="ltr">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="stylesheet" href="./static/css/common/base.css" type="text/css" /> -->
+    <link rel="stylesheet" href="./static/css/common/login.css" type="text/css" />
+    <!-- <link rel="stylesheet" href="./static/css/common/header.css" type="text/css" /> -->
+    <link rel="stylesheet" href="./static/css/common/footer.css" type="text/css" />
+    <link rel="stylesheet" href="./static/css/common/modal.css" type="text/css" /> 
+
+    <script type="text/javascript" src="./js/jquery.js"></script>
+    <script type="text/javascript" src="./js/DIS.Web.Common.js"></script>
+    <script type="text/javascript" src="./js/DIS.Web.Init.js"></script>
+    <script type="text/javascript" src="./js/DIS.Web.Auth.js"></script>
+    <script src="./static/js/socket.io/socket.io.min.js"></script>
+    <script src="./static/js/sweetalert/sweetalert.js"></script>
+    <script src="./static/js/common/footer.js"></script>
+</head>
+
+<body>
+    <div class="loginArea">
+        <div class="loginContent">
+            <div class="loginHeader">
+                <img src="./static/imgs/login/new_login_logo.png">
+                <div class="loginAuth">
+                    <a class="adminLogin active" id="env"><h3>관리자 계정</h3></a>
+                </div>
+            </div>
+            <div class="loginBody">
+                <input type="email" name="name" id="name" placeholder="관리자 아이디를 입력해 주세요">
+                <input type="password" name="pass" id="pass" placeholder="비밀번호를 입력해 주세요">
+                <div class="loginBtn" onkeyup="enterkey();" id="loginButton">
+                    <!-- <button><span>로그인</span> <i class="fa fa-check"></i></button> -->
+                    <p>로그인</p>
+                </div>
+            </div>
+            <div class="loginFooter">
+                <!-- <a class="passid" href="/findid"><p>아이디 찾기</p></a>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</p> -->
+            </div>
+            <div class="loginPrivacy">
+                <label class="privacy">개인정보처리방침</label>
+                <label class="servicePrivacy">서비스이용약관</label>
+                <label class="emailPrivacy">이메일무단수집거부</label>
+            </div>
+        </div>
+    </div>
+</body>
+
+<div id="authModal" class="modal">
+    <div id="wrap">
+        <div class="layerPopupBox active">
+            <div class="auth_inner">
+                <div class="authContent">
+                    <div class="authHeader">
+                        <h1>2차 인증확인</h1>
+                    </div>
+                    <div class="authBody">
+                        <div class="bodyHeader">
+                            <p>아이디</p>
+                            <input class="auth_id" disabled>
+                            <div class="auth_send", id="email_send">
+                                <h3>이메일 인증하기</h3>
+                            </div>
+                            <div class="authArea">
+                                <input class="login_auth" type="number" id="user_input_code" placeholder="인증 번호를 입력해 주세요.">
+                            </div>
+                        </div>
+                        <div class="bodyFooter">
+                            <div class="btnArea">
+                                <div class="auth_confirm">
+                                    <p>인증 확인</p>
+                                </div>
+                                <div class="cancel">
+                                    <p>취소</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="privacyView" class="modal"></div>
+
+<div id="servicePrivacyView" class="modal"></div>
+
+<div id="emailPrivacyView" class="modal"></div>
+
+<script>
+    $("body").keypress(function (e) {
+        if (e.keyCode == 13) {
+            if(document.querySelector(".swal2-container")==null){
+                $("#loginButton").click();
+            }
+        }
+    });
+
+    $(document).on("click", ".cancel", function () {
+        $('.modal').removeClass('active')
+        $(".login_auth").val();
+    });
+</script>
+</html>

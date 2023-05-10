@@ -1,0 +1,797 @@
+@font-face {
+    font-family: 'S-CoreDream-4Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-4Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'S-CoreDream-5Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-5Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'S-CoreDream-6Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-6Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SpoqaHanSansNeo-Thin';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Thin.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SpoqaHanSansNeo-Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SpoqaHanSansNeo-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SpoqaHanSansNeo-Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SpoqaHanSansNeo-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.loginArea {
+    background: url(../../imgs/login/login_back.png);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    background-size: cover;
+    background-position: 50% 0%;
+}
+
+.loginArea .loginContent {
+    width: 400px;
+    height: auto;
+    margin: auto;
+    border-radius: 24px;
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.16);
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.loginArea .loginContent .loginHeader {
+    display: flex;
+    flex-direction: column;
+    margin: 54px auto 18px;
+}
+
+.loginArea .loginContent .loginHeader img {
+    width: 294px;
+    height: auto;
+    margin: 0 auto 42px;
+    object-fit: contain;
+}
+
+.loginArea .loginContent .loginHeader .loginAuth {
+    margin: 0 69px 0 67px;
+    display: flex;
+    width: 264px;
+}
+
+.loginArea .loginContent .loginHeader .loginAuth .adminLogin,
+.loginArea .loginContent .loginHeader .loginAuth .subLogin {  
+    font-family: SpoqaHanSansNeo-Light;
+    font-size: 22px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.25;
+    letter-spacing: normal;
+    text-align: left;
+    color: #bcc5cb;
+    margin: 0 auto;
+}
+
+.loginArea .loginContent .loginHeader .loginAuth p {  
+    font-family: SpoqaHanSansNeo-Thin;
+    font-size: 22px;
+    font-weight: 100;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.25;
+    letter-spacing: normal;
+    text-align: left;
+    color: #bcc5cb;
+    margin: 0 auto;
+}
+
+.loginArea .loginContent .loginHeader .loginAuth .adminLogin.active,
+.loginArea .loginContent .loginHeader .loginAuth .subLogin.active {
+    font-family: SpoqaHanSansNeo-Bold;
+    color: #16284d;
+    font-weight: bold;
+}
+
+.loginArea .loginContent .loginHeader .loginAuth .adminLogin,
+.loginArea .loginContent .loginHeader .loginAuth .subLogin,
+.loginArea .loginContent .loginHeader .loginAuth h3 {
+    margin: 0;
+}
+
+.loginArea .loginContent .loginBody {
+    margin: 0 auto 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+.loginArea .loginContent .loginBody #loginAlias,
+.loginArea .loginContent .loginBody #name,
+.loginArea .loginContent .loginBody #pass {
+    width: 272px;
+    height: 12px;
+    margin: 0 auto 12px;
+    padding: 11px 14px;
+    border: none;
+    border: solid 0.1px rgba(0, 0, 0, 0.16);
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
+    background-color: #fff;
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 14px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: left;
+    color: #16284d;
+}
+
+.loginArea .loginContent .loginBody #loginAlias::placeholder,
+.loginArea .loginContent .loginBody #name::placeholder,
+.loginArea .loginContent .loginBody #pass::placeholder {
+    font-family: SpoqaHanSansNeo-Light;
+    font-size: 14px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: left;
+    color: #707070;
+}
+
+.loginArea .loginContent .loginBody #pass {
+    margin: 0 auto 18px;
+}
+
+.loginArea .loginContent .loginBody .loginBtn {
+    width: 294px;
+    height: 40px;
+    margin: 0 auto;
+    display: flex;
+    border-radius: 20px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
+    background-color: #3fa9f5;
+    cursor: pointer;
+}
+
+.loginArea .loginContent .loginBody .loginBtn p {
+    font-family: SpoqaHanSansNeo-Bold;
+    margin: auto;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.22;
+    letter-spacing: normal;
+    text-align: center;
+    color: #fff;
+}
+
+.loginArea .loginContent .loginFooter {
+    width: 294px;
+    height: auto;
+    margin: 0 auto 18px;
+    display: flex;
+}
+
+.loginArea .loginContent .loginFooter .passid {
+    margin: auto 0 auto auto;
+}
+
+.loginArea .loginContent .loginFooter .passfind {
+    margin: auto 0 auto 54px;
+}
+
+.loginArea .loginContent .loginFooter .register {
+    margin: auto auto auto 0;
+}
+
+.loginArea .loginContent .loginFooter p {
+    font-family: SpoqaHanSansNeo-Regular;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: center;
+    color: #212121;
+    margin: auto 0;
+}
+
+.loginArea .loginContent .loginFooter h3 {
+    font-family: SpoqaHanSansNeo-Regular;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: left;
+    color: #212121;
+    margin: auto 0;
+}
+
+.loginArea .loginContent .loginPrivacy {
+    width: 294px;
+    display: flex;
+    margin: 0 auto 45px;
+    justify-content: space-between;
+}
+
+.loginArea .loginContent .loginPrivacy label {
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: left;
+    color: #595959;
+    margin: auto 0;
+    cursor: pointer;
+}
+
+.loginArea .loginContent .loginPrivacy .privacy {
+    font-family: SpoqaHanSansNeo-Bold;
+}
+
+.loginArea .loginContent .loginPrivacy .servicePrivacy,
+.loginArea .loginContent .loginPrivacy .emailPrivacy {
+    font-family: SpoqaHanSansNeo-Regular;
+}
+
+.swal2-popup {
+    width: 400px !important;
+    border-radius: 24px !important;
+    padding: 0 0 40px !important;
+}
+
+.swal2-icon {
+    margin: 50px auto 0 !important;
+}
+
+.swal2-icon.swal2-success [class^=swal2-success-line] {
+    z-index: 3 !important;
+    background-color: #fff !important;
+}
+
+.swal2-icon.swal2-success .swal2-success-ring {
+    border: 0.25em solid #3fa9f5 !important;
+    background-color: #3fa9f5 !important;
+}
+
+.swal2-icon.swal2-error {
+    border-color: #f64957 !important;
+    background-color: #f64957 !important;
+    color: #fff !important;
+}
+
+.swal2-icon.swal2-error [class^=swal2-x-mark-line] {
+    background-color: #fff !important;
+}
+
+.swal2-title {
+    font-family: SpoqaHanSansNeo-Bold !important;
+    font-size: 24px !important;
+    color: #16284d !important;
+    padding: 0 !important;
+    margin: 40px auto 0 !important;
+    max-width: 294px !important;
+}
+
+.swal2-html-container {
+    font-family: SpoqaHanSansNeo-Medium !important;
+    font-size: 18px !important;
+    color: #595959 !important;
+    margin: 12px auto 0 !important;
+    max-width: 294px !important;
+}
+
+.swal2-actions {
+    margin: 0 auto !important;
+    flex-direction: column !important;
+}
+
+.swal2-styled.swal2-confirm {
+    width: 294px !important;
+    height: 40px !important;
+    margin: 40px auto 0 !important;
+    padding: 0 !important;
+    border-radius: 20px !important;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16) !important;
+    background-color: #3fa9f5 !important;
+    color: #fff;
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.22;
+    letter-spacing: normal;
+    text-align: center;
+}
+
+.swal2-styled.swal2-deny {
+    width: 294px !important;
+    height: 40px !important;
+    margin: 40px auto 0 !important;
+    padding: 0 !important;
+    border-radius: 20px !important;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16) !important;
+    background-color: #f64957 !important;
+    color: #fff;
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.22;
+    letter-spacing: normal;
+    text-align: center;
+}
+
+.layerPopupBox .auth_inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px #666;
+    background: #FFFFFF;
+    border: 1px solid #EBEDF2;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+.layerPopupBox .auth_inner .authContent {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.layerPopupBox .auth_inner .authContent .authHeader {
+    margin: 54px auto 42px;
+}
+
+.layerPopupBox .auth_inner .authContent .authHeader h1 {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 34px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.25;
+    letter-spacing: normal;
+    text-align: left;
+    color: #16284d;
+    margin: 0 auto;
+}
+
+.layerPopupBox .auth_inner .authContent .authBody {
+    width: 294px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.layerPopupBox .auth_inner .authContent .authBody .bodyHeader {
+    width: 294px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto 18px;
+}
+
+.layerPopupBox .auth_inner .authContent .authBody .bodyHeader p {
+    width: 294px;
+    margin: 0 auto 12px;
+    object-fit: contain;
+    font-family: SpoqaHanSansNeo-Regular;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: left;
+    color: #212121;
+}
+
+.layerPopupBox .auth_inner .authContent .authBody .bodyHeader input {
+    width: 266px;
+    height: 18px;
+    margin: 0 auto;
+    padding: 11px 14px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 10px 0 rgb(0 0 0 / 16%);
+    background-color: #fff;
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 14px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: left;
+    color: #16284d;
+}
+
+.layerPopupBox .auth_inner .authContent .authBody .bodyHeader input::placeholder {  
+    font-family: SpoqaHanSansNeo-Light;
+    font-size: 14px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: left;
+    color: #707070;
+}
+
+.layerPopupBox .auth_inner .authContent .authBody .bodyHeader .auth_send {
+    width: 294px;
+    height: 30px;
+    margin: 10px auto;
+    border-radius: 15px;
+    background-color: #3fa9f5;
+    display: flex;
+    cursor: pointer;
+}
+
+.layerPopupBox .auth_inner .authContent .authBody .bodyHeader h3 {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: center;
+    color: #fff;
+    margin: auto;
+}
+
+.layerPopupBox .auth_inner .authContent .authBody .bodyFooter {
+    width: 294px;
+    height: auto;
+    display: flex;
+    margin: 6px auto 54px;
+}
+
+.layerPopupBox .auth_inner .authContent .authBody .bodyFooter .btnArea {
+    display: flex;
+}
+
+.layerPopupBox .auth_inner .authContent .authBody .bodyFooter .btnArea .auth_confirm {
+    width: 140px;
+    height: 40px;
+    margin: 0 14px 0 0;
+    border-radius: 20px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
+    background-color: #3fa9f5;
+    display: flex;
+    cursor: pointer;
+}
+
+.layerPopupBox .auth_inner .authContent .authBody .bodyFooter .btnArea .cancel {
+    width: 140px;
+    height: 40px;
+    margin: 0;
+    display: flex;
+    border-radius: 20px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
+    background-color: #16284d;
+    cursor: pointer;
+}
+
+.layerPopupBox .auth_inner .authContent .authBody .bodyFooter .btnArea p {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: center;
+    color: #fff;
+    margin: auto;
+}
+
+@media(max-width:600px){
+    .loginArea {
+        background: url(../../imgs/login/m_login_back.png);
+        background-size: 100%;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+    }
+
+    .loginArea .loginContent {
+        width: 288px;
+        height: auto;
+        margin: auto;
+        border-radius: 24px;
+        box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.16);
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .loginArea .loginContent .loginHeader {
+        margin: 30px auto 14px;
+    }
+
+    .loginArea .loginContent .loginHeader img {
+        width: 240px;
+        height: auto;
+        margin: 0 auto 25px;
+        object-fit: contain;
+    }
+
+    .loginArea .loginContent .loginHeader .loginAuth {
+        margin: 0 24px 0 22px;
+        display: flex;
+        width: 242px;
+    }
+
+    .loginArea .loginContent .loginHeader .loginAuth .adminLogin, 
+    .loginArea .loginContent .loginHeader .loginAuth .subLogin {
+        font-size: 20px;
+    }
+
+    .loginArea .loginContent .loginHeader .loginAuth p {
+        font-size: 20px;
+    }
+
+    .loginArea .loginContent .loginBody #loginAlias, 
+    .loginArea .loginContent .loginBody #name, 
+    .loginArea .loginContent .loginBody #pass {
+        width: 212px;
+        height: 18px;
+        margin: 0 auto 10px;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
+    }
+
+    .loginArea .loginContent .loginBody .loginBtn {
+        width: 240px;
+        height: 40px;
+        border-radius: 20px;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
+        background-color: #3fa9f5;
+        margin: 8px auto 0;
+        display: flex;
+        cursor: pointer;
+    }
+
+    .loginArea .loginContent .loginFooter {
+        width: 268px;
+        height: auto;
+        margin: 0 auto 12px;
+        display: flex;
+    }
+    
+    .loginArea .loginContent .loginPrivacy {
+        width: 242px;
+        display: flex;
+        margin: 0 auto 28px;
+        justify-content: space-between;
+    }
+
+    .loginArea .loginContent .loginPrivacy label {
+        font-size: 10px;
+    }
+
+    .swal2-popup {
+        width: 288px !important;
+        border-radius: 24px !important;
+        padding: 0 0 28px !important;
+    }
+    
+    .swal2-icon {
+        margin: 38px auto 0 !important;
+    }
+    
+    .swal2-icon.swal2-success [class^=swal2-success-line] {
+        z-index: 3 !important;
+        background-color: #fff !important;
+    }
+    
+    .swal2-icon.swal2-success .swal2-success-ring {
+        border: 0.25em solid #3fa9f5 !important;
+        background-color: #3fa9f5 !important;
+    }
+    
+    .swal2-icon.swal2-error {
+        border-color: #f64957 !important;
+        background-color: #f64957 !important;
+        color: #fff !important;
+    }
+    
+    .swal2-icon.swal2-error [class^=swal2-x-mark-line] {
+        background-color: #fff !important;
+    }
+    
+    .swal2-title {
+        font-family: SpoqaHanSansNeo-Bold !important;
+        font-size: 20px !important;
+        color: #16284d !important;
+        padding: 0 !important;
+        margin: 28px auto 0 !important;
+        max-width: 240px !important;
+    }
+    
+    .swal2-html-container {
+        font-family: SpoqaHanSansNeo-Medium !important;
+        font-size: 14px !important;
+        color: #595959 !important;
+        margin: 8px auto 0 !important;
+        max-width: 240px !important;
+    }
+    
+    .swal2-actions {
+        margin: 0 auto !important;
+    }
+    
+    .swal2-styled.swal2-confirm {
+        width: 240px !important;
+        height: 40px !important;
+        margin: 31px auto 0 !important;
+    }
+    
+    .swal2-styled.swal2-deny {
+        width: 240px !important;
+        height: 40px !important;
+        margin: 31px auto 0 !important;
+    }
+
+    .layerPopupBox .auth_inner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 288px;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 2px 2px 10px #666;
+        background: #FFFFFF;
+        border: 1px solid #EBEDF2;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .layerPopupBox .auth_inner .authContent .authHeader {
+        margin: 28px auto 24px;
+    }
+    
+    .layerPopupBox .auth_inner .authContent .authHeader h1 {
+        font-size: 28px;
+    }
+    
+    .layerPopupBox .auth_inner .authContent .authBody {
+        width: 240px;
+    }
+    
+    .layerPopupBox .auth_inner .authContent .authBody .bodyHeader {
+        width: 240px;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto 18px;
+    }
+    
+    .layerPopupBox .auth_inner .authContent .authBody .bodyHeader p {
+        width: 240px;
+        margin: 0 auto 12px;
+        object-fit: contain;
+        font-family: SpoqaHanSansNeo-Regular;
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.29;
+        letter-spacing: -0.14px;
+        text-align: left;
+        color: #212121;
+    }
+    
+    .layerPopupBox .auth_inner .authContent .authBody .bodyHeader input {
+        width: 212px;
+        height: 18px;
+        margin: 0 auto;
+    }
+    
+    .layerPopupBox .auth_inner .authContent .authBody .bodyHeader input::placeholder {  
+        font-family: SpoqaHanSansNeo-Light;
+        font-size: 14px;
+        font-weight: 300;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.29;
+        letter-spacing: -0.14px;
+        text-align: left;
+        color: #707070;
+    }
+    
+    .layerPopupBox .auth_inner .authContent .authBody .bodyHeader .auth_send {
+        width: 240px;
+        height: 30px;
+    }
+    
+    .layerPopupBox .auth_inner .authContent .authBody .bodyHeader h3 {
+        font-family: SpoqaHanSansNeo-Bold;
+        font-size: 14px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.29;
+        letter-spacing: normal;
+        text-align: center;
+        color: #fff;
+        margin: auto;
+    }
+    
+    .layerPopupBox .auth_inner .authContent .authBody .bodyFooter {
+        width: 240px;
+        height: auto;
+        display: flex;
+        margin: 6px auto 24px;
+    }
+    
+    .layerPopupBox .auth_inner .authContent .authBody .bodyFooter .btnArea .auth_confirm,
+    .layerPopupBox .auth_inner .authContent .authBody .bodyFooter .btnArea .cancel {
+        width: 114px;
+        height: 40px;
+    }
+}

@@ -1,0 +1,559 @@
+const express = require("express");
+const asyncify = require('express-asyncify');
+const app = asyncify(express());
+const path = require("path");
+const fs = require('fs-extra');
+const pool = require('../user_modules/db.js').pool
+const dateModule = require('../user_modules/date');
+const CryptoJS = require('crypto-js');
+const moment = require('moment');
+const request = require('request');
+const parser = require('fast-xml-parser');
+const he = require('he');
+const exec = require('child_process').exec
+const mysql = require('mysql2/promise');
+
+const bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: true }))
+
+/*
+ * AWS-SDK, S3, NAS 파일 업로드 모듈
+ */
+const AWS = require('aws-sdk');
+const multer = require('multer');
+const multerS3 = require('multer-s3');
+
+const endpoint = new AWS.Endpoint('https://kr.object.gov-ncloudstorage.com');
+const region = 'kr-standard';
+const allowedExtensions = ['.png', '.jpg', '.jpeg', '.bmp', 'mp4']
+
+const logger = require('../logger');
+const morganMiddleware = require('../morgan-middleware');
+const { join } = require("path");
+app.use(morganMiddleware);
+
+function apiLogFormat(method, api, logStream) {
+    return `[NCP-API] ${method} ${api} - ${logStream}`;
+}
+
+const s3 = new AWS.S3({
+    endpoint: endpoint,
+    region: region,
+    credentials: {
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+    }
+})
+
+app.use('/nas', express.static(path.join(__dirname, '../nas')));
+
+exports.getDatabaseInstanceNo = async (req, res) => {
+    if(process.env.NODE_ENV === 'dev') {
+        var objJson = { 'message': 'success', 'log': 'getCloudMysqlDatabaseList success', result: null };
+        logger.info(apiLogFormat('GET', '/database/instanceNumber', ` 데이터베이스 Instance No 조회 완료`))
+        console.log(apiLogFormat('GET', '/database/instanceNumber', ` 데이터베이스 Instance No 조회 완료`))
+        res.json(objJson);
+    }
+    else {
+        var timestamp = new Date().getTime();
+        const accessKeyId = process.env.AWS_ACCESS_KEY_ID;
+        const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
+
+        // API 서버 정보
+        var apiServer = "https://ncloud.apigw.gov-ntruss.com"
+
+        var url = "/vmysql/v2/getCloudMysqlInstanceList";
+
+        var method = "GET";
+        var space = " ";
+        var newLine = "\n";
+
+        var hmac = CryptoJS.algo.HMAC.create(CryptoJS.algo.SHA256, secretAccessKey);
+        var message = method + space + url + newLine + timestamp + newLine + accessKeyId;
+        hmac.update(message);
+
+        var hash = hmac.finalize();
+
+        const signingKey = hash.toString(CryptoJS.enc.Base64);
+
+        const options = {
+            uri: apiServer + url,
+            headers: {
+                'x-ncp-apigw-timestamp': timestamp,
+                'x-ncp-iam-access-key': accessKeyId,
+                'x-ncp-apigw-signature-v2': signingKey
+            }
+        };
+
+        request.get(options, function (error, response, body) {
+            //callback
+            var xml = response.body;
+            const xmlParser = new parser.XMLParser();
+
+            var xmlToJson = xmlParser.parse(xml);
+            var result = xmlToJson['getCloudMysqlInstanceListResponse']['returnMessage'];
+            var cloudMysqlInstanceNo = xmlToJson['getCloudMysqlInstanceListResponse']['cloudMysqlInstanceList']['cloudMysqlInstance']['cloudMysqlInstanceNo'];
+
+            if (result == 'success') {
+                var objJson = { 'message': 'success', 'log': 'getCloudMysqlDatabaseList success', result: cloudMysqlInstanceNo };
+                logger.info(apiLogFormat('GET', '/database/instanceNumber', ` 데이터베이스 Instance No 조회 완료`))
+                console.log(apiLogFormat('GET', '/database/instanceNumber', ` 데이터베이스 Instance No 조회 완료`))
+                res.json(objJson);
+            } else {
+                var objJson = { 'message': 'fail', 'log': result };
+                logger.error(apiLogFormat('GET', '/database/instanceNumber', ` ${result}`))
+                console.error(apiLogFormat('GET', '/database/instanceNumber', ` ${result}`))
+                res.json(objJson);
+            }
+        });
+    }
+}
+
+exports.createDatabase = async (req, res) => {
+    let databaseName = `dis-tenant-${req.params.id}`;
+
+    if (process.env.NODE_ENV === 'dev') {
+        databaseName = 'dev-' + databaseName;
+        let sql = `CREATE DATABASE \`${databaseName}\`;`
+        const conn = await pool.getConnection();
+        await conn.query(sql);
+        var objJson = { 'message': 'success', 'log': 'Database ' + databaseName + ' create success' };
+        logger.info(apiLogFormat('GET', '/createDatabase', ` ${databaseName} 생성 완료`));
+        console.log(apiLogFormat('GET', '/createDatabase', ` ${databaseName} 생성 완료`));
+        res.status(200).json(objJson);
+    }
+    else {
+        var cloudMysqlInstanceNo = req.params.instanceNo;
+        var timestamp = new Date().getTime();
+
+        const accessKeyId = process.env.AWS_ACCESS_KEY_ID;
+        const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
+
+        // API 서버 정보
+        var apiServer = "https://ncloud.apigw.gov-ntruss.com"
+
+        var url = "/vmysql/v2/addCloudMysqlDatabaseList";
+        url = url + "?regionCode=KR&cloudMysqlInstanceNo=" + cloudMysqlInstanceNo + "&cloudMysqlDatabaseNameList.1=" + databaseName;
+
+        var method = "GET";
+        var space = " ";
+        var newLine = "\n";
+
+        var hmac = CryptoJS.algo.HMAC.create(CryptoJS.algo.SHA256, secretAccessKey);
+        var message = method + space + url + newLine + timestamp + newLine + accessKeyId;
+        hmac.update(message);
+
+        var hash = hmac.finalize();
+
+        const signingKey = hash.toString(CryptoJS.enc.Base64);
+
+        const options = {
+            uri: apiServer + url,
+            headers: {
+                'x-ncp-apigw-timestamp': timestamp,
+                'x-ncp-iam-access-key': accessKeyId,
+                'x-ncp-apigw-signature-v2': signingKey
+            }
+        };
+
+        request.get(options, function (error, response, body) {
+            //callback
+            var xml = response.body;
+            const xmlParser = new parser.XMLParser();
+
+            var xmlToJson = xmlParser.parse(xml);
+            var result = xmlToJson['addCloudMysqlDatabaseListResponse']['returnMessage'];
+
+            if (result == 'success') {
+                let objJson = { 'message': 'success', 'log': 'Database ' + databaseName + ' create success' };
+                logger.info(apiLogFormat('GET', '/createDatabase', ` ${databaseName} 생성 완료`));
+                console.log(apiLogFormat('GET', '/createDatabase', ` ${databaseName} 생성 완료`));
+                res.status(200).json(objJson);
+            } else {
+                let objJson = { 'message': 'fail', 'log': result };
+                logger.error(apiLogFormat('GET', '/createDatabase', ` ${result}`));
+                console.error(apiLogFormat('GET', '/createDatabase', ` ${result}`));
+                res.status(400).json(objJson);
+            }
+        });
+    }
+}
+
+exports.createTable = async (req, res) => {
+    var sql = `CREATE TABLE password_reset (
+        id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+        account_name varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+        token text NOT NULL,
+        request_datetime datetime NOT NULL
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`
+
+    var sql1 = `CREATE TABLE auth (
+        id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+        tenant varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+        account_name varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+        bucket_access_list varchar(255) NOT NULL,
+        bucket_access_auth varchar(20) NOT NULL,
+        db_access_list varchar(255) NOT NULL,
+        db_access_auth varchar(20) NOT NULL,
+        encrypt_auth tinyint NOT NULL,
+        decrypt_auth tinyint NOT NULL,
+        auth_log blob DEFAULT NULL,
+        date date NOT NULL
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`;
+
+    var sql2 = `CREATE TABLE dec_request_list (
+        id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+        fk_enc_request_id int NOT NULL,
+        fk_sub_account_id int NOT NULL,
+        fk_rsa_key_pair_id int NOT NULL,
+        fk_account_auth_id int NOT NULL,
+        account_name varchar(100) NOT NULL,
+        user_name varchar(255) NOT NULL,
+        bucket_directory varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+        key_name varchar(255) NOT NULL,
+        request_file_list blob NOT NULL,
+        result_file_list blob DEFAULT NULL,
+        file_type varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+        file_count int NOT NULL,
+        request_date date NOT NULL,
+        request_time time NOT NULL,
+        reception_datetime datetime DEFAULT NULL,
+        health_check_process varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+        decrypt_progress varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0%',
+        upload_process varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+        status varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+        save_directory varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+        decrypt_log blob DEFAULT NULL,
+        complete int NOT NULL DEFAULT '0',
+        complete_date date DEFAULT NULL,
+        complete_time time DEFAULT NULL
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`;
+
+    var sql3 = `CREATE TABLE enc_request_list (
+        id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+        fk_sub_account_id int NOT NULL,
+        fk_rsa_key_pair_id int NOT NULL,
+        account_name varchar(255) NOT NULL,
+        user_name varchar(255) DEFAULT NULL,
+        key_name varchar(255) NOT NULL,
+        file_directory varchar(255) NOT NULL,
+        encrypt_directory varchar(255) NOT NULL,
+        restoration tinyint NOT NULL,
+        encrypt_object blob,
+        request_file_list blob NOT NULL,
+        result_file_list blob DEFAULT NULL,
+        file_type varchar(255) NOT NULL,
+        file_count int NOT NULL,
+        bin blob DEFAULT NULL,
+        random tinyint NOT NULL DEFAULT '1',
+        request_date date NOT NULL,
+        request_time time NOT NULL,
+        reception_datetime datetime DEFAULT NULL,
+        processing_time varchar(30) DEFAULT NULL,
+        health_check_process varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+        encrypt_progress varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0%',
+        upload_process varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+        status varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+        encrypt_log blob DEFAULT NULL,
+        complete tinyint NOT NULL DEFAULT '0',
+        complete_date date DEFAULT NULL,
+        complete_time time DEFAULT NULL
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`;
+
+    var sql4 = `CREATE TABLE rsa_key_pair (
+        id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+        account_name varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+        user_name varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+        key_name varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+        blob_public_key blob NOT NULL,
+        generated_date date NOT NULL,
+        generated_time time NOT NULL,
+        key_memo varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`;
+
+    var sql5 = `CREATE TABLE sub_account (
+        id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+        tenant_id int NOT NULL,
+        company_name varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+        account_name varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+        password varchar(255) NOT NULL,
+        salt varchar(255) NOT NULL,
+        telephone varchar(255) DEFAULT NULL,
+        email varchar(255) NOT NULL,
+        user_name varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+        fk_auth_id int DEFAULT NULL,
+        register_date datetime NOT NULL,
+        self_auth tinyint NOT NULL DEFAULT '0',
+        last_login datetime DEFAULT NULL
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`;
+
+    var sql6 = `SELECT * FROM tenant WHERE id = ?`;
+    var sql7 = `INSERT INTO auth (tenant, account_name, bucket_access_list, bucket_access_auth, db_access_list, db_access_auth, encrypt_auth, decrypt_auth, date) values (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+
+    var env = (process.env.NODE_ENV == 'dev') ? '-dev' : '';
+    var sql8 = `CREATE TABLE \`meter${env}-dis-tenant-${req.params.id}\` (
+        id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+        fk_sub_account_id int NOT NULL,
+        account_name varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+        user_name varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+        request_type varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+        restoration tinyint NOT NULL DEFAULT '0',
+        request_id int NOT NULL,
+        file_name varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+        file_type varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+        file_extension varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+        frame int DEFAULT NULL,
+        person int DEFAULT NULL,
+        face int DEFAULT NULL,
+        license_plate int DEFAULT NULL,
+        file_size int DEFAULT NULL,
+        file_width int DEFAULT NULL,
+        file_height int DEFAULT NULL,
+        complete tinyint NOT NULL DEFAULT '0',
+        result_file_name varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+        result_file_size int DEFAULT NULL,
+        request_date date DEFAULT NULL,
+        request_time time DEFAULT NULL,
+        complete_date date DEFAULT NULL,
+        complete_time time DEFAULT NULL,
+        service_charge int NOT NULL DEFAULT '0', 
+        billed tinyint NOT NULL DEFAULT '0'
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`;
+
+    var sql9 = `CREATE VIEW enc_request_list_view AS
+    SELECT id, fk_sub_account_id, key_name, restoration, request_file_list, file_type, request_date, status, complete
+    FROM enc_request_list;`;
+
+    var sql10 = `CREATE VIEW dec_request_list_view AS
+    SELECT id, fk_sub_account_id, request_file_list, file_type, request_date, status, complete
+    FROM dec_request_list;`;
+
+    var sql11 = `CREATE TABLE dec_thumbnail (
+        id int NOT NULL,
+        fk_enc_request_id int NOT NULL,
+        fk_sub_account_id int NOT NULL,
+        fk_rsa_key_pair_id int NOT NULL,
+        fk_account_auth_id int NOT NULL,
+        account_name varchar(100) NOT NULL,
+        user_name varchar(255) NOT NULL,
+        bucket_directory varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+        key_name varchar(255) NOT NULL,
+        request_file_list blob NOT NULL,
+        thumbnail_result blob,
+        file_type varchar(255) NOT NULL,
+        file_count int NOT NULL,
+        request_date date NOT NULL,
+        request_time time NOT NULL,
+        reception_datetime datetime DEFAULT NULL,
+        status varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+        nas_directory varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+        thumbnail_log blob,
+        complete int NOT NULL DEFAULT '0',
+        complete_date date DEFAULT NULL,
+        complete_time time DEFAULT NULL
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;`
+
+    var sql12 = `CREATE TABLE clean_fail_request (
+        id int NOT NULL,
+        reception_datetime datetime NOT NULL,
+        request_type varchar(50) NOT NULL,
+        request_id int NOT NULL,
+        failed_process varchar(50) NOT NULL,
+        step_status varchar(20) NOT NULL,
+        error_log blob NOT NULL,
+        key_exist tinyint(1) NOT NULL DEFAULT '0',
+        clean_key tinyint(1) DEFAULT '0',
+        upload_exist tinyint(1) NOT NULL DEFAULT '0',
+        clean_upload tinyint(1) NOT NULL DEFAULT '0',
+        result_exist tinyint(1) NOT NULL DEFAULT '0',
+        clean_result tinyint(1) NOT NULL DEFAULT '0',
+        clean_log blob,
+        retry int NOT NULL DEFAULT '0',
+        complete int NOT NULL DEFAULT '0',
+        complete_datetime datetime DEFAULT NULL
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;`
+
+    var databaseName = 'dis-tenant-' + req.params.id;
+    databaseName = (process.env.NODE_ENV == 'dev') ? 'dev-' + databaseName : databaseName;
+    var bucketName = 'tenant-' + req.params.id;
+    bucketName = (process.env.NODE_ENV == 'dev') ? 'dev-' + bucketName : bucketName;
+    const requestDate = moment().format('YYYY-MM-DD');
+
+    var tenantConfig =
+    {
+        host: process.env.DATABASE_ENDPOINT,
+        port: 3306,
+        user: process.env.DATABASE_USER,
+        password: process.env.DATABASE_PASSWORD,
+        database: databaseName,
+        multipleStatements: true,
+        connectionLimit: 30
+    };
+
+    var metering_database = 'dis-metering';
+    var meteringConfig =
+    {
+        host: process.env.DATABASE_ENDPOINT,
+        port: 3306,
+        user: process.env.DATABASE_USER,
+        password: process.env.DATABASE_PASSWORD,
+        database: (process.env.NODE_ENV == 'dev') ? 'dev-' + metering_database : metering_database,
+        multipleStatements: true,
+        connectionLimit: 30
+    };
+
+    const subConn = await mysql.createConnection(tenantConfig);
+    const conn = await pool.getConnection();
+    const meterConn = await mysql.createConnection(meteringConfig);
+
+    let objJson = {
+        msg: '',
+        result: null
+    }
+
+    try {
+        await subConn.query(sql);
+        await subConn.query(sql1);
+        await subConn.query(sql2);
+        await subConn.query(sql3);
+        await subConn.query(sql4);
+        await subConn.query(sql5);
+        const [result] = await conn.query(sql6, [req.params.id]);
+
+        await subConn.query(sql7, [databaseName, result[0].account_name, "'" + bucketName + "'", '111', "'" + databaseName + "'", '1111', 1, 1, requestDate]);
+        await meterConn.query(sql8);
+        await subConn.query(sql9);
+        await subConn.query(sql10);
+        await subConn.query(sql11);
+        await subConn.query(sql12);
+        objJson.msg = 'success';
+        logger.info(apiLogFormat('GET', '/createTable', ` 테이블 생성 완료`));
+        console.log(apiLogFormat('GET', '/createTable', ` 테이블 생성 완료`));
+        conn.release();
+        res.status(200).json(objJson);
+    } catch (err) {
+        objJson.msg = 'error';
+        objJson.result = err.message;
+        logger.error(apiLogFormat('GET', '/createTable', ` ${err}`));
+        console.error(apiLogFormat('GET', '/createTable', ` ${err}`));
+        conn.release();
+        res.status(400).json(objJson);
+    }
+}
+
+exports.createBucket = async (req, res) => {
+    const { tenantId } = req.body;
+
+    let bucketName = (process.env.NODE_ENV == 'dev') ? 'dev-tenant-' + tenantId : 'tenant-' + tenantId
+
+    createS3Bucket(bucketName)
+    let objJson = { 'message': 'success', 'log': 'Bucket ' + bucketName + ' create success' };
+    logger.info(apiLogFormat('POST', '/bucket', ` ${bucketName} 생성 완료`))
+    console.log(apiLogFormat('POST', '/bucket', ` ${bucketName} 생성 완료`))
+    res.status(200).json(objJson);
+}
+
+function createS3Bucket(bucketName) {
+    s3.createBucket({
+        Bucket: bucketName,
+        CreateBucketConfiguration: {}
+    }).promise()
+}
+
+exports.listBucket = async (req, res) => {
+    let { Buckets } = await s3.listBuckets().promise();
+
+    let bucketList = []
+    for(let bucket of Buckets) bucketList.push(bucket.Name);
+
+    let objJson = { 'message': 'success', 'log': 'bucketlist success', result: bucketList };
+    logger.info(apiLogFormat('GET', '/bucket/list', ` 버킷 목록 조회 완료`))
+    console.log(apiLogFormat('GET', '/bucket/list', ` 버킷 목록 조회 완료`))
+    res.status(200).json(objJson);
+}
+
+exports.getMonthUsage = async (req, res, cb) => {
+    var searchMonth = req.query.searchMonth;
+    var env = (process.env.NODE_ENV == 'dev') ? 'dev-' : '';
+
+    var metering_database = 'dis-metering';
+    var meteringConfig =
+    {
+        host: process.env.DATABASE_ENDPOINT,
+        port: 3306,
+        user: process.env.DATABASE_USER,
+        password: process.env.DATABASE_PASSWORD,
+        database: (process.env.NODE_ENV == 'dev') ? 'dev-' + metering_database : metering_database,
+        multipleStatements: true,
+        connectionLimit: 30
+    };
+
+    const conn = await pool.getConnection();
+    const meterConn = await mysql.createConnection(meteringConfig);
+
+    var sql = `SHOW TABLES`;
+    var objJson = {
+
+    }
+
+    var table_name_list = []
+    var tenant_info_list = []
+
+    var [table_name] = await meterConn.query(sql);
+    var [tenant_info] = await conn.query('SELECT id, company_name, owner_name, user_name FROM tenant')
+
+    for (var i = 0; i < table_name.length; i++) table_name_list.push(table_name[i][`Tables_in_${env}dis-metering`])
+    for (var i = 0; i < tenant_info.length; i++) tenant_info_list.push(tenant_info[i]);
+
+    var objJson = {};
+
+    for (var i = 0; i < tenant_info_list.length; i++) {
+        let template = {
+            company_name: tenant_info_list[i].company_name,
+            owner_name: tenant_info_list[i].owner_name,
+            user_name: tenant_info_list[i].user_name,
+            encrypt_request_count: 0,
+            decrypt_request_count: 0,
+            download_request_count: 0,
+            encrypt_request_charge: 0,
+            decrypt_request_charge: 0,
+            download_request_charge: 0,
+            total_download: 0,
+        }
+        objJson[tenant_info_list[i].id] = template;
+    }
+
+    for (var i = 0; i < table_name_list.length; i++) {
+        var tableName = table_name_list[i];
+        sql = `SELECT request_type, count(*), sum(file_size), sum(service_charge) FROM \`${tableName}\` WHERE file_type!='json' AND request_date LIKE \'${searchMonth}%\' group by request_type;`
+        var [result] = await meterConn.query(sql);
+
+        if (result.length > 0) {
+            var parseTableName = tableName.split('-');
+            var tenantId = parseTableName[parseTableName.length - 1];
+            for (var j = 0; j < result.length; j++) {
+                if (result[j].request_type == 'encrypt') {
+                    objJson[tenantId]['encrypt_request_count'] = result[j]['count(*)'];
+                    objJson[tenantId]['encrypt_request_charge'] = result[j]['sum(service_charge)']
+                    console.log(tenantId + "1번")
+                }
+                else if (result[j].request_type == 'decrypt') {
+                    objJson[tenantId]['decrypt_request_count'] = result[j]['count(*)'];
+                    objJson[tenantId]['decrypt_request_charge'] = result[j]['sum(service_charge)']
+                    console.log(tenantId + "2번")
+                }
+                else if (result[j].request_type == 'download') {
+                    objJson[tenantId]['download_request_count'] = result[j]['count(*)'];
+                    objJson[tenantId]['total_download'] += result[j]['sum(file_size)'];
+                    objJson[tenantId]['download_request_charge'] = result[j]['sum(service_charge)']
+                    console.log(tenantId + "3번")
+                }
+            }
+        }
+    }
+
+    logger.info(apiLogFormat('GET', '/usage', ` 월간 미터링 정보 조회 완료`))
+    console.log(apiLogFormat('GET', '/usage', ` 월간 미터링 정보 조회 완료`))
+    conn.release();
+    res.status(200).json(objJson);
+}

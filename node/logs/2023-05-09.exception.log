@@ -1,0 +1,396 @@
+2023-05-09 10:35:02 [noon-ai-dis-was] error: uncaughtException: The bucket you tried to delete is not empty.
+BucketNotEmpty: The bucket you tried to delete is not empty.
+    at Request.extractError (/app/node/node_modules/aws-sdk/lib/services/s3.js:711:35)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:106:20)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:78:10)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/request.js:686:14)
+    at Request.transition (/app/node/node_modules/aws-sdk/lib/request.js:22:10)
+    at AcceptorStateMachine.runTo (/app/node/node_modules/aws-sdk/lib/state_machine.js:14:12)
+    at /app/node/node_modules/aws-sdk/lib/state_machine.js:26:10
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:38:9)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:688:12)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:116:18)
+2023-05-09 10:35:14 [noon-ai-dis-was] error: uncaughtException: The bucket you tried to delete is not empty.
+BucketNotEmpty: The bucket you tried to delete is not empty.
+    at Request.extractError (/app/node/node_modules/aws-sdk/lib/services/s3.js:711:35)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:106:20)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:78:10)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/request.js:686:14)
+    at Request.transition (/app/node/node_modules/aws-sdk/lib/request.js:22:10)
+    at AcceptorStateMachine.runTo (/app/node/node_modules/aws-sdk/lib/state_machine.js:14:12)
+    at /app/node/node_modules/aws-sdk/lib/state_machine.js:26:10
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:38:9)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:688:12)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:116:18)
+2023-05-09 10:35:55 [noon-ai-dis-was] error: uncaughtException: The bucket you tried to delete is not empty.
+BucketNotEmpty: The bucket you tried to delete is not empty.
+    at Request.extractError (/app/node/node_modules/aws-sdk/lib/services/s3.js:711:35)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:106:20)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:78:10)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/request.js:686:14)
+    at Request.transition (/app/node/node_modules/aws-sdk/lib/request.js:22:10)
+    at AcceptorStateMachine.runTo (/app/node/node_modules/aws-sdk/lib/state_machine.js:14:12)
+    at /app/node/node_modules/aws-sdk/lib/state_machine.js:26:10
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:38:9)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:688:12)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:116:18)
+2023-05-09 10:39:44 [noon-ai-dis-was] error: uncaughtException: self.deleteObject is not a function
+TypeError: self.deleteObject is not a function
+    at Response.<anonymous> (/app/node/controller/Tenant.Api.Controller.js:239:18)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:367:18)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:106:20)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:78:10)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/request.js:686:14)
+    at Request.transition (/app/node/node_modules/aws-sdk/lib/request.js:22:10)
+    at AcceptorStateMachine.runTo (/app/node/node_modules/aws-sdk/lib/state_machine.js:14:12)
+    at /app/node/node_modules/aws-sdk/lib/state_machine.js:26:10
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:38:9)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:688:12)
+2023-05-09 10:39:44 [noon-ai-dis-was] error: uncaughtException: The bucket you tried to delete is not empty.
+BucketNotEmpty: The bucket you tried to delete is not empty.
+    at Request.extractError (/app/node/node_modules/aws-sdk/lib/services/s3.js:711:35)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:106:20)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:78:10)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/request.js:686:14)
+    at Request.transition (/app/node/node_modules/aws-sdk/lib/request.js:22:10)
+    at AcceptorStateMachine.runTo (/app/node/node_modules/aws-sdk/lib/state_machine.js:14:12)
+    at /app/node/node_modules/aws-sdk/lib/state_machine.js:26:10
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:38:9)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:688:12)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:116:18)
+2023-05-09 10:43:52 [noon-ai-dis-was] error: uncaughtException: callback.call is not a function
+TypeError: callback.call is not a function
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:367:18)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:106:20)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:78:10)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/request.js:686:14)
+    at Request.transition (/app/node/node_modules/aws-sdk/lib/request.js:22:10)
+    at AcceptorStateMachine.runTo (/app/node/node_modules/aws-sdk/lib/state_machine.js:14:12)
+    at /app/node/node_modules/aws-sdk/lib/state_machine.js:26:10
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:38:9)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:688:12)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:116:18)
+2023-05-09 10:43:53 [noon-ai-dis-was] error: uncaughtException: The bucket you tried to delete is not empty.
+BucketNotEmpty: The bucket you tried to delete is not empty.
+    at Request.extractError (/app/node/node_modules/aws-sdk/lib/services/s3.js:711:35)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:106:20)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:78:10)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/request.js:686:14)
+    at Request.transition (/app/node/node_modules/aws-sdk/lib/request.js:22:10)
+    at AcceptorStateMachine.runTo (/app/node/node_modules/aws-sdk/lib/state_machine.js:14:12)
+    at /app/node/node_modules/aws-sdk/lib/state_machine.js:26:10
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:38:9)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:688:12)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:116:18)
+2023-05-09 10:47:53 [noon-ai-dis-was] error: uncaughtException: The bucket you tried to delete is not empty.
+BucketNotEmpty: The bucket you tried to delete is not empty.
+    at Request.extractError (/app/node/node_modules/aws-sdk/lib/services/s3.js:711:35)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:106:20)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:78:10)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/request.js:686:14)
+    at Request.transition (/app/node/node_modules/aws-sdk/lib/request.js:22:10)
+    at AcceptorStateMachine.runTo (/app/node/node_modules/aws-sdk/lib/state_machine.js:14:12)
+    at /app/node/node_modules/aws-sdk/lib/state_machine.js:26:10
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:38:9)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:688:12)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:116:18)
+2023-05-09 10:52:56 [noon-ai-dis-was] error: uncaughtException: The bucket you tried to delete is not empty.
+BucketNotEmpty: The bucket you tried to delete is not empty.
+    at Request.extractError (/app/node/node_modules/aws-sdk/lib/services/s3.js:711:35)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:106:20)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:78:10)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/request.js:686:14)
+    at Request.transition (/app/node/node_modules/aws-sdk/lib/request.js:22:10)
+    at AcceptorStateMachine.runTo (/app/node/node_modules/aws-sdk/lib/state_machine.js:14:12)
+    at /app/node/node_modules/aws-sdk/lib/state_machine.js:26:10
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:38:9)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:688:12)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:116:18)
+2023-05-09 10:54:28 [noon-ai-dis-was] error: uncaughtException: The bucket you tried to delete is not empty.
+BucketNotEmpty: The bucket you tried to delete is not empty.
+    at Request.extractError (/app/node/node_modules/aws-sdk/lib/services/s3.js:711:35)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:106:20)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:78:10)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/request.js:686:14)
+    at Request.transition (/app/node/node_modules/aws-sdk/lib/request.js:22:10)
+    at AcceptorStateMachine.runTo (/app/node/node_modules/aws-sdk/lib/state_machine.js:14:12)
+    at /app/node/node_modules/aws-sdk/lib/state_machine.js:26:10
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:38:9)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:688:12)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:116:18)
+2023-05-09 11:02:39 [noon-ai-dis-was] error: uncaughtException: deletor.clearBucket(...).promise is not a function
+TypeError: deletor.clearBucket(...).promise is not a function
+    at exports.deleteTenantBucket (/app/node/controller/Tenant.Api.Controller.js:217:47)
+    at Layer.handle [as handle_request] (/app/node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/app/node/node_modules/express/lib/router/route.js:144:13)
+    at exports.isLoggedIn (/app/node/user_modules/middlewares.js:3:9)
+    at Layer.handle [as handle_request] (/app/node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/app/node/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/app/node/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/app/node/node_modules/express/lib/router/layer.js:95:5)
+    at /app/node/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/app/node/node_modules/express/lib/router/index.js:346:12)
+2023-05-09 11:03:32 [noon-ai-dis-was] error: uncaughtException: deletor.clearBucket(...).promise is not a function
+TypeError: deletor.clearBucket(...).promise is not a function
+    at exports.deleteTenantBucket (/app/node/controller/Tenant.Api.Controller.js:217:47)
+    at Layer.handle [as handle_request] (/app/node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/app/node/node_modules/express/lib/router/route.js:144:13)
+    at exports.isLoggedIn (/app/node/user_modules/middlewares.js:3:9)
+    at Layer.handle [as handle_request] (/app/node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/app/node/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/app/node/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/app/node/node_modules/express/lib/router/layer.js:95:5)
+    at /app/node/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/app/node/node_modules/express/lib/router/index.js:346:12)
+2023-05-09 11:05:19 [noon-ai-dis-was] error: uncaughtException: The bucket you tried to delete is not empty.
+BucketNotEmpty: The bucket you tried to delete is not empty.
+    at Request.extractError (/app/node/node_modules/aws-sdk/lib/services/s3.js:711:35)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:106:20)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:78:10)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/request.js:686:14)
+    at Request.transition (/app/node/node_modules/aws-sdk/lib/request.js:22:10)
+    at AcceptorStateMachine.runTo (/app/node/node_modules/aws-sdk/lib/state_machine.js:14:12)
+    at /app/node/node_modules/aws-sdk/lib/state_machine.js:26:10
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:38:9)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:688:12)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:116:18)
+2023-05-09 11:07:12 [noon-ai-dis-was] error: uncaughtException: The bucket you tried to delete is not empty.
+BucketNotEmpty: The bucket you tried to delete is not empty.
+    at Request.extractError (/app/node/node_modules/aws-sdk/lib/services/s3.js:711:35)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:106:20)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:78:10)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/request.js:686:14)
+    at Request.transition (/app/node/node_modules/aws-sdk/lib/request.js:22:10)
+    at AcceptorStateMachine.runTo (/app/node/node_modules/aws-sdk/lib/state_machine.js:14:12)
+    at /app/node/node_modules/aws-sdk/lib/state_machine.js:26:10
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:38:9)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:688:12)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:116:18)
+2023-05-09 11:10:43 [noon-ai-dis-was] error: uncaughtException: The bucket you tried to delete is not empty.
+BucketNotEmpty: The bucket you tried to delete is not empty.
+    at Request.extractError (/app/node/node_modules/aws-sdk/lib/services/s3.js:711:35)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:106:20)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:78:10)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/request.js:686:14)
+    at Request.transition (/app/node/node_modules/aws-sdk/lib/request.js:22:10)
+    at AcceptorStateMachine.runTo (/app/node/node_modules/aws-sdk/lib/state_machine.js:14:12)
+    at /app/node/node_modules/aws-sdk/lib/state_machine.js:26:10
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:38:9)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:688:12)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:116:18)
+2023-05-09 11:13:56 [noon-ai-dis-was] error: uncaughtException: The bucket you tried to delete is not empty.
+BucketNotEmpty: The bucket you tried to delete is not empty.
+    at Request.extractError (/app/node/node_modules/aws-sdk/lib/services/s3.js:711:35)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:106:20)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:78:10)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/request.js:686:14)
+    at Request.transition (/app/node/node_modules/aws-sdk/lib/request.js:22:10)
+    at AcceptorStateMachine.runTo (/app/node/node_modules/aws-sdk/lib/state_machine.js:14:12)
+    at /app/node/node_modules/aws-sdk/lib/state_machine.js:26:10
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:38:9)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:688:12)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:116:18)
+2023-05-09 11:17:56 [noon-ai-dis-was] error: uncaughtException: The bucket you tried to delete is not empty.
+BucketNotEmpty: The bucket you tried to delete is not empty.
+    at Request.extractError (/app/node/node_modules/aws-sdk/lib/services/s3.js:711:35)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:106:20)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:78:10)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/request.js:686:14)
+    at Request.transition (/app/node/node_modules/aws-sdk/lib/request.js:22:10)
+    at AcceptorStateMachine.runTo (/app/node/node_modules/aws-sdk/lib/state_machine.js:14:12)
+    at /app/node/node_modules/aws-sdk/lib/state_machine.js:26:10
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:38:9)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:688:12)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:116:18)
+2023-05-09 11:25:28 [noon-ai-dis-was] error: uncaughtException: Cannot read properties of undefined (reading 'promise')
+TypeError: Cannot read properties of undefined (reading 'promise')
+    at Response.<anonymous> (/app/node/controller/Tenant.Api.Controller.js:273:62)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:367:18)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:106:20)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:78:10)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/request.js:686:14)
+    at Request.transition (/app/node/node_modules/aws-sdk/lib/request.js:22:10)
+    at AcceptorStateMachine.runTo (/app/node/node_modules/aws-sdk/lib/state_machine.js:14:12)
+    at /app/node/node_modules/aws-sdk/lib/state_machine.js:26:10
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:38:9)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:688:12)
+2023-05-09 11:25:28 [noon-ai-dis-was] error: uncaughtException: Cannot read properties of undefined (reading 'promise')
+TypeError: Cannot read properties of undefined (reading 'promise')
+    at Response.<anonymous> (/app/node/controller/Tenant.Api.Controller.js:273:62)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:367:18)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:106:20)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:78:10)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/request.js:686:14)
+    at Request.transition (/app/node/node_modules/aws-sdk/lib/request.js:22:10)
+    at AcceptorStateMachine.runTo (/app/node/node_modules/aws-sdk/lib/state_machine.js:14:12)
+    at /app/node/node_modules/aws-sdk/lib/state_machine.js:26:10
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:38:9)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:688:12)
+2023-05-09 11:25:28 [noon-ai-dis-was] error: uncaughtException: The bucket you tried to delete is not empty.
+BucketNotEmpty: The bucket you tried to delete is not empty.
+    at Request.extractError (/app/node/node_modules/aws-sdk/lib/services/s3.js:711:35)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:106:20)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:78:10)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/request.js:686:14)
+    at Request.transition (/app/node/node_modules/aws-sdk/lib/request.js:22:10)
+    at AcceptorStateMachine.runTo (/app/node/node_modules/aws-sdk/lib/state_machine.js:14:12)
+    at /app/node/node_modules/aws-sdk/lib/state_machine.js:26:10
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:38:9)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:688:12)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:116:18)
+2023-05-09 11:26:39 [noon-ai-dis-was] error: uncaughtException: The bucket you tried to delete is not empty.
+BucketNotEmpty: The bucket you tried to delete is not empty.
+    at Request.extractError (/app/node/node_modules/aws-sdk/lib/services/s3.js:711:35)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:106:20)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:78:10)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/request.js:686:14)
+    at Request.transition (/app/node/node_modules/aws-sdk/lib/request.js:22:10)
+    at AcceptorStateMachine.runTo (/app/node/node_modules/aws-sdk/lib/state_machine.js:14:12)
+    at /app/node/node_modules/aws-sdk/lib/state_machine.js:26:10
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:38:9)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:688:12)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:116:18)
+2023-05-09 13:14:24 [noon-ai-dis-was] error: uncaughtException: The bucket you tried to delete is not empty.
+BucketNotEmpty: The bucket you tried to delete is not empty.
+    at Request.extractError (/app/node/node_modules/aws-sdk/lib/services/s3.js:711:35)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:106:20)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:78:10)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/request.js:686:14)
+    at Request.transition (/app/node/node_modules/aws-sdk/lib/request.js:22:10)
+    at AcceptorStateMachine.runTo (/app/node/node_modules/aws-sdk/lib/state_machine.js:14:12)
+    at /app/node/node_modules/aws-sdk/lib/state_machine.js:26:10
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:38:9)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:688:12)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:116:18)
+2023-05-09 13:16:44 [noon-ai-dis-was] error: uncaughtException: The bucket you tried to delete is not empty.
+BucketNotEmpty: The bucket you tried to delete is not empty.
+    at Request.extractError (/app/node/node_modules/aws-sdk/lib/services/s3.js:711:35)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:106:20)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:78:10)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/request.js:686:14)
+    at Request.transition (/app/node/node_modules/aws-sdk/lib/request.js:22:10)
+    at AcceptorStateMachine.runTo (/app/node/node_modules/aws-sdk/lib/state_machine.js:14:12)
+    at /app/node/node_modules/aws-sdk/lib/state_machine.js:26:10
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:38:9)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:688:12)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:116:18)
+2023-05-09 13:17:24 [noon-ai-dis-was] error: uncaughtException: The bucket you tried to delete is not empty.
+BucketNotEmpty: The bucket you tried to delete is not empty.
+    at Request.extractError (/app/node/node_modules/aws-sdk/lib/services/s3.js:711:35)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:106:20)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:78:10)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/request.js:686:14)
+    at Request.transition (/app/node/node_modules/aws-sdk/lib/request.js:22:10)
+    at AcceptorStateMachine.runTo (/app/node/node_modules/aws-sdk/lib/state_machine.js:14:12)
+    at /app/node/node_modules/aws-sdk/lib/state_machine.js:26:10
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:38:9)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:688:12)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:116:18)
+2023-05-09 13:22:23 [noon-ai-dis-was] error: uncaughtException: The bucket you tried to delete is not empty.
+BucketNotEmpty: The bucket you tried to delete is not empty.
+    at Request.extractError (/app/node/node_modules/aws-sdk/lib/services/s3.js:711:35)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:106:20)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:78:10)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/request.js:686:14)
+    at Request.transition (/app/node/node_modules/aws-sdk/lib/request.js:22:10)
+    at AcceptorStateMachine.runTo (/app/node/node_modules/aws-sdk/lib/state_machine.js:14:12)
+    at /app/node/node_modules/aws-sdk/lib/state_machine.js:26:10
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:38:9)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:688:12)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:116:18)
+2023-05-09 13:49:16 [noon-ai-dis-was] error: uncaughtException: moment is not defined
+ReferenceError: moment is not defined
+    at Response.<anonymous> (/app/node/user_modules/aws-s3-deletor.js:32:25)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:367:18)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:106:20)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:78:10)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/request.js:686:14)
+    at Request.transition (/app/node/node_modules/aws-sdk/lib/request.js:22:10)
+    at AcceptorStateMachine.runTo (/app/node/node_modules/aws-sdk/lib/state_machine.js:14:12)
+    at /app/node/node_modules/aws-sdk/lib/state_machine.js:26:10
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:38:9)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:688:12)
+2023-05-09 13:49:16 [noon-ai-dis-was] error: uncaughtException: moment is not defined
+ReferenceError: moment is not defined
+    at Response.<anonymous> (/app/node/user_modules/aws-s3-deletor.js:29:25)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:367:18)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:106:20)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:78:10)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/request.js:686:14)
+    at Request.transition (/app/node/node_modules/aws-sdk/lib/request.js:22:10)
+    at AcceptorStateMachine.runTo (/app/node/node_modules/aws-sdk/lib/state_machine.js:14:12)
+    at /app/node/node_modules/aws-sdk/lib/state_machine.js:26:10
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:38:9)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:688:12)
+2023-05-09 13:49:33 [noon-ai-dis-was] error: uncaughtException: moment is not defined
+ReferenceError: moment is not defined
+    at Response.<anonymous> (/app/node/user_modules/aws-s3-deletor.js:29:25)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:367:18)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:106:20)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:78:10)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/request.js:686:14)
+    at Request.transition (/app/node/node_modules/aws-sdk/lib/request.js:22:10)
+    at AcceptorStateMachine.runTo (/app/node/node_modules/aws-sdk/lib/state_machine.js:14:12)
+    at /app/node/node_modules/aws-sdk/lib/state_machine.js:26:10
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:38:9)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:688:12)
+2023-05-09 13:49:33 [noon-ai-dis-was] error: uncaughtException: moment is not defined
+ReferenceError: moment is not defined
+    at Response.<anonymous> (/app/node/user_modules/aws-s3-deletor.js:29:25)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:367:18)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:106:20)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:78:10)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/request.js:686:14)
+    at Request.transition (/app/node/node_modules/aws-sdk/lib/request.js:22:10)
+    at AcceptorStateMachine.runTo (/app/node/node_modules/aws-sdk/lib/state_machine.js:14:12)
+    at /app/node/node_modules/aws-sdk/lib/state_machine.js:26:10
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:38:9)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:688:12)
+2023-05-09 13:49:33 [noon-ai-dis-was] error: uncaughtException: The specified bucket does not exist.
+NoSuchBucket: The specified bucket does not exist.
+    at Request.extractError (/app/node/node_modules/aws-sdk/lib/services/s3.js:711:35)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:106:20)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:78:10)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/request.js:686:14)
+    at Request.transition (/app/node/node_modules/aws-sdk/lib/request.js:22:10)
+    at AcceptorStateMachine.runTo (/app/node/node_modules/aws-sdk/lib/state_machine.js:14:12)
+    at /app/node/node_modules/aws-sdk/lib/state_machine.js:26:10
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:38:9)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:688:12)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:116:18)
+2023-05-09 13:53:03 [noon-ai-dis-was] error: uncaughtException: The bucket you tried to delete is not empty.
+BucketNotEmpty: The bucket you tried to delete is not empty.
+    at Request.extractError (/app/node/node_modules/aws-sdk/lib/services/s3.js:711:35)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:106:20)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:78:10)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/request.js:686:14)
+    at Request.transition (/app/node/node_modules/aws-sdk/lib/request.js:22:10)
+    at AcceptorStateMachine.runTo (/app/node/node_modules/aws-sdk/lib/state_machine.js:14:12)
+    at /app/node/node_modules/aws-sdk/lib/state_machine.js:26:10
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:38:9)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:688:12)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:116:18)
+2023-05-09 14:26:18 [noon-ai-dis-was] error: uncaughtException: moment is not defined
+ReferenceError: moment is not defined
+    at Response.<anonymous> (/app/node/user_modules/aws-s3-deletor.js:32:25)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:367:18)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:106:20)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:78:10)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/request.js:686:14)
+    at Request.transition (/app/node/node_modules/aws-sdk/lib/request.js:22:10)
+    at AcceptorStateMachine.runTo (/app/node/node_modules/aws-sdk/lib/state_machine.js:14:12)
+    at /app/node/node_modules/aws-sdk/lib/state_machine.js:26:10
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:38:9)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:688:12)
+2023-05-09 14:26:18 [noon-ai-dis-was] error: uncaughtException: moment is not defined
+ReferenceError: moment is not defined
+    at Response.<anonymous> (/app/node/user_modules/aws-s3-deletor.js:29:25)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:367:18)
+    at Request.callListeners (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:106:20)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/sequential_executor.js:78:10)
+    at Request.emit (/app/node/node_modules/aws-sdk/lib/request.js:686:14)
+    at Request.transition (/app/node/node_modules/aws-sdk/lib/request.js:22:10)
+    at AcceptorStateMachine.runTo (/app/node/node_modules/aws-sdk/lib/state_machine.js:14:12)
+    at /app/node/node_modules/aws-sdk/lib/state_machine.js:26:10
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:38:9)
+    at Request.<anonymous> (/app/node/node_modules/aws-sdk/lib/request.js:688:12)

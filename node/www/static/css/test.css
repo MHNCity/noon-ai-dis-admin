@@ -1,0 +1,331 @@
+@font-face {
+    font-family: 'S-CoreDream-4Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-4Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'S-CoreDream-5Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-5Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'S-CoreDream-6Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-6Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SpoqaHanSansNeo-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SpoqaHanSansNeo-Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SpoqaHanSansNeo-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.req_content {
+    display: flex;
+}
+
+.reqTable {
+    width: 988px;
+    height: auto;
+    display: flex;
+    margin: 100px auto;
+    flex-direction: column;
+    border-radius: 24px;
+    box-shadow: 0 0 18px 0 rgb(0 0 0 / 16%);
+    background-color: #fff;
+}
+
+.reqTable .reqHeader {
+    display: flex;
+    width: 940px;
+    height: 62px;
+    border-bottom: solid 1px #707070;
+    margin: 0 auto;
+}
+
+.reqTable .reqHeader .num_header,
+.reqTable .reqHeader .company_header,
+.reqTable .reqHeader .email_header,
+.reqTable .reqHeader .user_header,
+.reqTable .reqHeader .phone_header,
+.reqTable .reqHeader .yes_header,
+.reqTable .reqHeader .no_header,
+.reqTable .reqHeader .lastlogin_header,
+.reqTable .reqHeader .password_header,
+.reqTable .reqHeader .unlock_header,
+.reqTable .reqHeader .password-date_header,
+.reqTable .reqHeader .delete_header,
+.reqTable .reqHeader .database_header,
+.reqTable .reqHeader .bucket_header {
+    height: 100%;
+    display: flex;
+    margin: auto;
+}
+
+.reqTable .reqHeader .num_header h3,
+.reqTable .reqHeader .company_header h3,
+.reqTable .reqHeader .email_header h3,
+.reqTable .reqHeader .user_header h3,
+.reqTable .reqHeader .phone_header h3,
+.reqTable .reqHeader .yes_header h3,
+.reqTable .reqHeader .no_header h3,
+.reqTable .reqHeader .lastlogin_header h3,
+.reqTable .reqHeader .password_header h3,
+.reqTable .reqHeader .unlock_header h3,
+.reqTable .reqHeader .password-date_header h3,
+.reqTable .reqHeader .delete_header h3,
+.reqTable .reqHeader .database_header h3,
+.reqTable .reqHeader .bucket_header h3 {
+    height: 18px;
+    margin: auto;
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: center;
+    color: #16284d;
+    margin: auto;
+}
+
+.reqTable .reqHeader .num_header {
+    width: 5%;
+}
+
+.reqTable .reqHeader .company_header {
+    width: 10%;
+}
+
+.reqTable .reqHeader .email_header {
+    width: 25%;
+}
+
+.reqTable .reqHeader .user_header,
+.reqTable .reqHeader .phone_header,
+.reqTable .reqHeader .database_header,
+.reqTable .reqHeader .bucket_header,
+.reqTable .reqHeader .yes_header,
+.reqTable .reqHeader .no_header,
+.reqTable .reqHeader .lastlogin_header,
+.reqTable .reqHeader .password_header,
+.reqTable .reqHeader .unlock_header,
+.reqTable .reqHeader .password-date_header,
+.reqTable .reqHeader .delete_header {
+    width: 15%;
+}
+
+.reqTable .reqBody {
+    width: 940px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto 24px;
+}
+
+.reqTable .reqBody .reqContent {
+    width: 100%;
+    height: 57px;
+    display: flex;
+    border-bottom: solid 1px #bcc5cb;
+}
+
+.reqTable .reqBody .reqContent .num_content,
+.reqTable .reqBody .reqContent .company_content,
+.reqTable .reqBody .reqContent .email_content,
+.reqTable .reqBody .reqContent .user_content,
+.reqTable .reqBody .reqContent .phone_content,
+.reqTable .reqBody .reqContent .yes_content,
+.reqTable .reqBody .reqContent .no_content,
+.reqTable .reqBody .reqContent .lastlogin_content,
+.reqTable .reqBody .reqContent .password_content,
+.reqTable .reqBody .reqContent .unlock_content,
+.reqTable .reqBody .reqContent .password-date_content,
+.reqTable .reqBody .reqContent .delete_content,
+.reqTable .reqBody .reqContent .database_content,
+.reqTable .reqBody .reqContent .bucket_content {
+    display: flex;
+    margin: auto;
+}
+
+.reqTable .reqBody .reqContent .num_content p,
+.reqTable .reqBody .reqContent .company_content p,
+.reqTable .reqBody .reqContent .email_content p,
+.reqTable .reqBody .reqContent .user_content p,
+.reqTable .reqBody .reqContent .phone_content p,
+.reqTable .reqBody .reqContent .yes_content p,
+.reqTable .reqBody .reqContent .no_content p,
+.reqTable .reqBody .reqContent .lastlogin_content p,
+.reqTable .reqBody .reqContent .password_content p,
+.reqTable .reqBody .reqContent .unlock_content p,
+.reqTable .reqBody .reqContent .password-date_content p,
+.reqTable .reqBody .reqContent .delete_content p,
+.reqTable .reqBody .reqContent .database_content p,
+.reqTable .reqBody .reqContent .bucket_content p {
+    font-family: SpoqaHanSansNeo-Regular;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+    text-align: center;
+    color: #595959;
+    margin: auto;
+}
+
+.reqTable .reqBody .reqContent .num_content {
+    width: 5%;
+}
+
+.reqTable .reqBody .reqContent .company_content {
+    width: 10%;
+}
+
+.reqTable .reqBody .reqContent .email_content {
+    width: 25%;
+}
+
+.reqTable .reqBody .reqContent .user_content {
+    width: 15%;
+}
+
+.reqTable .reqBody .reqContent .phone_content {
+    width: 15%;
+}
+
+.reqTable .reqBody .reqContent .yes_content {
+    width: 15%;
+}
+
+.reqTable .reqBody .reqContent .no_content {
+    width: 15%;
+}
+
+.reqTable .reqBody .reqContent .password_content {
+    width: 15%;
+}
+
+.reqTable .reqBody .reqContent .lastlogin_content {
+    width: 15%;
+}
+
+.reqTable .reqBody .reqContent .unlock_content {
+    width: 15%;
+}
+
+.reqTable .reqBody .reqContent .password-date_content {
+    width: 15%;
+}
+
+.reqTable .reqBody .reqContent .database_content {
+    width: 15%;
+}
+
+.reqTable .reqBody .reqContent .bucket_content {
+    width: 15%;
+}
+
+.reqTable .reqBody .reqContent .yes_content .yesBtn {
+    width: 64px;
+    height: 24px;
+    margin: auto;
+    border-radius: 13px;
+    background-color: #3fa9f5;
+    display: flex;
+    cursor: pointer;
+}
+
+.reqTable .reqBody .reqContent .yes_content .yesBtn p {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 12px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.25;
+    letter-spacing: normal;
+    text-align: center;
+    color: #fff;
+    margin: auto;
+}
+
+.reqTable .reqBody .reqContent .no_content .noBtn {
+    width: 64px;
+    height: 24px;
+    margin: auto;
+    border-radius: 13px;
+    background-color: #595959;
+    display: flex;
+    cursor: pointer;
+}
+
+.reqTable .reqBody .reqContent .password_content .Btn {
+    width: 64px;
+    height: 24px;
+    margin: auto;
+    border-radius: 13px;
+    background-color: #3fa9f5;
+    display: flex;
+    cursor: pointer;
+}
+
+.reqTable .reqBody .reqContent .password_content .Btn p,
+.reqTable .reqBody .reqContent .unlock_content .Btn p,
+.reqTable .reqBody .reqContent .no_content .noBtn p,
+.reqTable .reqBody .reqContent .delete_content .Btn p {
+    font-family: SpoqaHanSansNeo-Bold;
+    font-size: 12px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.25;
+    letter-spacing: normal;
+    text-align: center;
+    color: #fff;
+    margin: auto;
+}
+
+.reqTable .reqBody .reqContent .unlock_content .Btn,
+.reqTable .reqBody .reqContent .delete_content .Btn {
+    width: 64px;
+    height: 24px;
+    margin: auto;
+    border-radius: 13px;
+    display: flex;
+}
+
+.reqTable .reqBody .reqContent .unlock_content .Btn.yes {
+    cursor: pointer;
+    background-color: #3fa9f5;
+}
+
+.reqTable .reqBody .reqContent .unlock_content .Btn.no {
+    background-color: #595959;
+}
+
+.reqTable .reqBody .reqContent .delete_content .Btn.no {
+    background-color: #595959;
+    cursor: pointer;
+}
+

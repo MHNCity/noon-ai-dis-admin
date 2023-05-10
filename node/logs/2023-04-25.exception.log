@@ -1,0 +1,36 @@
+2023-04-25 17:01:15 [noon-ai-dis-was] error: uncaughtException: requestDateTime is not defined
+ReferenceError: requestDateTime is not defined
+    at exports.generateSecondaryToken (/app/node/controller/NCP.Api.Controller.js:460:30)
+    at Layer.handle [as handle_request] (/app/node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/app/node/node_modules/express/lib/router/route.js:144:13)
+    at exports.isNotLoggedIn (/app/node/user_modules/middlewares.js:12:9)
+    at Layer.handle [as handle_request] (/app/node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/app/node/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/app/node/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/app/node/node_modules/express/lib/router/layer.js:95:5)
+    at /app/node/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/app/node/node_modules/express/lib/router/index.js:346:12)
+2023-04-25 17:01:40 [noon-ai-dis-was] error: uncaughtException: requestDateTime is not defined
+ReferenceError: requestDateTime is not defined
+    at exports.generateSecondaryToken (/app/node/controller/NCP.Api.Controller.js:460:30)
+    at Layer.handle [as handle_request] (/app/node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/app/node/node_modules/express/lib/router/route.js:144:13)
+    at exports.isNotLoggedIn (/app/node/user_modules/middlewares.js:12:9)
+    at Layer.handle [as handle_request] (/app/node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/app/node/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/app/node/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/app/node/node_modules/express/lib/router/layer.js:95:5)
+    at /app/node/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/app/node/node_modules/express/lib/router/index.js:346:12)
+2023-04-25 17:02:51 [noon-ai-dis-was] error: uncaughtException: conn is not defined
+ReferenceError: conn is not defined
+    at Request._callback (/app/node/controller/NCP.Api.Controller.js:581:9)
+    at self.callback (/app/node/node_modules/request/request.js:185:22)
+    at Request.emit (node:events:527:28)
+    at Request.emit (node:domain:475:12)
+    at Request.<anonymous> (/app/node/node_modules/request/request.js:1154:10)
+    at Request.emit (node:events:527:28)
+    at Request.emit (node:domain:475:12)
+    at IncomingMessage.<anonymous> (/app/node/node_modules/request/request.js:1076:12)
+    at Object.onceWrapper (node:events:641:28)
+    at IncomingMessage.emit (node:events:539:35)

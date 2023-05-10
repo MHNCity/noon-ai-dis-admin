@@ -1,0 +1,2 @@
+2023-05-02 13:55:09 [noon-ai-dis-was] error: [DIS-API] POST /first-login -  TypeError: Cannot read properties of undefined (reading 'login_fail_count')
+2023-05-02 19:07:28 [noon-ai-dis-was] error: [DIS-API] GET /signup/request -  TypeError: Cannot read properties of undefined (reading 'SCHEMA_NAME')
