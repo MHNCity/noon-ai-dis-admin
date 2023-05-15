@@ -80,6 +80,13 @@ const appList = [
     { domain: '127.0.0.1', servername: 'LocalWebAPI', path: '/api/manager', app: require('./api/manager-api.js') },  // Web API 설정
     { domain: '127.0.0.1', servername: 'LocalWebAPI', path: '/api/tenant', app: require('./api/tenant-api.js') },  // Web API 설정
 
+    { domain: '192.168.0.9', servername: 'LocalWebApp', path: '/web/', app: require('./www/www.js') },   // Web App 설정 
+    { domain: '192.168.0.9', servername: 'LocalWebAPI', path: '/api/', app: require('./api/api.js') },  // Web API 설정
+    { domain: '192.168.0.9', servername: 'LocalWebAPI', path: '/api/', app: require('./api/ncp-api.js') },  // Web API 설정
+    { domain: '192.168.0.9', servername: 'LocalWebAPI', path: '/api/auth', app: require('./api/auth-api.js') },  // Web API 설정
+    { domain: '192.168.0.9', servername: 'LocalWebAPI', path: '/api/manager', app: require('./api/manager-api.js') },  // Web API 설정
+    { domain: '192.168.0.9', servername: 'LocalWebAPI', path: '/api/tenant', app: require('./api/tenant-api.js') },  // Web API 설정
+
     { domain: '223.130.173.198', servername: 'LocalWebApp', path: '/web/', app: require('./www/www.js') },   // Web App 설정 
     { domain: '223.130.173.198', servername: 'LocalWebAPI', path: '/api/', app: require('./api/api.js') },  // Web API 설정
     { domain: '223.130.173.198', servername: 'LocalWebAPI', path: '/api/', app: require('./api/ncp-api.js') },  // Web API 설정
