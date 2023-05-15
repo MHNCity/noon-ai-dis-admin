@@ -1,2 +1,0 @@
-2023-04-25 16:51:28 [noon-ai-dis-was] error: [DIS-API] POST /first-login -  Error: Table 'dev-dis.admin' doesn't exist
-2023-04-25 16:51:53 [noon-ai-dis-was] error: [DIS-API] POST /first-login -  ReferenceError: adminPool is not defined
