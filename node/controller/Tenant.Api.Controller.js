@@ -139,14 +139,17 @@ exports.deleteTenantAccount = async (req, res) => {
 exports.deleteTenantDatabase = async (req, res) => {
     const cloudMysqlInstanceNo = req.body.cloudMysqlInstanceNo;
     const tenantId = req.body.tenantId;
+    const IPAddressRange = (process.env.NODE_ENV === 'dev') ? '172.18.%' : '%';
 
     let env = (process.env.NODE_ENV == 'dev') ? 'dev-' : null;
     let databaseName = `${env}dis-tenant-${tenantId}`
 
     if (process.env.NODE_ENV === 'dev') {
         let sql = `DROP DATABASE \`${databaseName}\`;`
+        let sql2 = `DROP USER 'tenant-${tenantId}'@'${IPAddressRange}';`
         const conn = await pool.getConnection();
         await conn.query(sql);
+        await conn.query(sql2);
         let objJson = { 'message': 'success', 'log': 'Database ' + databaseName + ' delete success' };
         logger.info(apiLogFormat('DELETE', '/tenant/database', ` ${databaseName} 삭제 완료`));
         console.log(apiLogFormat('DELETE', '/tenant/database', ` ${databaseName} 삭제 완료`));

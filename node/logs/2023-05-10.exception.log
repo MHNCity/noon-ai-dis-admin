@@ -1,0 +1,600 @@
+2023-05-10 15:56:38 [noon-ai-dis-was] error: uncaughtException: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+Error: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+    at Module._load (node:internal/modules/cjs/loader:780:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/app/node/index.js:27:14)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+2023-05-10 15:56:42 [noon-ai-dis-was] error: uncaughtException: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+Error: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+    at Module._load (node:internal/modules/cjs/loader:780:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/app/node/index.js:27:14)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+2023-05-10 15:56:46 [noon-ai-dis-was] error: uncaughtException: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+Error: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+    at Module._load (node:internal/modules/cjs/loader:780:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/app/node/index.js:27:14)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+2023-05-10 15:56:50 [noon-ai-dis-was] error: uncaughtException: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+Error: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+    at Module._load (node:internal/modules/cjs/loader:780:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/app/node/index.js:27:14)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+2023-05-10 15:56:55 [noon-ai-dis-was] error: uncaughtException: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+Error: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+    at Module._load (node:internal/modules/cjs/loader:780:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/app/node/index.js:27:14)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+2023-05-10 15:57:00 [noon-ai-dis-was] error: uncaughtException: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+Error: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+    at Module._load (node:internal/modules/cjs/loader:780:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/app/node/index.js:27:14)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+2023-05-10 15:57:08 [noon-ai-dis-was] error: uncaughtException: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+Error: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+    at Module._load (node:internal/modules/cjs/loader:780:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/app/node/index.js:27:14)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+2023-05-10 15:57:18 [noon-ai-dis-was] error: uncaughtException: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+Error: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+    at Module._load (node:internal/modules/cjs/loader:780:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/app/node/index.js:27:14)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+2023-05-10 15:57:34 [noon-ai-dis-was] error: uncaughtException: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+Error: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+    at Module._load (node:internal/modules/cjs/loader:780:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/app/node/index.js:27:14)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+2023-05-10 15:57:38 [noon-ai-dis-was] error: uncaughtException: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+Error: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+    at Module._load (node:internal/modules/cjs/loader:780:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/app/node/index.js:27:14)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+2023-05-10 15:57:42 [noon-ai-dis-was] error: uncaughtException: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+Error: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+    at Module._load (node:internal/modules/cjs/loader:780:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/app/node/index.js:27:14)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+2023-05-10 15:57:46 [noon-ai-dis-was] error: uncaughtException: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+Error: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+    at Module._load (node:internal/modules/cjs/loader:780:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/app/node/index.js:27:14)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+2023-05-10 15:57:50 [noon-ai-dis-was] error: uncaughtException: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+Error: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+    at Module._load (node:internal/modules/cjs/loader:780:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/app/node/index.js:27:14)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+2023-05-10 15:57:55 [noon-ai-dis-was] error: uncaughtException: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+Error: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+    at Module._load (node:internal/modules/cjs/loader:780:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/app/node/index.js:27:14)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+2023-05-10 15:58:01 [noon-ai-dis-was] error: uncaughtException: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+Error: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+    at Module._load (node:internal/modules/cjs/loader:780:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/app/node/index.js:27:14)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+2023-05-10 15:58:08 [noon-ai-dis-was] error: uncaughtException: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+Error: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+    at Module._load (node:internal/modules/cjs/loader:780:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/app/node/index.js:27:14)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+2023-05-10 15:58:18 [noon-ai-dis-was] error: uncaughtException: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+Error: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+    at Module._load (node:internal/modules/cjs/loader:780:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/app/node/index.js:27:14)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+2023-05-10 15:58:35 [noon-ai-dis-was] error: uncaughtException: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+Error: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+    at Module._load (node:internal/modules/cjs/loader:780:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/app/node/index.js:27:14)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+2023-05-10 15:59:06 [noon-ai-dis-was] error: uncaughtException: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+Error: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+    at Module._load (node:internal/modules/cjs/loader:780:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/app/node/index.js:32:12)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+2023-05-10 15:59:10 [noon-ai-dis-was] error: uncaughtException: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+Error: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+    at Module._load (node:internal/modules/cjs/loader:780:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/app/node/index.js:32:12)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+2023-05-10 15:59:16 [noon-ai-dis-was] error: uncaughtException: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+Error: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+    at Module._load (node:internal/modules/cjs/loader:780:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/app/node/index.js:32:12)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+2023-05-10 15:59:20 [noon-ai-dis-was] error: uncaughtException: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+Error: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+    at Module._load (node:internal/modules/cjs/loader:780:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/app/node/index.js:32:12)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+2023-05-10 15:59:56 [noon-ai-dis-was] error: uncaughtException: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+Error: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+    at Module._load (node:internal/modules/cjs/loader:780:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/app/node/index.js:27:12)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+2023-05-10 16:00:00 [noon-ai-dis-was] error: uncaughtException: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+Error: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+    at Module._load (node:internal/modules/cjs/loader:780:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/app/node/index.js:27:12)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+2023-05-10 16:00:04 [noon-ai-dis-was] error: uncaughtException: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+Error: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+    at Module._load (node:internal/modules/cjs/loader:780:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/app/node/index.js:27:12)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+2023-05-10 16:00:09 [noon-ai-dis-was] error: uncaughtException: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+Error: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+    at Module._load (node:internal/modules/cjs/loader:780:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/app/node/index.js:27:12)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+2023-05-10 16:00:13 [noon-ai-dis-was] error: uncaughtException: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+Error: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+    at Module._load (node:internal/modules/cjs/loader:780:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/app/node/index.js:27:12)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+2023-05-10 16:00:19 [noon-ai-dis-was] error: uncaughtException: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+Error: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+    at Module._load (node:internal/modules/cjs/loader:780:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/app/node/index.js:27:12)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+2023-05-10 16:00:26 [noon-ai-dis-was] error: uncaughtException: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+Error: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+    at Module._load (node:internal/modules/cjs/loader:780:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/app/node/index.js:27:12)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+2023-05-10 16:00:36 [noon-ai-dis-was] error: uncaughtException: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+Error: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+    at Module._load (node:internal/modules/cjs/loader:780:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/app/node/index.js:27:12)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+2023-05-10 16:00:53 [noon-ai-dis-was] error: uncaughtException: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+Error: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+    at Module._load (node:internal/modules/cjs/loader:780:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/app/node/index.js:27:12)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+2023-05-10 16:01:23 [noon-ai-dis-was] error: uncaughtException: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+Error: Cannot find module 'node-cron'
+Require stack:
+- /app/node/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+    at Module._load (node:internal/modules/cjs/loader:780:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/app/node/index.js:27:12)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+2023-05-10 16:03:03 [noon-ai-dis-was] error: uncaughtException: 1/30 is a invalid expression for minute
+Error: 1/30 is a invalid expression for minute
+    at validateFields (/app/node/node_modules/node-cron/src/pattern-validation.js:89:15)
+    at validate (/app/node/node_modules/node-cron/src/pattern-validation.js:121:5)
+    at new TimeMatcher (/app/node/node_modules/node-cron/src/time-matcher.js:14:9)
+    at new Scheduler (/app/node/node_modules/node-cron/src/scheduler.js:9:28)
+    at new ScheduledTask (/app/node/node_modules/node-cron/src/scheduled-task.js:22:27)
+    at createTask (/app/node/node_modules/node-cron/src/node-cron.js:36:12)
+    at Object.schedule (/app/node/node_modules/node-cron/src/node-cron.js:25:18)
+    at Object.<anonymous> (/app/node/index.js:29:6)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+2023-05-10 16:03:07 [noon-ai-dis-was] error: uncaughtException: 1/30 is a invalid expression for minute
+Error: 1/30 is a invalid expression for minute
+    at validateFields (/app/node/node_modules/node-cron/src/pattern-validation.js:89:15)
+    at validate (/app/node/node_modules/node-cron/src/pattern-validation.js:121:5)
+    at new TimeMatcher (/app/node/node_modules/node-cron/src/time-matcher.js:14:9)
+    at new Scheduler (/app/node/node_modules/node-cron/src/scheduler.js:9:28)
+    at new ScheduledTask (/app/node/node_modules/node-cron/src/scheduled-task.js:22:27)
+    at createTask (/app/node/node_modules/node-cron/src/node-cron.js:36:12)
+    at Object.schedule (/app/node/node_modules/node-cron/src/node-cron.js:25:18)
+    at Object.<anonymous> (/app/node/index.js:29:6)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+2023-05-10 16:03:11 [noon-ai-dis-was] error: uncaughtException: 1/30 is a invalid expression for minute
+Error: 1/30 is a invalid expression for minute
+    at validateFields (/app/node/node_modules/node-cron/src/pattern-validation.js:89:15)
+    at validate (/app/node/node_modules/node-cron/src/pattern-validation.js:121:5)
+    at new TimeMatcher (/app/node/node_modules/node-cron/src/time-matcher.js:14:9)
+    at new Scheduler (/app/node/node_modules/node-cron/src/scheduler.js:9:28)
+    at new ScheduledTask (/app/node/node_modules/node-cron/src/scheduled-task.js:22:27)
+    at createTask (/app/node/node_modules/node-cron/src/node-cron.js:36:12)
+    at Object.schedule (/app/node/node_modules/node-cron/src/node-cron.js:25:18)
+    at Object.<anonymous> (/app/node/index.js:29:6)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+2023-05-10 16:03:16 [noon-ai-dis-was] error: uncaughtException: 1/30 is a invalid expression for minute
+Error: 1/30 is a invalid expression for minute
+    at validateFields (/app/node/node_modules/node-cron/src/pattern-validation.js:89:15)
+    at validate (/app/node/node_modules/node-cron/src/pattern-validation.js:121:5)
+    at new TimeMatcher (/app/node/node_modules/node-cron/src/time-matcher.js:14:9)
+    at new Scheduler (/app/node/node_modules/node-cron/src/scheduler.js:9:28)
+    at new ScheduledTask (/app/node/node_modules/node-cron/src/scheduled-task.js:22:27)
+    at createTask (/app/node/node_modules/node-cron/src/node-cron.js:36:12)
+    at Object.schedule (/app/node/node_modules/node-cron/src/node-cron.js:25:18)
+    at Object.<anonymous> (/app/node/index.js:29:6)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+2023-05-10 16:03:20 [noon-ai-dis-was] error: uncaughtException: 1/30 is a invalid expression for minute
+Error: 1/30 is a invalid expression for minute
+    at validateFields (/app/node/node_modules/node-cron/src/pattern-validation.js:89:15)
+    at validate (/app/node/node_modules/node-cron/src/pattern-validation.js:121:5)
+    at new TimeMatcher (/app/node/node_modules/node-cron/src/time-matcher.js:14:9)
+    at new Scheduler (/app/node/node_modules/node-cron/src/scheduler.js:9:28)
+    at new ScheduledTask (/app/node/node_modules/node-cron/src/scheduled-task.js:22:27)
+    at createTask (/app/node/node_modules/node-cron/src/node-cron.js:36:12)
+    at Object.schedule (/app/node/node_modules/node-cron/src/node-cron.js:25:18)
+    at Object.<anonymous> (/app/node/index.js:29:6)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+2023-05-10 16:03:26 [noon-ai-dis-was] error: uncaughtException: 1/30 is a invalid expression for minute
+Error: 1/30 is a invalid expression for minute
+    at validateFields (/app/node/node_modules/node-cron/src/pattern-validation.js:89:15)
+    at validate (/app/node/node_modules/node-cron/src/pattern-validation.js:121:5)
+    at new TimeMatcher (/app/node/node_modules/node-cron/src/time-matcher.js:14:9)
+    at new Scheduler (/app/node/node_modules/node-cron/src/scheduler.js:9:28)
+    at new ScheduledTask (/app/node/node_modules/node-cron/src/scheduled-task.js:22:27)
+    at createTask (/app/node/node_modules/node-cron/src/node-cron.js:36:12)
+    at Object.schedule (/app/node/node_modules/node-cron/src/node-cron.js:25:18)
+    at Object.<anonymous> (/app/node/index.js:29:6)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+2023-05-10 16:52:41 [noon-ai-dis-was] error: uncaughtException: ENOENT: no such file or directory, open 'app/node/2023-05-09.log'
+Error: ENOENT: no such file or directory, open 'app/node/2023-05-09.log'
+2023-05-10 16:52:50 [noon-ai-dis-was] error: uncaughtException: ENOENT: no such file or directory, open 'app/node/2023-05-09.log'
+Error: ENOENT: no such file or directory, open 'app/node/2023-05-09.log'
+2023-05-10 16:53:00 [noon-ai-dis-was] error: uncaughtException: ENOENT: no such file or directory, open 'app/node/2023-05-09.log'
+Error: ENOENT: no such file or directory, open 'app/node/2023-05-09.log'
+2023-05-10 16:53:10 [noon-ai-dis-was] error: uncaughtException: ENOENT: no such file or directory, open 'app/node/2023-05-09.log'
+Error: ENOENT: no such file or directory, open 'app/node/2023-05-09.log'
+2023-05-10 16:53:20 [noon-ai-dis-was] error: uncaughtException: ENOENT: no such file or directory, open 'app/node/2023-05-09.log'
+Error: ENOENT: no such file or directory, open 'app/node/2023-05-09.log'
+2023-05-10 16:53:30 [noon-ai-dis-was] error: uncaughtException: ENOENT: no such file or directory, open 'app/node/logs/2023-05-09.log'
+Error: ENOENT: no such file or directory, open 'app/node/logs/2023-05-09.log'
+2023-05-10 16:53:40 [noon-ai-dis-was] error: uncaughtException: ENOENT: no such file or directory, open 'app/node/logs/2023-05-09.log'
+Error: ENOENT: no such file or directory, open 'app/node/logs/2023-05-09.log'
+2023-05-10 16:54:00 [noon-ai-dis-was] error: uncaughtException: ENOENT: no such file or directory, open 'app/node/logs/2023-05-09.log'
+Error: ENOENT: no such file or directory, open 'app/node/logs/2023-05-09.log'

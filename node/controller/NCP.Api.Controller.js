@@ -45,6 +45,36 @@ const s3 = new AWS.S3({
     }
 })
 
+let cron = require('node-cron')
+
+cron.schedule('0 0 * * *', async () => {
+    let yesterday = moment().subtract(1, 'days').toDate()
+    yesterday = moment(yesterday).format('YYYY-MM-DD')
+    let normalLog = `${yesterday}.log`
+    let exceptionLog = `${yesterday}.exception.log`
+
+    let logFileKey = [`admin_page/${yesterday}/${normalLog}`, `admin_page/${yesterday}/${exceptionLog}`]
+    let logFilePath = [`/app/node/logs/${normalLog}`, `/app/node/logs/${exceptionLog}`];
+
+    let bucket_name = 'dis-log'
+
+    //폴더 생성
+    await s3.putObject({
+        Bucket: bucket_name,
+        Key: `admin_page/${yesterday}/`
+    }).promise();
+
+    //로그파일 업로드
+    for(let i = 0; i < 2; i++) {
+        await s3.putObject({
+            Bucket: bucket_name,
+            Key: logFileKey[i],
+            Body: fs.createReadStream(logFilePath[i])
+        }).promise();
+    }
+    logger.info('[CRONTAB] 일단위 어드민 페이지 로그 Object Storage 백업')
+});
+
 app.use('/nas', express.static(path.join(__dirname, '../nas')));
 
 exports.getDatabaseInstanceNo = async (req, res) => {
@@ -180,6 +210,12 @@ exports.createDatabase = async (req, res) => {
 }
 
 exports.createTable = async (req, res) => {
+    let tenantId = req.params.id;
+    let envPre = (process.env.NODE_ENV == 'dev') ? 'dev-' : '';
+    let databaseName = `${envPre}dis-tenant-${tenantId}`;
+    let bucketName = `${envPre}tenant-${tenantId}`;
+    let IPAddressRange = (process.env.NODE_ENV == 'dev') ? `172.18.%` : `%`;
+
     var sql = `CREATE TABLE password_reset (
         id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
         account_name varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -283,6 +319,11 @@ exports.createTable = async (req, res) => {
         user_name varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
         fk_auth_id int DEFAULT NULL,
         register_date datetime NOT NULL,
+        login_fail_count int NOT NULL DEFAULT '0',
+        lock_count int NOT NULL DEFAULT '0',
+        is_lock int NOT NULL DEFAULT '0',
+        password_date datetime DEFAULT NULL,
+        latest_try_login_date datetime DEFAULT NULL,
         self_auth tinyint NOT NULL DEFAULT '0',
         last_login datetime DEFAULT NULL
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`;
@@ -373,10 +414,12 @@ exports.createTable = async (req, res) => {
         complete_datetime datetime DEFAULT NULL
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;`
 
-    var databaseName = 'dis-tenant-' + req.params.id;
-    databaseName = (process.env.NODE_ENV == 'dev') ? 'dev-' + databaseName : databaseName;
-    var bucketName = 'tenant-' + req.params.id;
-    bucketName = (process.env.NODE_ENV == 'dev') ? 'dev-' + bucketName : bucketName;
+    var sql13 = `
+    CREATE USER 'tenant-${tenantId}'@'${IPAddressRange}' IDENTIFIED WITH mysql_native_password BY '${process.env.DATABASE_PASSWORD}';
+    ALTER USER 'tenant-${tenantId}'@'${IPAddressRange}' REQUIRE NONE WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;
+    GRANT ALL PRIVILEGES ON \`${databaseName}\`.* TO 'tenant-${tenantId}'@'${IPAddressRange}'; ALTER USER 'tenant-${tenantId}'@'${IPAddressRange}' ;
+    GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, REFERENCES, INDEX, ALTER, CREATE VIEW, TRIGGER, SHOW VIEW ON \`${envPre}dis-metering\`.\`meter${env}-dis-tenant-${tenantId}\` TO 'tenant-${tenantId}'@'${IPAddressRange}'; ALTER USER 'tenant-${tenantId}'@'${IPAddressRange}' ;
+    `
     const requestDate = moment().format('YYYY-MM-DD');
 
     var tenantConfig =
@@ -426,10 +469,12 @@ exports.createTable = async (req, res) => {
         await subConn.query(sql10);
         await subConn.query(sql11);
         await subConn.query(sql12);
+        await conn.query(sql13);
         objJson.msg = 'success';
         logger.info(apiLogFormat('GET', '/createTable', ` 테이블 생성 완료`));
         console.log(apiLogFormat('GET', '/createTable', ` 테이블 생성 완료`));
         conn.release();
+        subConn.end();
         res.status(200).json(objJson);
     } catch (err) {
         objJson.msg = 'error';

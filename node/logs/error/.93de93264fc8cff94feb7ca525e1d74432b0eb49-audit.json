@@ -44,6 +44,21 @@
             "date": 1683697815781,
             "name": "/app/node/logs/error/2023-05-10.error.log",
             "hash": "1aded20ca2d8b7c98c879667837b3c55228f9c3a066f39627e44e631adcbd865"
+        },
+        {
+            "date": 1683850591544,
+            "name": "/app/node/logs/error/2023-05-12.error.log",
+            "hash": "83f76a0195eea28a0d27be5c715decbb60eeeaedffdc7a19fe9352003c4eeffe"
+        },
+        {
+            "date": 1683990004371,
+            "name": "/app/node/logs/error/2023-05-14.error.log",
+            "hash": "2b8e86fff345993b268c468e7dbef7ca8b8b793602cba2fce132c5f7bed04dbe"
+        },
+        {
+            "date": 1684116963334,
+            "name": "/app/node/logs/error/2023-05-15.error.log",
+            "hash": "634bb0ff432fa8ed103bbe102c46c1ae37e0fff42d80f89d140d0d0dca8444df"
         }
     ],
     "hashType": "sha256"

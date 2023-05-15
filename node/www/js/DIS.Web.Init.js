@@ -57,6 +57,8 @@ init = {
                     let accountName = $("#name").val();
                     let password = $("#pass").val();
                     auth.login(accountName, password);
+                    auth.updateClearLoginFailCount(accountName);
+                    auth.updateClearLockCount(accountName);
                 } else {
                     Swal.fire({
                         title: "2차 인증에 실패했습니다.",

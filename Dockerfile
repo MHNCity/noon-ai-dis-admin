@@ -1,5 +1,5 @@
 ## Dockerfile for noonai-dis-node
-FROM node:18.3.0-alpine
+FROM node:20.1.0-alpine
 
 RUN apk update && \
     apk add mysql-client

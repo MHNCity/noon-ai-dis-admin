@@ -24,6 +24,25 @@ var MySQLStore = require('express-mysql-session')(session);
 var passport = require('passport');
 var passportConfig = require('./passportAuth');
 
+const cron = require('node-cron');
+const moment = require('moment');
+
+// cron.schedule('0 0 * * *', () => {
+//   logger.info('cron 호출')
+// });
+
+// cron.schedule('*/3 * * * * *', () => {
+//     let yesterday = moment().subtract(1, 'days').toDate()
+//     yesterday = moment(yesterday).format('YYYY-MM-DD')
+//     console.log(`ls logs | grep ${yesterday}*`)
+//     let exec = require('child_process').exec
+//     exec(`ls logs | grep ${yesterday}*`, (err, out, stderr) => {
+//         console.log(out)
+//     })
+//     // logger.info('cron 호출')
+// });
+
+
 var options = db.adminConfig
 var sessionStore = new MySQLStore(options);
 
