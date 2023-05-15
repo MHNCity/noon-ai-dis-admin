@@ -1,5 +1,0 @@
-2023-05-15 14:52:13 [noon-ai-dis-was] error: uncaughtException: Operation DROP USER failed for 'tenant-89'@'172.18.%'
-Error: Operation DROP USER failed for 'tenant-89'@'172.18.%'
-    at PromisePoolConnection.query (/app/node/node_modules/mysql2/promise.js:93:22)
-    at exports.deleteTenantDatabase (/app/node/controller/Tenant.Api.Controller.js:152:20)
-    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
