@@ -141,7 +141,7 @@ exports.deleteTenantDatabase = async (req, res) => {
     const tenantId = req.body.tenantId;
     const IPAddressRange = (process.env.NODE_ENV === 'dev') ? '172.18.%' : '%';
 
-    let env = (process.env.NODE_ENV == 'dev') ? 'dev-' : null;
+    let env = (process.env.NODE_ENV == 'dev') ? 'dev-' : '';
     let databaseName = `${env}dis-tenant-${tenantId}`
 
     if (process.env.NODE_ENV === 'dev') {
@@ -215,7 +215,7 @@ exports.deleteTenantDatabase = async (req, res) => {
 exports.deleteTenantBucket = async (req, res) => {
     const { tenantId } = req.body;
 
-    let env = (process.env.NODE_ENV == 'dev') ? 'dev-' : null;
+    let env = (process.env.NODE_ENV == 'dev') ? 'dev-' : '';
     let bucketName = `${env}tenant-${tenantId}`
 
     deletor.clearBucket(s3, bucketName);

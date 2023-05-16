@@ -288,7 +288,7 @@ tenant = {
     },
 
     getTenantList: function () {
-        let env = (comm.getEnv() === 'dev') ? 'dev-' : null;
+        let env = (comm.getEnv() === 'dev') ? 'dev-' : '';
 
         var html = '';
         var result = '';
@@ -301,6 +301,7 @@ tenant = {
             success: function (data) {
                 if (data.message == 'success') {
                     result = data.result;
+                    console.log(data);
                     databaseList = data.databases;
                 }
             }, // success 
@@ -312,6 +313,7 @@ tenant = {
 
         for (var i = 0; i < result.length; i++) {
             let databaseName = `${env}dis-tenant-${result[i].id}`
+            console.log(databaseName)
             let bucketName = `${env}tenant-${result[i].id}`
 
             let databaseExist = (databaseList.indexOf(databaseName) >= 0) ? 'O' : 'X'

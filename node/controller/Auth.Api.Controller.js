@@ -9,6 +9,7 @@ const path = require("path");
 var os = require('os');
 const pool = require('../user_modules/db.js').pool
 const adminPool = require('../user_modules/db.js').adminPool
+const CryptoJS = require("crypto-js");
 
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
