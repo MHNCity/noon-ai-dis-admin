@@ -58,21 +58,23 @@ cron.schedule('0 0 * * *', async () => {
 
     let bucket_name = 'dis-log'
 
-    //폴더 생성
-    await s3.putObject({
-        Bucket: bucket_name,
-        Key: `admin_page/${yesterday}/`
-    }).promise();
-
-    //로그파일 업로드
-    for(let i = 0; i < 2; i++) {
+    if(process.env.NODE_ENV === 'service') {
+        //폴더 생성
         await s3.putObject({
             Bucket: bucket_name,
-            Key: logFileKey[i],
-            Body: fs.createReadStream(logFilePath[i])
+            Key: `admin_page/${yesterday}/`
         }).promise();
+
+        //로그파일 업로드
+        for(let i = 0; i < 2; i++) {
+            await s3.putObject({
+                Bucket: bucket_name,
+                Key: logFileKey[i],
+                Body: fs.createReadStream(logFilePath[i])
+            }).promise();
+        }
+        logger.info('[CRONTAB] 일단위 어드민 페이지 로그 Object Storage 백업')
     }
-    logger.info('[CRONTAB] 일단위 어드민 페이지 로그 Object Storage 백업')
 });
 
 app.use('/nas', express.static(path.join(__dirname, '../nas')));
