@@ -156,6 +156,9 @@ exports.deleteTenantDatabase = async (req, res) => {
         res.status(200).json(objJson);
     }
     else {
+        let sql = `DROP USER 'tenant-${tenantId}'@'${IPAddressRange}';`
+        const conn = await pool.getConnection();
+        await conn.query(sql);
         let timestamp = new Date().getTime();
 
         const accessKeyId = process.env.AWS_ACCESS_KEY_ID;
