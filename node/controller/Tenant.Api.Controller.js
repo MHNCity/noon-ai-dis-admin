@@ -11,7 +11,6 @@ const request = require('request');
 const parser = require('fast-xml-parser');
 const he = require('he');
 const exec = require('child_process').exec
-const mysql = require('mysql2/promise');
 const deletor = require('../user_modules/aws-s3-deletor.js');
 
 const bodyParser = require('body-parser')
@@ -25,6 +24,7 @@ const multer = require('multer');
 const multerS3 = require('multer-s3');
 
 const endpoint = new AWS.Endpoint('https://kr.object.gov-ncloudstorage.com');
+const endpoint_south = new AWS.Endpoint('https://krs.object.gov-ncloudstorage.com');
 const region = 'kr-standard';
 
 const logger = require('../logger');
@@ -44,7 +44,14 @@ const s3 = new AWS.S3({
     }
 })
 
-app.use('/nas', express.static(path.join(__dirname, '../nas')));
+const s3_south = new AWS.S3({
+    endpoint: endpoint_south,
+    region: region,
+    credentials: {
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+    }
+})
 
 exports.getDatabaseInstanceNo = async (req, res) => {
     let timestamp = new Date().getTime();
@@ -224,6 +231,11 @@ exports.deleteTenantBucket = async (req, res) => {
     deletor.clearBucket(s3, bucketName);
     setTimeout(() => {
         deletor.deleteBucket(s3, bucketName);
+    }, 3000)
+
+    deletor.clearBucket(s3_south, bucketName);
+    setTimeout(() => {
+        deletor.deleteBucket(s3_south, bucketName);
     }, 3000)
 
     let objJson = { 'message': 'success', 'log': 'Bucket ' + bucketName + ' delete success' };

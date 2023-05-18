@@ -1,3 +1,5 @@
 node/node_modules
 node/package-lock.json
 node/logs
+node/test.js
+node/test2.js

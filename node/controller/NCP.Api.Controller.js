@@ -24,12 +24,12 @@ const multer = require('multer');
 const multerS3 = require('multer-s3');
 
 const endpoint = new AWS.Endpoint('https://kr.object.gov-ncloudstorage.com');
+const endpoint_south = new AWS.Endpoint('https://krs.object.gov-ncloudstorage.com');
 const region = 'kr-standard';
 const allowedExtensions = ['.png', '.jpg', '.jpeg', '.bmp', 'mp4']
 
 const logger = require('../logger');
 const morganMiddleware = require('../morgan-middleware');
-const { join } = require("path");
 app.use(morganMiddleware);
 
 function apiLogFormat(method, api, logStream) {
@@ -38,6 +38,15 @@ function apiLogFormat(method, api, logStream) {
 
 const s3 = new AWS.S3({
     endpoint: endpoint,
+    region: region,
+    credentials: {
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+    }
+})
+
+const s3_south = new AWS.S3({
+    endpoint: endpoint_south,
     region: region,
     credentials: {
         accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -76,8 +85,6 @@ cron.schedule('0 0 * * *', async () => {
         logger.info('[CRONTAB] 일단위 어드민 페이지 로그 Object Storage 백업')
     }
 });
-
-app.use('/nas', express.static(path.join(__dirname, '../nas')));
 
 exports.getDatabaseInstanceNo = async (req, res) => {
     if(process.env.NODE_ENV === 'dev') {
@@ -505,6 +512,11 @@ function createS3Bucket(bucketName) {
         Bucket: bucketName,
         CreateBucketConfiguration: {}
     }).promise()
+
+    s3_south.createBucket({
+        Bucket: bucketName,
+        CreateBucketConfiguration: {}
+    }).promise()
 }
 
 exports.listBucket = async (req, res) => {
@@ -603,4 +615,28 @@ exports.getMonthUsage = async (req, res, cb) => {
     console.log(apiLogFormat('GET', '/usage', ` 월간 미터링 정보 조회 완료`))
     conn.release();
     res.status(200).json(objJson);
+}
+
+exports.test = async (req, res) => {
+    s3.getBucketLifecycleConfiguration(params, function(err, data) {
+        if (err) console.log(err, err.stack); // an error occurred
+        else     console.log(data);           // successful response
+        /*
+        data = {
+         Rules: [
+            {
+           ID: "Rule for TaxDocs/", 
+           Prefix: "TaxDocs", 
+           Status: "Enabled", 
+           Transitions: [
+              {
+             Days: 365, 
+             StorageClass: "STANDARD_IA"
+            }
+           ]
+          }
+         ]
+        }
+        */
+    });
 }
