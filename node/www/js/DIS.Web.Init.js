@@ -141,7 +141,7 @@ init = {
             var tenantId = $(this).attr('value')
 
             const isDatabaseExist = ($(this).attr('database') === 'O') ? true : false;
-            const isBucketExist = ($(this).attr('bucket') === 'O') ? true : false;
+            const isBucketExist = ($(this).attr('kr_bucket') === 'O' || $(this).attr('krs_bucket') === 'O') ? true : false;
 
             Swal.fire({
                 title: '해당 테넌트의 탈퇴를\n 진행하시겠습니까?',

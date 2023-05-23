@@ -520,12 +520,22 @@ function createS3Bucket(bucketName) {
 }
 
 exports.listBucket = async (req, res) => {
-    let { Buckets } = await s3.listBuckets().promise();
+    let Buckets_kr = [];
+    let Buckets_krs = [];
 
-    let bucketList = []
-    for(let bucket of Buckets) bucketList.push(bucket.Name);
+    await s3.listBuckets({}, function (err, data) {
+        let buckets = data.Buckets;
+        Buckets_kr = Array.from(buckets, bucket => bucket.Name)
+    }).promise();
 
-    let objJson = { 'message': 'success', 'log': 'bucketlist success', result: bucketList };
+    await s3_south.listBuckets({}, function (err, data) {
+        let buckets = data.Buckets;
+        Buckets_krs = Array.from(buckets, bucket => bucket.Name)
+    }).promise();
+
+    let result = [Buckets_kr, Buckets_krs];
+
+    let objJson = { 'message': 'success', 'log': 'bucketlist success', result: result };
     logger.info(apiLogFormat('GET', '/bucket/list', ` 버킷 목록 조회 완료`))
     console.log(apiLogFormat('GET', '/bucket/list', ` 버킷 목록 조회 완료`))
     res.status(200).json(objJson);

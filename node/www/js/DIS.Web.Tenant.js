@@ -110,7 +110,6 @@ tenant = {
     },
 
     deleteBucket: async function (tenantId) {
-        console.log(1);
         let deleted = false;
         await Swal.fire({
             title: '버킷 삭제',
@@ -293,7 +292,9 @@ tenant = {
         var html = '';
         var result = '';
         let databaseList = null;
-        let bucketList = tenant.getBucketList();
+        let [ Bucket_kr, Bucket_krs ] = tenant.getBucketList();
+        console.log(Bucket_kr)
+        console.log(Bucket_krs)
         $.ajax({
             method: "get",
             url: "/api/tenant",
@@ -317,7 +318,8 @@ tenant = {
             let bucketName = `${env}tenant-${result[i].id}`
 
             let databaseExist = (databaseList.indexOf(databaseName) >= 0) ? 'O' : 'X'
-            let bucketExist = (bucketList.indexOf(bucketName) >= 0) ? 'O' : 'X'
+            let kr_BucketExist = (Bucket_kr.indexOf(bucketName) >= 0) ? 'O' : 'X'
+            let krs_BucketExist = (Bucket_krs.indexOf(bucketName) >= 0) ? 'O' : 'X'
             html += `<div class='reqContent'>\
                 <div class='num_content'><p>${result[i].id}</p></div>\
                 <div class='company_content'><p>${result[i].company_name}</p></div>\
@@ -325,9 +327,10 @@ tenant = {
                 <div class='user_content'><p>${result[i].owner_name}</p></div>\
                 <div class='phone_content'><p>${result[i].telephone}</p></div>\
                 <div class='database_content'><p>${databaseExist}</p></div>\
-                <div class='bucket_content'><p>${bucketExist}</p></div>\
+                <div class='bucket_content'><p>${kr_BucketExist}</p></div>\
+                <div class='bucket_content'><p>${krs_BucketExist}</p></div>\
                 <div class='no_content'>\
-                    <div class='noBtn' value=${result[i].id} database=${databaseExist} bucket=${bucketExist}>\
+                    <div class='noBtn' value=${result[i].id} database=${databaseExist} kr_bucket=${kr_BucketExist} krs_bucket=${krs_BucketExist}>\
                         <p>탈퇴</p>\
                     </div>\
                 </div>\
