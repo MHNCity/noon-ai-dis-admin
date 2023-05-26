@@ -262,6 +262,7 @@ exports.createTable = async (req, res) => {
         file_count int NOT NULL,
         request_date date NOT NULL,
         request_time time NOT NULL,
+        request_datetime datetime NOT NULL,
         reception_datetime datetime DEFAULT NULL,
         health_check_process varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
         decrypt_progress varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0%',
@@ -293,6 +294,7 @@ exports.createTable = async (req, res) => {
         random tinyint NOT NULL DEFAULT '1',
         request_date date NOT NULL,
         request_time time NOT NULL,
+        request_datetime datetime NOT NULL,
         reception_datetime datetime DEFAULT NULL,
         processing_time varchar(30) DEFAULT NULL,
         health_check_process varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
@@ -429,6 +431,85 @@ exports.createTable = async (req, res) => {
     GRANT ALL PRIVILEGES ON \`${databaseName}\`.* TO 'tenant-${tenantId}'@'${IPAddressRange}'; ALTER USER 'tenant-${tenantId}'@'${IPAddressRange}' ;
     GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, REFERENCES, INDEX, ALTER, CREATE VIEW, TRIGGER, SHOW VIEW ON \`${envPre}dis-metering\`.\`meter${env}-dis-tenant-${tenantId}\` TO 'tenant-${tenantId}'@'${IPAddressRange}'; ALTER USER 'tenant-${tenantId}'@'${IPAddressRange}' ;
     `
+
+    var sql14 = `CREATE TABLE archived_enc_request_list LIKE enc_request_list;`
+    var sql15 = `CREATE TABLE archived_dec_request_list LIKE dec_request_list;`
+    var sql16 = `CREATE TABLE enc_request_log (
+        id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+        fk_enc_request_list_id int NOT NULL,
+        fk_enc_request_list_sub_account_id int NOT NULL,
+        request_file_list blob NOT NULL,
+        restoration tinyint NOT NULL DEFAULT '0',
+        file_type varchar(255) DEFAULT NULL,
+        request_date date NOT NULL,
+        request_time time NOT NULL,
+        request_datetime datetime NOT NULL
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;`
+    var sql17 = `CREATE TABLE dec_request_log (
+        id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+        fk_dec_request_list_id int NOT NULL,
+        fk_enc_request_list_id int NOT NULL,
+        fk_dec_request_list_sub_account_id int NOT NULL,
+        request_file_list blob NOT NULL,
+        file_type varchar(255) DEFAULT NULL,
+        request_date date NOT NULL,
+        request_time time NOT NULL,
+        request_datetime datetime NOT NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;`
+    var sql18 = `CREATE TABLE archived_enc_request_log LIKE enc_request_list;`
+    var sql19 = `CREATE TABLE archived_dec_request_log LIKE dec_request_list;`
+
+    var lifeCycle = (process.env.NODE_ENV == 'dev') ? 1 : 90;
+    var sql20 = `
+        CREATE EVENT archive_old_enc_request_list
+        ON SCHEDULE
+        EVERY 1 DAY
+        STARTS CURRENT_TIMESTAMP
+        DO
+        BEGIN
+            INSERT INTO archived_enc_request_list
+            SELECT * FROM enc_request_list WHERE request_datetime <= DATE_SUB(NOW(), INTERVAL ${lifeCycle} DAY);
+            DELETE FROM enc_request_list WHERE request_datetime <= DATE_SUB(NOW(), INTERVAL ${lifeCycle} DAY);
+        END
+    `
+    var sql21 = `
+        CREATE EVENT archive_old_enc_request_log
+        ON SCHEDULE
+        EVERY 1 DAY
+        STARTS CURRENT_TIMESTAMP
+        DO
+        BEGIN
+            INSERT INTO archived_enc_request_log
+            SELECT * FROM enc_request_log WHERE request_datetime <= DATE_SUB(NOW(), INTERVAL ${lifeCycle} DAY);
+            DELETE FROM enc_request_log WHERE request_datetime <= DATE_SUB(NOW(), INTERVAL ${lifeCycle} DAY);
+        END
+    `
+    var sql22 = `
+        CREATE EVENT archive_old_dec_request_list
+        ON SCHEDULE
+        EVERY 1 DAY
+        STARTS CURRENT_TIMESTAMP
+        DO
+        BEGIN
+            INSERT INTO archived_dec_request_list
+            SELECT * FROM dec_request_list WHERE request_datetime <= DATE_SUB(NOW(), INTERVAL ${lifeCycle} DAY);
+            DELETE FROM dec_request_list WHERE request_datetime <= DATE_SUB(NOW(), INTERVAL ${lifeCycle} DAY);
+        END
+    `
+
+    var sql23 = `
+        CREATE EVENT archive_old_dec_request_log
+        ON SCHEDULE
+        EVERY 1 DAY
+        STARTS CURRENT_TIMESTAMP
+        DO
+        BEGIN
+            INSERT INTO archived_dec_request_log
+            SELECT * FROM dec_request_log WHERE request_datetime <= DATE_SUB(NOW(), INTERVAL ${lifeCycle} DAY);
+            DELETE FROM dec_request_log WHERE request_datetime <= DATE_SUB(NOW(), INTERVAL ${lifeCycle} DAY);
+        END
+    `
+    
     const requestDate = moment().format('YYYY-MM-DD');
 
     var tenantConfig =
@@ -479,6 +560,16 @@ exports.createTable = async (req, res) => {
         await subConn.query(sql11);
         await subConn.query(sql12);
         await conn.query(sql13);
+        await subConn.query(sql14);
+        await subConn.query(sql15);
+        await subConn.query(sql16);
+        await subConn.query(sql17);
+        await subConn.query(sql18);
+        await subConn.query(sql19);
+        await subConn.query(sql20);
+        await subConn.query(sql21);
+        await subConn.query(sql22);
+        await subConn.query(sql23);
         objJson.msg = 'success';
         logger.info(apiLogFormat('GET', '/createTable', ` 테이블 생성 완료`));
         console.log(apiLogFormat('GET', '/createTable', ` 테이블 생성 완료`));
