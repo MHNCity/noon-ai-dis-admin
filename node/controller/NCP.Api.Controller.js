@@ -456,8 +456,8 @@ exports.createTable = async (req, res) => {
         request_time time NOT NULL,
         request_datetime datetime NOT NULL
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;`
-    var sql18 = `CREATE TABLE archived_enc_request_log LIKE enc_request_list;`
-    var sql19 = `CREATE TABLE archived_dec_request_log LIKE dec_request_list;`
+    var sql18 = `CREATE TABLE archived_enc_request_log LIKE enc_request_log;`
+    var sql19 = `CREATE TABLE archived_dec_request_log LIKE dec_request_log;`
 
     var lifeCycle = (process.env.NODE_ENV == 'dev') ? 1 : 90;
     var sql20 = `
