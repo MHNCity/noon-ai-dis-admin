@@ -315,7 +315,8 @@ exports.createTable = async (req, res) => {
         blob_public_key blob NOT NULL,
         generated_date date NOT NULL,
         generated_time time NOT NULL,
-        key_memo varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
+        key_memo varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+        expiry_datetime datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`;
 
     var sql5 = `CREATE TABLE sub_account (
@@ -459,7 +460,8 @@ exports.createTable = async (req, res) => {
     var sql18 = `CREATE TABLE archived_enc_request_log LIKE enc_request_log;`
     var sql19 = `CREATE TABLE archived_dec_request_log LIKE dec_request_log;`
 
-    var lifeCycle = (process.env.NODE_ENV == 'dev') ? 1 : 90;
+    let lifeCycle = (process.env.NODE_ENV == 'dev') ? 1 : 90;
+    let deletelifeCycle = (process.env.NODE_ENV == 'dev') ? 3 : 365;
     var sql20 = `
         CREATE EVENT archive_old_enc_request_list
         ON SCHEDULE
@@ -508,6 +510,42 @@ exports.createTable = async (req, res) => {
             SELECT * FROM dec_request_log WHERE request_datetime <= DATE_SUB(NOW(), INTERVAL ${lifeCycle} DAY);
             DELETE FROM dec_request_log WHERE request_datetime <= DATE_SUB(NOW(), INTERVAL ${lifeCycle} DAY);
         END
+    `
+
+    var sql24 = `
+        CREATE EVENT delete_archived_dec_request_list
+        ON SCHEDULE
+        EVERY 1 DAY
+        STARTS CURRENT_TIMESTAMP
+        DO
+            DELETE FROM archived_dec_request_list WHERE request_datetime <= DATE_SUB(NOW(), INTERVAL ${deletelifeCycle} DAY);
+    `
+
+    var sql25 = `
+        CREATE EVENT delete_archived_dec_request_log
+        ON SCHEDULE
+        EVERY 1 DAY
+        STARTS CURRENT_TIMESTAMP
+        DO
+            DELETE FROM archived_dec_request_log WHERE request_datetime <= DATE_SUB(NOW(), INTERVAL ${deletelifeCycle} DAY);
+    `
+
+    var sql26 = `
+        CREATE EVENT delete_archived_enc_request_list
+        ON SCHEDULE
+        EVERY 1 DAY
+        STARTS CURRENT_TIMESTAMP
+        DO
+            DELETE FROM archived_enc_request_list WHERE request_datetime <= DATE_SUB(NOW(), INTERVAL ${deletelifeCycle} DAY);
+    `
+
+    var sql27 = `
+        CREATE EVENT delete_archived_enc_request_log
+        ON SCHEDULE
+        EVERY 1 DAY
+        STARTS CURRENT_TIMESTAMP
+        DO
+            DELETE FROM archived_enc_request_log WHERE request_datetime <= DATE_SUB(NOW(), INTERVAL ${deletelifeCycle} DAY);
     `
     
     const requestDate = moment().format('YYYY-MM-DD');
@@ -566,10 +604,16 @@ exports.createTable = async (req, res) => {
         await subConn.query(sql17);
         await subConn.query(sql18);
         await subConn.query(sql19);
+
+        //스케줄링 20 ~ 27
         await subConn.query(sql20);
         await subConn.query(sql21);
         await subConn.query(sql22);
         await subConn.query(sql23);
+        await subConn.query(sql24);
+        await subConn.query(sql25);
+        await subConn.query(sql26);
+        await subConn.query(sql27);
         objJson.msg = 'success';
         logger.info(apiLogFormat('GET', '/createTable', ` 테이블 생성 완료`));
         console.log(apiLogFormat('GET', '/createTable', ` 테이블 생성 완료`));
