@@ -342,7 +342,7 @@ exports.createTable = async (req, res) => {
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`;
 
     var sql6 = `SELECT * FROM tenant WHERE id = ?`;
-    var sql7 = `INSERT INTO auth (tenant, account_name, bucket_access_list, bucket_access_auth, db_access_list, db_access_auth, encrypt_auth, decrypt_auth, date) values (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+    var sql7 = `INSERT INTO auth (tenant, account_name, bucket_access_list, bucket_access_auth, db_access_list, db_access_auth, encrypt_auth, decrypt_auth, master, date) values (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
     var env = (process.env.NODE_ENV == 'dev') ? '-dev' : '';
     var sql8 = `CREATE TABLE \`meter${env}-dis-tenant-${req.params.id}\` (
@@ -592,7 +592,7 @@ exports.createTable = async (req, res) => {
         await subConn.query(sql5);
         const [result] = await conn.query(sql6, [req.params.id]);
 
-        await subConn.query(sql7, [databaseName, result[0].account_name, "'" + bucketName + "'", '111', "'" + databaseName + "'", '1111', 1, 1, requestDate]);
+        await subConn.query(sql7, [databaseName, result[0].account_name, "'" + bucketName + "'", '111', "'" + databaseName + "'", '1111', 1, 1, 1, requestDate]);
         await meterConn.query(sql8);
         await subConn.query(sql9);
         await subConn.query(sql10);
