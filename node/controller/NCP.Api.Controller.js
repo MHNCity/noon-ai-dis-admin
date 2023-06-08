@@ -243,6 +243,7 @@ exports.createTable = async (req, res) => {
         encrypt_auth tinyint NOT NULL,
         decrypt_auth tinyint NOT NULL,
         auth_log blob DEFAULT NULL,
+        master tinyint NOT NULL DEFAULT '0',
         date date NOT NULL
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`;
 
