@@ -223,7 +223,7 @@ exports.createTable = async (req, res) => {
     let envPre = (process.env.NODE_ENV == 'dev') ? 'dev-' : '';
     let databaseName = `${envPre}dis-tenant-${tenantId}`;
     let bucketName = `${envPre}tenant-${tenantId}`;
-    let IPAddressRange = (process.env.NODE_ENV == 'dev') ? `172.18.%` : `%`;
+    let IPAddressRange = (process.env.NODE_ENV == 'dev') ? `%` : `%`;
 
     var sql = `CREATE TABLE password_reset (
         id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -427,10 +427,10 @@ exports.createTable = async (req, res) => {
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;`
 
     var sql13 = `
-    CREATE USER 'tenant-${tenantId}'@'${IPAddressRange}' IDENTIFIED WITH mysql_native_password BY '${process.env.DATABASE_PASSWORD}';
-    ALTER USER 'tenant-${tenantId}'@'${IPAddressRange}' REQUIRE NONE WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;
-    GRANT ALL PRIVILEGES ON \`${databaseName}\`.* TO 'tenant-${tenantId}'@'${IPAddressRange}'; ALTER USER 'tenant-${tenantId}'@'${IPAddressRange}' ;
-    GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, REFERENCES, INDEX, ALTER, CREATE VIEW, TRIGGER, SHOW VIEW ON \`${envPre}dis-metering\`.\`meter${env}-dis-tenant-${tenantId}\` TO 'tenant-${tenantId}'@'${IPAddressRange}'; ALTER USER 'tenant-${tenantId}'@'${IPAddressRange}' ;
+    CREATE USER '${envPre}tenant-${tenantId}'@'${IPAddressRange}' IDENTIFIED WITH mysql_native_password BY '${process.env.DATABASE_PASSWORD}';
+    ALTER USER '${envPre}tenant-${tenantId}'@'${IPAddressRange}' REQUIRE NONE WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;
+    GRANT ALL PRIVILEGES ON \`${databaseName}\`.* TO '${envPre}tenant-${tenantId}'@'${IPAddressRange}'; ALTER USER '${envPre}tenant-${tenantId}'@'${IPAddressRange}' ;
+    GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, REFERENCES, INDEX, ALTER, CREATE VIEW, TRIGGER, SHOW VIEW ON \`${envPre}dis-metering\`.\`meter${env}-dis-tenant-${tenantId}\` TO '${envPre}tenant-${tenantId}'@'${IPAddressRange}'; ALTER USER '${envPre}tenant-${tenantId}'@'${IPAddressRange}' ;
     `
 
     var sql14 = `CREATE TABLE archived_enc_request_list LIKE enc_request_list;`
