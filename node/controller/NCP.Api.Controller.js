@@ -317,7 +317,8 @@ exports.createTable = async (req, res) => {
         generated_date date NOT NULL,
         generated_time time NOT NULL,
         key_memo varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-        expiry_datetime datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+        expiry_datetime datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        expiry_notification tinyint NOT NULL DEFAULT '1',
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`;
 
     var sql5 = `CREATE TABLE sub_account (
