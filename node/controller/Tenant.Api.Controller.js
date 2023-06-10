@@ -146,7 +146,7 @@ exports.deleteTenantAccount = async (req, res) => {
 exports.deleteTenantDatabase = async (req, res) => {
     const cloudMysqlInstanceNo = req.body.cloudMysqlInstanceNo;
     const tenantId = req.body.tenantId;
-    const IPAddressRange = (process.env.NODE_ENV === 'dev') ? '172.18.%' : '%';
+    const IPAddressRange = (process.env.NODE_ENV === 'dev') ? '%' : '%';
 
     let env = (process.env.NODE_ENV == 'dev') ? 'dev-' : '';
     let databaseName = `${env}dis-tenant-${tenantId}`

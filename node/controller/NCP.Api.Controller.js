@@ -319,6 +319,7 @@ exports.createTable = async (req, res) => {
         key_memo varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
         expiry_datetime datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
         expiry_notification tinyint NOT NULL DEFAULT '1',
+        disable_notification_datetime datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`;
 
     var sql5 = `CREATE TABLE sub_account (
@@ -343,7 +344,7 @@ exports.createTable = async (req, res) => {
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`;
 
     var sql6 = `SELECT * FROM tenant WHERE id = ?`;
-    var sql7 = `INSERT INTO auth (tenant, account_name, bucket_access_list, bucket_access_auth, db_access_list, db_access_auth, encrypt_auth, decrypt_auth, master, date) values (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+    var sql7 = `INSERT INTO auth (tenant, account_name, bucket_access_list, bucket_access_auth, db_access_list, db_access_auth, encrypt_auth, decrypt_auth, master, date) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
     var env = (process.env.NODE_ENV == 'dev') ? '-dev' : '';
     var sql8 = `CREATE TABLE \`meter${env}-dis-tenant-${req.params.id}\` (
@@ -468,7 +469,7 @@ exports.createTable = async (req, res) => {
         CREATE EVENT archive_old_enc_request_list
         ON SCHEDULE
         EVERY 1 DAY
-        STARTS CURRENT_TIMESTAMP
+        STARTS CONCAT(CURRENT_DATE, ' 23:59:00')
         DO
         BEGIN
             INSERT INTO archived_enc_request_list
@@ -480,7 +481,7 @@ exports.createTable = async (req, res) => {
         CREATE EVENT archive_old_enc_request_log
         ON SCHEDULE
         EVERY 1 DAY
-        STARTS CURRENT_TIMESTAMP
+        STARTS CONCAT(CURRENT_DATE, ' 23:59:00')
         DO
         BEGIN
             INSERT INTO archived_enc_request_log
@@ -492,7 +493,7 @@ exports.createTable = async (req, res) => {
         CREATE EVENT archive_old_dec_request_list
         ON SCHEDULE
         EVERY 1 DAY
-        STARTS CURRENT_TIMESTAMP
+        STARTS CONCAT(CURRENT_DATE, ' 23:59:00')
         DO
         BEGIN
             INSERT INTO archived_dec_request_list
@@ -505,7 +506,7 @@ exports.createTable = async (req, res) => {
         CREATE EVENT archive_old_dec_request_log
         ON SCHEDULE
         EVERY 1 DAY
-        STARTS CURRENT_TIMESTAMP
+        STARTS CONCAT(CURRENT_DATE, ' 23:59:00')
         DO
         BEGIN
             INSERT INTO archived_dec_request_log
@@ -518,7 +519,7 @@ exports.createTable = async (req, res) => {
         CREATE EVENT delete_archived_dec_request_list
         ON SCHEDULE
         EVERY 1 DAY
-        STARTS CURRENT_TIMESTAMP
+        STARTS CONCAT(CURRENT_DATE, ' 23:59:00')
         DO
             DELETE FROM archived_dec_request_list WHERE request_datetime <= DATE_SUB(NOW(), INTERVAL ${deletelifeCycle} DAY);
     `
@@ -527,7 +528,7 @@ exports.createTable = async (req, res) => {
         CREATE EVENT delete_archived_dec_request_log
         ON SCHEDULE
         EVERY 1 DAY
-        STARTS CURRENT_TIMESTAMP
+        STARTS CONCAT(CURRENT_DATE, ' 23:59:00')
         DO
             DELETE FROM archived_dec_request_log WHERE request_datetime <= DATE_SUB(NOW(), INTERVAL ${deletelifeCycle} DAY);
     `
@@ -536,7 +537,7 @@ exports.createTable = async (req, res) => {
         CREATE EVENT delete_archived_enc_request_list
         ON SCHEDULE
         EVERY 1 DAY
-        STARTS CURRENT_TIMESTAMP
+        STARTS CONCAT(CURRENT_DATE, ' 23:59:00')
         DO
             DELETE FROM archived_enc_request_list WHERE request_datetime <= DATE_SUB(NOW(), INTERVAL ${deletelifeCycle} DAY);
     `
@@ -545,9 +546,26 @@ exports.createTable = async (req, res) => {
         CREATE EVENT delete_archived_enc_request_log
         ON SCHEDULE
         EVERY 1 DAY
-        STARTS CURRENT_TIMESTAMP
+        STARTS CONCAT(CURRENT_DATE, ' 23:59:00')
         DO
             DELETE FROM archived_enc_request_log WHERE request_datetime <= DATE_SUB(NOW(), INTERVAL ${deletelifeCycle} DAY);
+    `
+
+    var sql28 = `
+        CREATE TRIGGER delete_expired_rsa_key_pair_trigger
+        BEFORE DELETE ON rsa_key_pair
+        FOR EACH ROW
+        BEGIN
+            UPDATE enc_request_list SET fk_rsa_key_pair_id = 0, key_name='null', restoration=0 WHERE fk_rsa_key_pair_id = OLD.id;
+        END
+    `
+    var sql29 = `
+        CREATE EVENT delete_expired_rsa_key_pair
+        ON SCHEDULE
+        EVERY 1 DAY
+        STARTS CONCAT(CURRENT_DATE, ' 23:59:00')
+        DO
+            DELETE FROM rsa_key_pair WHERE expiry_datetime <= CURDATE();
     `
     
     const requestDate = moment().format('YYYY-MM-DD');
@@ -616,6 +634,8 @@ exports.createTable = async (req, res) => {
         await subConn.query(sql25);
         await subConn.query(sql26);
         await subConn.query(sql27);
+        await subConn.query(sql28);
+        await subConn.query(sql29);
         objJson.msg = 'success';
         logger.info(apiLogFormat('GET', '/createTable', ` 테이블 생성 완료`));
         console.log(apiLogFormat('GET', '/createTable', ` 테이블 생성 완료`));
