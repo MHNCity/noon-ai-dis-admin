@@ -433,7 +433,7 @@ exports.createTable = async (req, res) => {
     var sql13 = `
     CREATE USER '${envPre}tenant-${tenantId}'@'${IPAddressRange}' IDENTIFIED WITH ${mysqlPasswordAlgorithm} BY '${process.env.DATABASE_PASSWORD}';
     ALTER USER '${envPre}tenant-${tenantId}'@'${IPAddressRange}' REQUIRE NONE WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;
-    GRANT ALL PRIVILEGES ON \`${databaseName}\`.* TO '${envPre}tenant-${tenantId}'@'${IPAddressRange}'; ALTER USER '${envPre}tenant-${tenantId}'@'${IPAddressRange}' ;
+    GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, REFERENCES, INDEX, ALTER, CREATE VIEW, TRIGGER, SHOW VIEW ON \`${databaseName}\`.* TO '${envPre}tenant-${tenantId}'@'${IPAddressRange}'; ALTER USER '${envPre}tenant-${tenantId}'@'${IPAddressRange}' ;
     GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, REFERENCES, INDEX, ALTER, CREATE VIEW, TRIGGER, SHOW VIEW ON \`${envPre}dis-metering\`.\`meter${env}-dis-tenant-${tenantId}\` TO '${envPre}tenant-${tenantId}'@'${IPAddressRange}'; ALTER USER '${envPre}tenant-${tenantId}'@'${IPAddressRange}' ;
     `
 
