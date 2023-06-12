@@ -27,6 +27,10 @@ const logger = winston.createLogger({
    ),
    //* 실제 로그를 어떻게 기록을 한 것인가 정의
    transports: [
+      new winston.transports.File({
+         filename: `${logDir}`,
+         options: { mode: 0o640 } // 파일 권한을 640으로 설정
+       }),
       //* info 레벨 로그를 저장할 파일 설정 (info: 2 보다 높은 error: 0 와 warn: 1 로그들도 자동 포함해서 저장)
       new winstonDaily({
          level: 'info', // info 레벨에선
