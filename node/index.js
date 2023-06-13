@@ -19,6 +19,7 @@ app.use(cookieParser());
 
 const logger = require('./logger');
 const db = require('./user_modules/db');
+const mysql2 = require('mysql2/promise');
 var session = require('express-session');
 var MySQLStore = require('express-mysql-session')(session);
 var passport = require('passport');
@@ -42,9 +43,9 @@ const moment = require('moment');
 //     // logger.info('cron 호출')
 // });
 
-
-var options = db.adminConfig
-var sessionStore = new MySQLStore(options);
+const options = db.adminConfig;
+const connection = mysql2.createPool(options);
+var sessionStore = new MySQLStore({}, connection);
 
 app.use(session({
     secret: "asdfasffdas",
