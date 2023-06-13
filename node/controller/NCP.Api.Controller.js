@@ -429,7 +429,7 @@ exports.createTable = async (req, res) => {
         complete_datetime datetime DEFAULT NULL
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;`
 
-    let mysqlPasswordAlgorithm = (process.env.NODE_ENV === dev) ? 'mysql_native_password' : 'caching_sha2_password'
+    let mysqlPasswordAlgorithm = (process.env.NODE_ENV === 'dev') ? 'mysql_native_password' : 'caching_sha2_password'
     var sql13 = `
     CREATE USER '${envPre}tenant-${tenantId}'@'${IPAddressRange}' IDENTIFIED WITH ${mysqlPasswordAlgorithm} BY '${process.env.DATABASE_PASSWORD}';
     ALTER USER '${envPre}tenant-${tenantId}'@'${IPAddressRange}' REQUIRE NONE WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;

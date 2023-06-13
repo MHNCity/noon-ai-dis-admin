@@ -19,7 +19,11 @@ WORKDIR /app/node
 RUN npm install
 RUN chown -R node:node /app/node
 RUN chmod 750 /app/node/logs
+
+ENV TZ Asia/Seoul
 RUN chmod 750 /app/node/logs
+
+ENV TZ Asia/Seoul
 
 EXPOSE 5000
 USER node
