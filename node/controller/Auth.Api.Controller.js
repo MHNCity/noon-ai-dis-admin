@@ -75,6 +75,7 @@ exports.firstLogin = async (req, res, next) => {
                 res.status(400).json(objJson);
             }
         } catch (err) {
+            console.log(err);
             logger.error(apiLogFormat('POST', '/first-login', ` ${err}`))
             console.error(apiLogFormat('POST', '/first-login', ` ${err}`))
 
@@ -136,6 +137,7 @@ exports.passwordCheck = async (req, res) => {
             res.status(400).json(objJson);
         }
     } catch (err) {
+            console.log(err);
         logger.error(apiLogFormat('POST', '/passwordCheck', ` ${err}`))
         console.error(apiLogFormat('POST', '/passwordCheck', ` ${err}`))
 
@@ -355,6 +357,7 @@ exports.selectLockStatus = async (req, res) => {
         }
         conn.release();
     } catch (err) {
+            console.log(err);
         logger.error(apiLogFormat('PUT', '/login/selectLockStatus', ` ${err}`))
         console.error(apiLogFormat('PUT', '/login/selectLockStatus', ` ${err}`))
 
@@ -389,6 +392,7 @@ exports.plusLoginFailCount = async (req, res) => {
         res.status(200).json(objJson);
         conn.release();
     } catch (err) {
+            console.log(err);
         logger.error(apiLogFormat('POST', '/first-login', ` ${err}`))
         console.error(apiLogFormat('POST', '/first-login', ` ${err}`))
 
@@ -417,6 +421,7 @@ exports.updateLockStatus = async (req, res) => {
         res.status(200).json(objJson);
         conn.release();
     } catch (err) {
+            console.log(err);
         logger.error(apiLogFormat('PUT', '/login/lockStatus', ` ${err}`))
         console.error(apiLogFormat('PUT', '/login/lockStatus', ` ${err}`))
 
@@ -444,6 +449,7 @@ exports.updateClearLoginFailCount = async (req, res) => {
         res.status(200).json(objJson);
         conn.release();
     } catch (err) {
+            console.log(err);
         logger.error(apiLogFormat('PUT', '/login/failCount/clear', ` ${err}`))
         console.error(apiLogFormat('PUT', '/login/failCount/clear', ` ${err}`))
 
@@ -471,6 +477,7 @@ exports.updateClearLockCount = async (req, res) => {
         res.status(200).json(objJson);
         conn.release();
     } catch (err) {
+            console.log(err);
         logger.error(apiLogFormat('PUT', '/login/lockCount', ` ${err}`))
         console.error(apiLogFormat('PUT', '/login/lockCount', ` ${err}`))
 
@@ -500,6 +507,7 @@ exports.test = async (req, res) => {
         res.status(200).json(objJson);
         conn.release();
     } catch (err) {
+            console.log(err);
         console.log(err);
     }
 }

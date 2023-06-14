@@ -30,7 +30,7 @@ exports.getManagerList = async (req, res) => {
         const conn = await adminPool.getConnection();
         const results = await conn.query(sql);
 
-        let objJson = { 
+        let objJson = {
             message: 'success',
             result: results[0],
         }
@@ -40,6 +40,7 @@ exports.getManagerList = async (req, res) => {
         res.status(200).json(objJson);
         conn.release();
     } catch (err) {
+        console.log(err);
         logger.error(apiLogFormat('GET', '/manager', ` ${err}`))
         console.error(apiLogFormat('GET', '/manager', ` ${err}`))
 
@@ -60,7 +61,7 @@ exports.createManager = async (req, res) => {
         const conn = await adminPool.getConnection();
         const results = await conn.query(sql, [account_name, hashedPassword, email, user_name, curDatetime, curDatetime])
 
-        let objJson = { 
+        let objJson = {
             message: 'success',
         }
 
@@ -69,6 +70,7 @@ exports.createManager = async (req, res) => {
         res.status(200).json(objJson);
         conn.release();
     } catch (err) {
+        console.log(err);
         logger.error(apiLogFormat('POST', '/manager', ` ${err}`))
         console.error(apiLogFormat('POST', '/manager', ` ${err}`))
 
@@ -93,6 +95,7 @@ exports.deleteManager = async (req, res) => {
         res.status(200).json(objJson);
         conn.release();
     } catch (err) {
+        console.log(err);
         logger.error(apiLogFormat('DELETE', '/manager', ` ${err}`))
         console.error(apiLogFormat('DELETE', '/manager', ` ${err}`))
 
@@ -124,6 +127,7 @@ exports.initPassword = async (req, res) => {
         res.status(200).json(objJson);
         conn.release();
     } catch (err) {
+        console.log(err);
         logger.error(apiLogFormat('GET', '/manager/init-password', ` ${err}`))
         console.error(apiLogFormat('GET', '/manager/init-password', ` ${err}`))
 
@@ -150,6 +154,7 @@ exports.unlock = async (req, res) => {
         res.status(200).json(objJson);
         conn.release();
     } catch (err) {
+        console.log(err);
         logger.error(apiLogFormat('GET', '/manager/unlock', ` ${err}`))
         console.error(apiLogFormat('GET', '/manager/unlock', ` ${err}`))
 

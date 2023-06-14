@@ -135,6 +135,7 @@ exports.deleteTenantAccount = async (req, res) => {
         res.status(200).json(objJson);
         conn.release();
     } catch (err) {
+            console.log(err);
         logger.error(apiLogFormat('DELETE', '/tenant/account', ` ${err}`))
         console.error(apiLogFormat('DELETE', '/tenant/account', ` ${err}`))
 

@@ -51,6 +51,7 @@ module.exports = () => {
             cb(null, user);
             conn.release();
         } catch (err) {
+            console.log(err);
             console.error(err);
             cb(err);
             conn.release();

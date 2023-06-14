@@ -55,6 +55,7 @@ exports.requestList = async (req, res) => {
         res.status(200).json(results[0]);
         conn.release();
     } catch (err) {
+            console.log(err);
         let objJson = { 'message': 'error' };
 
         logger.error(apiLogFormat('GET', '/signup/request', ` ${err}`))
@@ -82,6 +83,7 @@ exports.acceptSignup = async (req, res) => {
         res.json(objJson);
         conn.release();
     } catch (err) {
+            console.log(err);
         let objJson = { 'message': 'error' };
 
         logger.error(apiLogFormat('GET', '/signup/request', ` ${err}`))
@@ -106,6 +108,7 @@ exports.rejectSignup = async (req, res) => {
         res.json(objJson);
         conn.release();
     } catch (err) {
+            console.log(err);
         let objJson = { 'message': 'error' };
 
         logger.error(apiLogFormat('GET', '/signup/request', ` ${err}`))
@@ -138,6 +141,7 @@ exports.tenantList = async (req, res) => {
         res.status(200).json(objJson);
         conn.release();
     } catch (err) {
+            console.log(err);
         let objJson = { 'message': 'error' };
 
         logger.error(apiLogFormat('GET', '/signup/request', ` ${err}`))

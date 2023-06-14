@@ -385,7 +385,7 @@ exports.createTable = async (req, res) => {
     FROM dec_request_list;`;
 
     var sql11 = `CREATE TABLE dec_thumbnail (
-        id int NOT NULL,
+        id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
         fk_enc_request_id int NOT NULL,
         fk_sub_account_id int NOT NULL,
         fk_rsa_key_pair_id int NOT NULL,
@@ -410,7 +410,7 @@ exports.createTable = async (req, res) => {
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;`
 
     var sql12 = `CREATE TABLE clean_fail_request (
-        id int NOT NULL,
+        id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
         reception_datetime datetime NOT NULL,
         request_type varchar(50) NOT NULL,
         request_id int NOT NULL,
@@ -644,6 +644,7 @@ exports.createTable = async (req, res) => {
         subConn.end();
         res.status(200).json(objJson);
     } catch (err) {
+            console.log(err);
         objJson.msg = 'error';
         objJson.result = err.message;
         logger.error(apiLogFormat('GET', '/createTable', ` ${err}`));
