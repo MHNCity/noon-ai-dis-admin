@@ -60,8 +60,8 @@ exports.firstLogin = async (req, res, next) => {
                         admin_email: user.email
                     };
 
-                    logger.info(apiLogFormat('POST', '/first-login', ` 1차 로그인 완료`))
-                    console.log(apiLogFormat('POST', '/first-login', ` 1차 로그인 완료`))
+                    logger.info(apiLogFormat('POST', '/first-login', ` ${account_name} 1차 로그인 완료`))
+                    console.log(apiLogFormat('POST', '/first-login', ` ${account_name} 1차 로그인 완료`))
 
                     res.status(200).json(objJson);
                 }
@@ -168,8 +168,8 @@ exports.login = async (req, res, next) => {
                 return next(loginError);
             }
 
-            logger.info(apiLogFormat('POST', '/login', ` 관리자 ${user.user_name} 로그인 완료`))
-            console.log(apiLogFormat('POST', '/login', ` 관리자 ${user.user_name} 로그인 완료`))
+            logger.info(apiLogFormat('POST', '/login', ` 관리자 ${user.account_name} 로그인 완료`))
+            console.log(apiLogFormat('POST', '/login', ` 관리자 ${user.account_name} 로그인 완료`))
             return res.redirect('/');
         });
     })(req, res, next);
