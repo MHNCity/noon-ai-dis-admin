@@ -92,7 +92,6 @@ exports.firstLogin = async (req, res, next) => {
 }
 
 exports.passwordCheck = async (req, res) => {
-    console.log(req.body);
     let account_name = req.body.account_name;
     let password = req.body.password;
     let sql = "SELECT * FROM admin WHERE account_name = ?";
@@ -168,8 +167,8 @@ exports.login = async (req, res, next) => {
                 return next(loginError);
             }
 
-            logger.info(apiLogFormat('POST', '/login', ` 관리자 ${user.account_name} 로그인 완료`))
-            console.log(apiLogFormat('POST', '/login', ` 관리자 ${user.account_name} 로그인 완료`))
+            logger.info(apiLogFormat('POST', '/login', ` [${user.account_name}] 로그인 완료`))
+            console.log(apiLogFormat('POST', '/login', ` [${user.account_name}] 로그인 완료`))
             return res.redirect('/');
         });
     })(req, res, next);
