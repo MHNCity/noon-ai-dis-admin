@@ -80,7 +80,7 @@ admin = {
                 <div class='email_content'><p>${result[i].account_name}</p></div>\
                 <div class='lastlogin_content'><p>${last_login}</p></div>\
                 <div class='password-date_content'><p>${password_date}일</p></div>\
-                <div class='phone_content'><p>${isLock}</p></div>\
+                <div class='lock_content'><p>${isLock}</p></div>\
                 <div class='password_content'>\
                     <div class='Btn' value=${result[i].id}>\
                         <p>재설정</p>\

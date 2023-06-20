@@ -42,13 +42,15 @@
 
 .req_content {
     display: flex;
+    flex-direction: column;
+    padding: 100px 0 0;
 }
 
 .reqTable {
-    width: 988px;
+    width: 1180px;
     height: auto;
     display: flex;
-    margin: 100px auto;
+    margin: 0 auto;
     flex-direction: column;
     border-radius: 24px;
     box-shadow: 0 0 18px 0 rgb(0 0 0 / 16%);
@@ -57,7 +59,7 @@
 
 .reqTable .reqHeader {
     display: flex;
-    width: 940px;
+    width: 1132px;
     height: 62px;
     border-bottom: solid 1px #707070;
     margin: 0 auto;
@@ -72,6 +74,7 @@
 .reqTable .reqHeader .no_header,
 .reqTable .reqHeader .lastlogin_header,
 .reqTable .reqHeader .password_header,
+.reqTable .reqHeader .lock_header,
 .reqTable .reqHeader .unlock_header,
 .reqTable .reqHeader .password-date_header,
 .reqTable .reqHeader .delete_header,
@@ -91,6 +94,7 @@
 .reqTable .reqHeader .no_header h3,
 .reqTable .reqHeader .lastlogin_header h3,
 .reqTable .reqHeader .password_header h3,
+.reqTable .reqHeader .lock_header h3,
 .reqTable .reqHeader .unlock_header h3,
 .reqTable .reqHeader .password-date_header h3,
 .reqTable .reqHeader .delete_header h3,
@@ -115,7 +119,7 @@
 }
 
 .reqTable .reqHeader .company_header {
-    width: 10%;
+    width: 15%;
 }
 
 .reqTable .reqHeader .email_header {
@@ -127,17 +131,21 @@
 .reqTable .reqHeader .database_header,
 .reqTable .reqHeader .bucket_header,
 .reqTable .reqHeader .yes_header,
-.reqTable .reqHeader .no_header,
 .reqTable .reqHeader .lastlogin_header,
-.reqTable .reqHeader .password_header,
-.reqTable .reqHeader .unlock_header,
-.reqTable .reqHeader .password-date_header,
-.reqTable .reqHeader .delete_header {
+.reqTable .reqHeader .password-date_header {
     width: 15%;
 }
 
+.reqTable .reqHeader .lock_header,
+.reqTable .reqHeader .unlock_header,
+.reqTable .reqHeader .password_header,
+.reqTable .reqHeader .delete_header,
+.reqTable .reqHeader .no_header {
+    width: 10%;
+}
+
 .reqTable .reqBody {
-    width: 940px;
+    width: 1132px;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -160,6 +168,7 @@
 .reqTable .reqBody .reqContent .no_content,
 .reqTable .reqBody .reqContent .lastlogin_content,
 .reqTable .reqBody .reqContent .password_content,
+.reqTable .reqBody .reqContent .lock_content,
 .reqTable .reqBody .reqContent .unlock_content,
 .reqTable .reqBody .reqContent .password-date_content,
 .reqTable .reqBody .reqContent .delete_content,
@@ -178,6 +187,7 @@
 .reqTable .reqBody .reqContent .no_content p,
 .reqTable .reqBody .reqContent .lastlogin_content p,
 .reqTable .reqBody .reqContent .password_content p,
+.reqTable .reqBody .reqContent .lock_content p,
 .reqTable .reqBody .reqContent .unlock_content p,
 .reqTable .reqBody .reqContent .password-date_content p,
 .reqTable .reqBody .reqContent .delete_content p,
@@ -200,7 +210,7 @@
 }
 
 .reqTable .reqBody .reqContent .company_content {
-    width: 10%;
+    width: 15%;
 }
 
 .reqTable .reqBody .reqContent .email_content {
@@ -220,11 +230,19 @@
 }
 
 .reqTable .reqBody .reqContent .no_content {
-    width: 15%;
+    width: 10%;
+}
+
+.reqTable .reqBody .reqContent .delete_content {
+    width: 10%;
+}
+
+.reqTable .reqBody .reqContent .lock_content {
+    width: 10%;
 }
 
 .reqTable .reqBody .reqContent .password_content {
-    width: 15%;
+    width: 10%;
 }
 
 .reqTable .reqBody .reqContent .lastlogin_content {
@@ -232,7 +250,7 @@
 }
 
 .reqTable .reqBody .reqContent .unlock_content {
-    width: 15%;
+    width: 10%;
 }
 
 .reqTable .reqBody .reqContent .password-date_content {
@@ -321,7 +339,7 @@
 }
 
 .reqTable .reqBody .reqContent .unlock_content .Btn.no {
-    background-color: #595959;
+    background-color: #16284d;
 }
 
 .reqTable .reqBody .reqContent .delete_content .Btn.no {

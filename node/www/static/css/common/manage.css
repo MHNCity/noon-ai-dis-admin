@@ -48,8 +48,8 @@
 }
 
 .subHeader {
-    margin: 100px auto 20px;
-    width: 988px;
+    margin: 0 auto 24px;
+    width: 1180px;
     height: 40px;
     display: flex;
 }
@@ -67,7 +67,7 @@
 }
 
 .subHeader .sub_add {
-    margin: auto 0;
+    margin: 0 0 0 auto;
     background-color: #16284d;
 }
 
