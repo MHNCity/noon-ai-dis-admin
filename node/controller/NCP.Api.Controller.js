@@ -571,17 +571,6 @@ exports.createTable = async (req, res) => {
     
     const requestDate = moment().format('YYYY-MM-DD');
 
-    var tenantConfig =
-    {
-        host: process.env.DATABASE_ENDPOINT,
-        port: 3306,
-        user: process.env.DATABASE_USER,
-        password: process.env.DATABASE_PASSWORD,
-        database: databaseName,
-        multipleStatements: true,
-        connectionLimit: 30
-    };
-
     var metering_database = 'dis-metering';
     var meteringConfig =
     {
@@ -594,7 +583,6 @@ exports.createTable = async (req, res) => {
         connectionLimit: 30
     };
 
-    const subConn = await mysql.createConnection(tenantConfig);
     const conn = await pool.getConnection();
     const meterConn = await mysql.createConnection(meteringConfig);
 
@@ -604,6 +592,19 @@ exports.createTable = async (req, res) => {
     }
 
     try {
+
+        var tenantConfig =
+        {
+            host: process.env.DATABASE_ENDPOINT,
+            port: 3306,
+            user: `${envPre}tenant-${tenantId}`,
+            password: process.env.DATABASE_PASSWORD,
+            database: databaseName,
+            multipleStatements: true,
+            connectionLimit: 30
+        };
+        const subConn = await mysql.createConnection(tenantConfig);
+        await conn.query(sql13);    //계정 생성
         await subConn.query(sql);
         await subConn.query(sql1);
         await subConn.query(sql2);
@@ -618,7 +619,6 @@ exports.createTable = async (req, res) => {
         await subConn.query(sql10);
         await subConn.query(sql11);
         await subConn.query(sql12);
-        await conn.query(sql13);
         await subConn.query(sql14);
         await subConn.query(sql15);
         await subConn.query(sql16);
