@@ -54,7 +54,7 @@ const s3_south = new AWS.S3({
     }
 })
 
-let cron = require('node-cron')
+let cron = require('node-cron');
 
 cron.schedule('0 0 * * *', async () => {
     let yesterday = moment().subtract(1, 'days').toDate()
@@ -67,7 +67,7 @@ cron.schedule('0 0 * * *', async () => {
 
     let bucket_name = 'dis-log'
 
-    if(process.env.NODE_ENV === 'service') {
+    if (process.env.NODE_ENV === 'service') {
         //폴더 생성
         await s3.putObject({
             Bucket: bucket_name,
@@ -75,7 +75,7 @@ cron.schedule('0 0 * * *', async () => {
         }).promise();
 
         //로그파일 업로드
-        for(let i = 0; i < 2; i++) {
+        for (let i = 0; i < 2; i++) {
             await s3.putObject({
                 Bucket: bucket_name,
                 Key: logFileKey[i],
@@ -87,7 +87,7 @@ cron.schedule('0 0 * * *', async () => {
 });
 
 exports.getDatabaseInstanceNo = async (req, res) => {
-    if(process.env.NODE_ENV === 'dev') {
+    if (process.env.NODE_ENV === 'dev') {
         var objJson = { 'message': 'success', 'log': 'getCloudMysqlDatabaseList success', result: null };
         logger.info(apiLogFormat('GET', '/database/instanceNumber', ` 데이터베이스 Instance No 조회 완료`))
         console.log(apiLogFormat('GET', '/database/instanceNumber', ` 데이터베이스 Instance No 조회 완료`))
@@ -568,7 +568,7 @@ exports.createTable = async (req, res) => {
         DO
             DELETE FROM rsa_key_pair WHERE expiry_datetime <= CURDATE();
     `
-    
+
     const requestDate = moment().format('YYYY-MM-DD');
 
     var tenantConfig =
@@ -644,7 +644,7 @@ exports.createTable = async (req, res) => {
         subConn.end();
         res.status(200).json(objJson);
     } catch (err) {
-            console.log(err);
+        console.log(err);
         objJson.msg = 'error';
         objJson.result = err.message;
         logger.error(apiLogFormat('GET', '/createTable', ` ${err}`));
@@ -704,92 +704,108 @@ exports.getMonthUsage = async (req, res, cb) => {
     var searchMonth = req.query.searchMonth;
     var env = (process.env.NODE_ENV == 'dev') ? 'dev-' : '';
 
-    var metering_database = 'dis-metering';
-    var meteringConfig =
-    {
-        host: process.env.DATABASE_ENDPOINT,
-        port: 3306,
-        user: process.env.DATABASE_USER,
-        password: process.env.DATABASE_PASSWORD,
-        database: (process.env.NODE_ENV == 'dev') ? 'dev-' + metering_database : metering_database,
-        multipleStatements: true,
-        connectionLimit: 30
-    };
+    try {
+        var metering_database = 'dis-metering';
+        var meteringConfig =
+        {
+            host: process.env.DATABASE_ENDPOINT,
+            port: 3306,
+            user: process.env.DATABASE_USER,
+            password: process.env.DATABASE_PASSWORD,
+            database: (process.env.NODE_ENV == 'dev') ? 'dev-' + metering_database : metering_database,
+            multipleStatements: true,
+            connectionLimit: 30
+        };
 
-    const conn = await pool.getConnection();
-    const meterConn = await mysql.createConnection(meteringConfig);
+        const conn = await pool.getConnection();
+        const meterConn = await mysql.createConnection(meteringConfig);
 
-    var sql = `SHOW TABLES`;
-    var objJson = {
+        var sql = `SHOW TABLES`;
+        var objJson = {
 
-    }
-
-    var table_name_list = []
-    var tenant_info_list = []
-
-    var [table_name] = await meterConn.query(sql);
-    var [tenant_info] = await conn.query('SELECT id, company_name, owner_name, user_name FROM tenant')
-
-    for (var i = 0; i < table_name.length; i++) table_name_list.push(table_name[i][`Tables_in_${env}dis-metering`])
-    for (var i = 0; i < tenant_info.length; i++) tenant_info_list.push(tenant_info[i]);
-
-    var objJson = {};
-
-    for (var i = 0; i < tenant_info_list.length; i++) {
-        let template = {
-            company_name: tenant_info_list[i].company_name,
-            owner_name: tenant_info_list[i].owner_name,
-            user_name: tenant_info_list[i].user_name,
-            encrypt_request_count: 0,
-            decrypt_request_count: 0,
-            download_request_count: 0,
-            encrypt_request_charge: 0,
-            decrypt_request_charge: 0,
-            download_request_charge: 0,
-            total_download: 0,
         }
-        objJson[tenant_info_list[i].id] = template;
-    }
 
-    for (var i = 0; i < table_name_list.length; i++) {
-        var tableName = table_name_list[i];
-        sql = `SELECT request_type, count(*), sum(file_size), sum(service_charge) FROM \`${tableName}\` WHERE file_type!='json' AND request_date LIKE \'${searchMonth}%\' group by request_type;`
-        var [result] = await meterConn.query(sql);
+        var table_name_list = []
+        var tenant_info_list = []
 
-        if (result.length > 0) {
-            var parseTableName = tableName.split('-');
-            var tenantId = parseTableName[parseTableName.length - 1];
-            for (var j = 0; j < result.length; j++) {
-                if (result[j].request_type == 'encrypt') {
-                    objJson[tenantId]['encrypt_request_count'] = result[j]['count(*)'];
-                    objJson[tenantId]['encrypt_request_charge'] = result[j]['sum(service_charge)']
-                    console.log(tenantId + "1번")
-                }
-                else if (result[j].request_type == 'decrypt') {
-                    objJson[tenantId]['decrypt_request_count'] = result[j]['count(*)'];
-                    objJson[tenantId]['decrypt_request_charge'] = result[j]['sum(service_charge)']
-                    console.log(tenantId + "2번")
-                }
-                else if (result[j].request_type == 'download') {
-                    objJson[tenantId]['download_request_count'] = result[j]['count(*)'];
-                    objJson[tenantId]['total_download'] += result[j]['sum(file_size)'];
-                    objJson[tenantId]['download_request_charge'] = result[j]['sum(service_charge)']
-                    console.log(tenantId + "3번")
+        // var [table_name] = await meterConn.query(sql);
+        // var [tenant_info] = await conn.query('SELECT id, company_name, owner_name, user_name FROM tenant')
+
+        var result1 = await meterConn.query(sql);
+        var result2 = await conn.query('SELECT id, company_name, owner_name, user_name FROM tenant')
+
+        var table_name = result1[0];
+        var tenant_info = result2[0];
+
+        for (var i = 0; i < tenant_info.length; i++) {
+            table_name_list.push(`meter-${env}dis-tenant-${tenant_info[i].id}`)
+        }
+        for (var i = 0; i < tenant_info.length; i++) tenant_info_list.push(tenant_info[i]);
+
+        var objJson = {};
+
+        for (var i = 0; i < tenant_info_list.length; i++) {
+            let template = {
+                company_name: tenant_info_list[i].company_name,
+                owner_name: tenant_info_list[i].owner_name,
+                user_name: tenant_info_list[i].user_name,
+                encrypt_request_count: 0,
+                decrypt_request_count: 0,
+                download_request_count: 0,
+                encrypt_request_charge: 0,
+                decrypt_request_charge: 0,
+                download_request_charge: 0,
+                total_download: 0,
+            }
+            objJson[tenant_info_list[i].id] = template;
+        }
+
+        console.log(tenant_info);
+
+        for (var i = 0; i < table_name_list.length; i++) {
+            var tableName = table_name_list[i];
+            sql = `SELECT request_type, count(*), sum(file_size), sum(service_charge) FROM \`${tableName}\` WHERE file_type!='json' AND request_date LIKE \'${searchMonth}%\' group by request_type;`
+            
+            let result = await meterConn.query(sql);
+            result = result[0];
+
+            if (result.length > 0) {
+                var parseTableName = tableName.split('-');
+                var tenantId = parseTableName[parseTableName.length - 1];
+                for (var j = 0; j < result.length; j++) {
+                    if (result[j].request_type == 'encrypt') {
+                        objJson[tenantId]['encrypt_request_count'] = result[j]['count(*)'];
+                        objJson[tenantId]['encrypt_request_charge'] = result[j]['sum(service_charge)']
+                        console.log(tenantId + "1번")
+                    }
+                    else if (result[j].request_type == 'decrypt') {
+                        objJson[tenantId]['decrypt_request_count'] = result[j]['count(*)'];
+                        objJson[tenantId]['decrypt_request_charge'] = result[j]['sum(service_charge)']
+                        console.log(tenantId + "2번")
+                    }
+                    else if (result[j].request_type == 'download') {
+                        objJson[tenantId]['download_request_count'] = result[j]['count(*)'];
+                        objJson[tenantId]['total_download'] += result[j]['sum(file_size)'];
+                        objJson[tenantId]['download_request_charge'] = result[j]['sum(service_charge)']
+                        console.log(tenantId + "3번")
+                    }
                 }
             }
         }
-    }
 
-    logger.info(apiLogFormat('GET', '/usage', ` 월간 미터링 정보 조회 완료`))
-    console.log(apiLogFormat('GET', '/usage', ` 월간 미터링 정보 조회 완료`))
-    conn.release();
-    res.status(200).json(objJson);
+        logger.info(apiLogFormat('GET', '/usage', ` 월간 미터링 정보 조회 완료`))
+        console.log(apiLogFormat('GET', '/usage', ` 월간 미터링 정보 조회 완료`))
+        conn.release();
+        res.status(200).json(objJson);
+    } catch (err) {
+        console.log(err)
+    }
 }
 
 exports.test = async (req, res) => {
-    s3.getBucketLifecycleConfiguration(params, function(err, data) {
+    s3.getBucketLifecycleConfiguration(params, function (err, data) {
         if (err) console.log(err, err.stack); // an error occurred
-        else     console.log(data);           // successful response
+        else console.log(data);           // successful response
         /*
         data = {
          Rules: [
