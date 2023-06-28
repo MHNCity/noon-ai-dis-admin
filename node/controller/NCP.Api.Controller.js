@@ -131,8 +131,11 @@ exports.getDatabaseInstanceNo = async (req, res) => {
 
             var xmlToJson = xmlParser.parse(xml);
             var result = xmlToJson['getCloudMysqlInstanceListResponse']['returnMessage'];
-            var cloudMysqlInstanceNo = xmlToJson['getCloudMysqlInstanceListResponse']['cloudMysqlInstanceList']['cloudMysqlInstance']['cloudMysqlInstanceNo'];
-
+            let cloudMysqlInstanceList = xmlToJson['getCloudMysqlInstanceListResponse']['cloudMysqlInstanceList']['cloudMysqlInstance'];
+            let cloudMysqlInstanceNo = 0;
+            for(let i = 0; i < cloudMysqlInstanceList.length; i++) {
+                if(cloudMysqlInstanceList[i].cloudMysqlServiceName === 'noon-ai-dis') cloudMysqlInstanceNo = cloudMysqlInstanceList[i].cloudMysqlInstanceNo;
+            }
             if (result == 'success') {
                 var objJson = { 'message': 'success', 'log': 'getCloudMysqlDatabaseList success', result: cloudMysqlInstanceNo };
                 logger.info(apiLogFormat('GET', '/database/instanceNumber', ` 데이터베이스 Instance No 조회 완료`))
