@@ -20,8 +20,15 @@ const logger = require('../logger');
 const morganMiddleware = require('../morgan-middleware');
 app.use(morganMiddleware);
 
-function apiLogFormat(method, api, logStream) {
-    return `[DIS-API] ${method} ${api} - ${logStream}`;
+function apiLogFormat(req, method, api, logStream) {
+    if(req.session.passport) {
+        let accountName = req.session.passport.user.account_name;
+        let userName = req.session.passport.user.user_name;
+        return `[MANAGER-API] [${accountName} ${userName}] ${method} ${api} - ${logStream}`;    
+    }
+    else {
+        return `[MANAGER-API] [비로그인] ${method} ${api} - ${logStream}`;
+    }
 }
 
 exports.getManagerList = async (req, res) => {
@@ -35,14 +42,14 @@ exports.getManagerList = async (req, res) => {
             result: results[0],
         }
 
-        logger.info(apiLogFormat('GET', '/manager', ` 관리자 계정 정보 요청 완료`))
-        console.log(apiLogFormat('GET', '/manager', ` 관리자 계정 정보 요청 완료`))
+        logger.info(apiLogFormat(req, 'GET', '/manager', ` ${results[0].length}개의 계정 존재 | 어드민 페이지 관리자 계정 목록 조회 완료`))
+        console.log(apiLogFormat(req, 'GET', '/manager', ` ${results[0].length}개의 계정 존재 | 어드민 페이지 관리자 계정 목록 조회 완료`))
         res.status(200).json(objJson);
         conn.release();
     } catch (err) {
         console.log(err);
-        logger.error(apiLogFormat('GET', '/manager', ` ${err}`))
-        console.error(apiLogFormat('GET', '/manager', ` ${err}`))
+        logger.error(apiLogFormat(req, 'GET', '/manager', ` ${err}`))
+        console.error(apiLogFormat(req, 'GET', '/manager', ` ${err}`))
 
         let objJson = { message: "error", statusCode: 500 };
         res.status(500).json(objJson);
@@ -65,14 +72,14 @@ exports.createManager = async (req, res) => {
             message: 'success',
         }
 
-        logger.info(apiLogFormat('POST', '/manager', ` 관리자 계정 생성 완료`))
-        console.log(apiLogFormat('POST', '/manager', ` 관리자 계정 생성 완료`))
+        logger.info(apiLogFormat(req, 'POST', '/manager', ` body: account_name=${account_name}, password, email=${email}, user_name=${user_name } | 관리자 계정 생성 완료`))
+        console.log(apiLogFormat(req, 'POST', '/manager', ` body: account_name=${account_name}, password, email=${email}, user_name=${user_name } | 관리자 계정 생성 완료`))
         res.status(200).json(objJson);
         conn.release();
     } catch (err) {
         console.log(err);
-        logger.error(apiLogFormat('POST', '/manager', ` ${err}`))
-        console.error(apiLogFormat('POST', '/manager', ` ${err}`))
+        logger.error(apiLogFormat(req, 'POST', '/manager', ` ${err}`))
+        console.error(apiLogFormat(req, 'POST', '/manager', ` ${err}`))
 
         let objJson = { message: "error", statusCode: 500 };
         res.status(500).json(objJson);
@@ -90,14 +97,14 @@ exports.deleteManager = async (req, res) => {
             message: 'success',
         }
 
-        logger.info(apiLogFormat('DELETE', '/manager', ` 관리자 계정 삭제 완료`))
-        console.log(apiLogFormat('DELETE', '/manager', ` 관리자 계정 삭제 완료`))
+        logger.info(apiLogFormat(req, 'DELETE', '/manager', ` body: user_id=${user_id} | 관리자 계정 삭제 완료`))
+        console.log(apiLogFormat(req, 'DELETE', '/manager', ` body: user_id=${user_id} | 관리자 계정 삭제 완료`))
         res.status(200).json(objJson);
         conn.release();
     } catch (err) {
         console.log(err);
-        logger.error(apiLogFormat('DELETE', '/manager', ` ${err}`))
-        console.error(apiLogFormat('DELETE', '/manager', ` ${err}`))
+        logger.error(apiLogFormat(req, 'DELETE', '/manager', ` ${err}`))
+        console.error(apiLogFormat(req, 'DELETE', '/manager', ` ${err}`))
 
         let objJson = { message: "error", statusCode: 500 };
         res.status(500).json(objJson);
@@ -122,14 +129,14 @@ exports.initPassword = async (req, res) => {
             message: 'success',
         }
 
-        logger.info(apiLogFormat('GET', '/manager/init-password', ` 관리자 비밀번호 변경 완료`))
-        console.log(apiLogFormat('GET', '/manager/init-password', ` 관리자 비밀번호 변경 완료`))
+        logger.info(apiLogFormat(req, 'GET', '/manager/init-password', ` body: user_id=${user_id}, password | 관리자 비밀번호 변경 완료`))
+        console.log(apiLogFormat(req, 'GET', '/manager/init-password', ` body: user_id=${user_id}, password | 관리자 비밀번호 변경 완료`))
         res.status(200).json(objJson);
         conn.release();
     } catch (err) {
         console.log(err);
-        logger.error(apiLogFormat('GET', '/manager/init-password', ` ${err}`))
-        console.error(apiLogFormat('GET', '/manager/init-password', ` ${err}`))
+        logger.error(apiLogFormat(req, 'GET', '/manager/init-password', ` ${err}`))
+        console.error(apiLogFormat(req, 'GET', '/manager/init-password', ` ${err}`))
 
         let objJson = { message: "error", statusCode: 500 };
         res.status(500).json(objJson);
@@ -149,14 +156,14 @@ exports.unlock = async (req, res) => {
             message: 'success',
         }
 
-        logger.info(apiLogFormat('GET', '/manager/unlock', ` 관리자 계정 잠금 해제 완료`))
-        console.log(apiLogFormat('GET', '/manager/unlock', ` 관리자 계정 잠금 해제 완료`))
+        logger.info(apiLogFormat(req, 'GET', '/manager/unlock', ` body: user_id=${user_id} | 관리자 계정 잠금 해제 완료`))
+        console.log(apiLogFormat(req, 'GET', '/manager/unlock', ` body: user_id=${user_id} | 관리자 계정 잠금 해제 완료`))
         res.status(200).json(objJson);
         conn.release();
     } catch (err) {
         console.log(err);
-        logger.error(apiLogFormat('GET', '/manager/unlock', ` ${err}`))
-        console.error(apiLogFormat('GET', '/manager/unlock', ` ${err}`))
+        logger.error(apiLogFormat(req, 'GET', '/manager/unlock', ` ${err}`))
+        console.error(apiLogFormat(req, 'GET', '/manager/unlock', ` ${err}`))
 
         let objJson = { message: "error", statusCode: 500 };
         res.status(500).json(objJson);

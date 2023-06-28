@@ -32,8 +32,15 @@ const logger = require('../logger');
 const morganMiddleware = require('../morgan-middleware');
 app.use(morganMiddleware);
 
-function apiLogFormat(method, api, logStream) {
-    return `[NCP-API] ${method} ${api} - ${logStream}`;
+function apiLogFormat(req, method, api, logStream) {
+    if(req.session.passport) {
+        let accountName = req.session.passport.user.account_name;
+        let userName = req.session.passport.user.user_name;
+        return `[NCP-API] [${accountName} ${userName}] ${method} ${api} - ${logStream}`;    
+    }
+    else {
+        return `[NCP-API] [비로그인] ${method} ${api} - ${logStream}`;
+    }
 }
 
 const s3 = new AWS.S3({
@@ -89,8 +96,8 @@ cron.schedule('0 0 * * *', async () => {
 exports.getDatabaseInstanceNo = async (req, res) => {
     if (process.env.NODE_ENV === 'dev') {
         var objJson = { 'message': 'success', 'log': 'getCloudMysqlDatabaseList success', result: null };
-        logger.info(apiLogFormat('GET', '/database/instanceNumber', ` 데이터베이스 Instance No 조회 완료`))
-        console.log(apiLogFormat('GET', '/database/instanceNumber', ` 데이터베이스 Instance No 조회 완료`))
+        logger.info(apiLogFormat(req, 'GET', '/database/instanceNumber', ` 데이터베이스 Instance No 조회 완료`))
+        console.log(apiLogFormat(req, 'GET', '/database/instanceNumber', ` 데이터베이스 Instance No 조회 완료`))
         res.json(objJson);
     }
     else {
@@ -138,13 +145,13 @@ exports.getDatabaseInstanceNo = async (req, res) => {
             }
             if (result == 'success') {
                 var objJson = { 'message': 'success', 'log': 'getCloudMysqlDatabaseList success', result: cloudMysqlInstanceNo };
-                logger.info(apiLogFormat('GET', '/database/instanceNumber', ` 데이터베이스 Instance No 조회 완료`))
-                console.log(apiLogFormat('GET', '/database/instanceNumber', ` 데이터베이스 Instance No 조회 완료`))
+                logger.info(apiLogFormat(req, 'GET', '/database/instanceNumber', ` 조회 결과: ${cloudMysqlInstanceNo} | 데이터베이스 Instance No 조회 완료`))
+                console.log(apiLogFormat(req, 'GET', '/database/instanceNumber', ` 조회 결과: ${cloudMysqlInstanceNo} | 데이터베이스 Instance No 조회 완료`))
                 res.json(objJson);
             } else {
                 var objJson = { 'message': 'fail', 'log': result };
-                logger.error(apiLogFormat('GET', '/database/instanceNumber', ` ${result}`))
-                console.error(apiLogFormat('GET', '/database/instanceNumber', ` ${result}`))
+                logger.error(apiLogFormat(req, 'GET', '/database/instanceNumber', ` ${result}`))
+                console.error(apiLogFormat(req, 'GET', '/database/instanceNumber', ` ${result}`))
                 res.json(objJson);
             }
         });
@@ -160,8 +167,8 @@ exports.createDatabase = async (req, res) => {
         const conn = await pool.getConnection();
         await conn.query(sql);
         var objJson = { 'message': 'success', 'log': 'Database ' + databaseName + ' create success' };
-        logger.info(apiLogFormat('GET', '/createDatabase', ` ${databaseName} 생성 완료`));
-        console.log(apiLogFormat('GET', '/createDatabase', ` ${databaseName} 생성 완료`));
+        logger.info(apiLogFormat(req, 'GET', '/createDatabase', ` params: id=${req.params.id} | ${databaseName} 생성 완료`));
+        console.log(apiLogFormat(req, 'GET', '/createDatabase', ` params: id=${req.params.id} | ${databaseName} 생성 완료`));
         res.status(200).json(objJson);
     }
     else {
@@ -208,13 +215,13 @@ exports.createDatabase = async (req, res) => {
 
             if (result == 'success') {
                 let objJson = { 'message': 'success', 'log': 'Database ' + databaseName + ' create success' };
-                logger.info(apiLogFormat('GET', '/createDatabase', ` ${databaseName} 생성 완료`));
-                console.log(apiLogFormat('GET', '/createDatabase', ` ${databaseName} 생성 완료`));
+                logger.info(apiLogFormat(req, 'GET', '/createDatabase', ` params: id=${req.params.id} | ${databaseName} 생성 완료`));
+                console.log(apiLogFormat(req, 'GET', '/createDatabase', ` params: id=${req.params.id} | ${databaseName} 생성 완료`));
                 res.status(200).json(objJson);
             } else {
                 let objJson = { 'message': 'fail', 'log': result };
-                logger.error(apiLogFormat('GET', '/createDatabase', ` ${result}`));
-                console.error(apiLogFormat('GET', '/createDatabase', ` ${result}`));
+                logger.error(apiLogFormat(req, 'GET', '/createDatabase', ` ${result}`));
+                console.error(apiLogFormat(req, 'GET', '/createDatabase', ` ${result}`));
                 res.status(400).json(objJson);
             }
         });
@@ -641,8 +648,8 @@ exports.createTable = async (req, res) => {
         await subConn.query(sql28);
         await subConn.query(sql29);
         objJson.msg = 'success';
-        logger.info(apiLogFormat('GET', '/createTable', ` 테이블 생성 완료`));
-        console.log(apiLogFormat('GET', '/createTable', ` 테이블 생성 완료`));
+        logger.info(apiLogFormat(req, 'GET', '/createTable', ` params: id=${req.params.id} | 테넌트에 할당될 13개의 테이블 생성 완료`));
+        console.log(apiLogFormat(req, 'GET', '/createTable', ` params: id=${req.params.id} | 테넌트에 할당될 13개의 테이블 생성 완료`));
         conn.release();
         subConn.end();
         res.status(200).json(objJson);
@@ -650,8 +657,8 @@ exports.createTable = async (req, res) => {
         console.log(err);
         objJson.msg = 'error';
         objJson.result = err.message;
-        logger.error(apiLogFormat('GET', '/createTable', ` ${err}`));
-        console.error(apiLogFormat('GET', '/createTable', ` ${err}`));
+        logger.error(apiLogFormat(req, 'GET', '/createTable', ` ${err}`));
+        console.error(apiLogFormat(req, 'GET', '/createTable', ` ${err}`));
         conn.release();
         res.status(400).json(objJson);
     }
@@ -664,8 +671,8 @@ exports.createBucket = async (req, res) => {
 
     createS3Bucket(bucketName)
     let objJson = { 'message': 'success', 'log': 'Bucket ' + bucketName + ' create success' };
-    logger.info(apiLogFormat('POST', '/bucket', ` ${bucketName} 생성 완료`))
-    console.log(apiLogFormat('POST', '/bucket', ` ${bucketName} 생성 완료`))
+    logger.info(apiLogFormat(req, 'POST', '/bucket', ` body: tenantId=${tenantId} | ${bucketName} 생성 완료`))
+    console.log(apiLogFormat(req, 'POST', '/bucket', ` body: tenantId=${tenantId} | ${bucketName} 생성 완료`))
     res.status(200).json(objJson);
 }
 
@@ -698,8 +705,8 @@ exports.listBucket = async (req, res) => {
     let result = [Buckets_kr, Buckets_krs];
 
     let objJson = { 'message': 'success', 'log': 'bucketlist success', result: result };
-    logger.info(apiLogFormat('GET', '/bucket/list', ` 버킷 목록 조회 완료`))
-    console.log(apiLogFormat('GET', '/bucket/list', ` 버킷 목록 조회 완료`))
+    logger.info(apiLogFormat(req, 'GET', '/bucket/list', ` 수도권, 남부권 버킷 전체 목록 조회 완료`))
+    console.log(apiLogFormat(req, 'GET', '/bucket/list', ` 수도권, 남부권 버킷 전체 목록 조회 완료`))
     res.status(200).json(objJson);
 }
 
@@ -796,8 +803,8 @@ exports.getMonthUsage = async (req, res, cb) => {
             }
         }
 
-        logger.info(apiLogFormat('GET', '/usage', ` 월간 미터링 정보 조회 완료`))
-        console.log(apiLogFormat('GET', '/usage', ` 월간 미터링 정보 조회 완료`))
+        logger.info(apiLogFormat(req, 'GET', '/usage', ` query: searchMonth=${searchMonth} | ${searchMonth}월 월간 미터링 정보 조회 완료`))
+        console.log(apiLogFormat(req, 'GET', '/usage', ` query: searchMonth=${searchMonth} | ${searchMonth}월 월간 미터링 정보 조회 완료`))
         conn.release();
         res.status(200).json(objJson);
     } catch (err) {

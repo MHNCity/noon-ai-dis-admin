@@ -21,8 +21,15 @@ const logger = require('../logger/index.js');
 const morganMiddleware = require('../morgan-middleware/index.js');
 app.use(morganMiddleware);
 
-function apiLogFormat(method, api, logStream) {
-    return `[DIS-API] ${method} ${api} - ${logStream}`;
+function apiLogFormat(req, method, api, logStream) {
+    if(req.session.passport) {
+        let accountName = req.session.passport.user.account_name;
+        let userName = req.session.passport.user.user_name;
+        return `[AUTH-API] [${accountName} ${userName}] ${method} ${api} - ${logStream}`;
+    }
+    else {
+        return `[AUTH-API] [비로그인] ${method} ${api} - ${logStream}`;
+    }
 }
 
 exports.firstLogin = async (req, res, next) => {
@@ -34,10 +41,10 @@ exports.firstLogin = async (req, res, next) => {
         try {
             const conn = await adminPool.getConnection();
             const results = await conn.query(sql, [account_name]);
-            
+
             const user = results[0][0];
             const user_id = user.id;
-            
+
             if (user) {
                 const curDatetime = moment().format('YYYY-MM-DD HH:mm:ss');
                 const userPassword = user.password;
@@ -46,9 +53,9 @@ exports.firstLogin = async (req, res, next) => {
                 if (!isPasswordValid) {
                     let sql2 = `INSERT INTO login_log (user_id, status_code, fail_reason, login_date) values (?, ?, ?, ?)`;
                     await conn.query(sql2, [user_id, 0, 1, curDatetime]);
-                    
-                    logger.info(apiLogFormat('POST', '/first-login', ` 패스워드 불일치`))
-                    console.log(apiLogFormat('POST', '/first-login', ` 패스워드 불일치`))
+
+                    logger.info(apiLogFormat(req, 'POST', '/first-login', ` body: account_name=${account_name} | ${account_name} 로그인 시도 - 패스워드 불일치`))
+                    console.log(apiLogFormat(req, 'POST', '/first-login', ` body: account_name=${account_name} | ${account_name} 로그인 시도 - 패스워드 불일치`))
 
                     let objJson = { message: "login failed", statusCode: 400 };
                     res.status(400).json(objJson);
@@ -60,24 +67,24 @@ exports.firstLogin = async (req, res, next) => {
                         admin_email: user.email
                     };
 
-                    logger.info(apiLogFormat('POST', '/first-login', ` ${account_name} 1차 로그인 완료`))
-                    console.log(apiLogFormat('POST', '/first-login', ` ${account_name} 1차 로그인 완료`))
+                    logger.info(apiLogFormat(req, 'POST', '/first-login', ` body: account_name=${account_name} | ${account_name} 1차 로그인 완료`))
+                    console.log(apiLogFormat(req, 'POST', '/first-login', ` body: account_name=${account_name} | ${account_name} 1차 로그인 완료`))
 
                     res.status(200).json(objJson);
                 }
                 conn.release();
             }
             else {
-                logger.info(apiLogFormat('POST', '/first-login', ` 유저 존재하지 않음`))
-                console.log(apiLogFormat('POST', '/first-login', ` 유저 존재하지 않음`))
+                logger.info(apiLogFormat(req, 'POST', '/first-login', ` body: account_name=${account_name} | ${account_name} 유저 존재하지 않음`))
+                console.log(apiLogFormat(req, 'POST', '/first-login', ` body: account_name=${account_name} | ${account_name} 유저 존재하지 않음`))
 
                 let objJson = { message: "login failed", statusCode: 400 };
                 res.status(400).json(objJson);
             }
         } catch (err) {
             console.log(err);
-            logger.error(apiLogFormat('POST', '/first-login', ` ${err}`))
-            console.error(apiLogFormat('POST', '/first-login', ` ${err}`))
+            logger.error(apiLogFormat(req, 'POST', '/first-login', ` ${err}`))
+            console.error(apiLogFormat(req, 'POST', '/first-login', ` ${err}`))
 
             let objJson = { message: "error", statusCode: 500 };
             res.status(500).json(objJson);
@@ -85,8 +92,8 @@ exports.firstLogin = async (req, res, next) => {
     }
     else {
         let objJson = { message: "already login", statusCode: 400 };
-        logger.info(apiLogFormat('POST', '/first-login', ` 이미 로그인중인 사용자`))
-        console.log(apiLogFormat('POST', '/first-login', ` 이미 로그인중인 사용자`))
+        logger.info(apiLogFormat(req, 'POST', '/first-login', ` 이미 로그인중인 사용자`))
+        console.log(apiLogFormat(req, 'POST', '/first-login', ` 이미 로그인중인 사용자`))
         res.status(400).json(objJson);
     }
 }
@@ -96,21 +103,19 @@ exports.passwordCheck = async (req, res) => {
     let password = req.body.password;
     let sql = "SELECT * FROM admin WHERE account_name = ?";
 
-    console.log(moment().valueOf())
-
     try {
         const conn = await adminPool.getConnection();
         const results = await conn.query(sql, [account_name]);
-        
+
         const user = results[0][0];
-        
+
         if (user) {
             const userPassword = user.password;
             const isPasswordValid = bcrypt.compareSync(password, userPassword);
 
             if (!isPasswordValid) {
-                logger.info(apiLogFormat('POST', '/passwordCheck', ` 패스워드 불일치`))
-                console.log(apiLogFormat('POST', '/passwordCheck', ` 패스워드 불일치`))
+                logger.info(apiLogFormat(req, 'POST', '/passwordCheck', ` body: account_name=${account_name}, password | ${account_name} 패스워드 불일치`))
+                console.log(apiLogFormat(req, 'POST', '/passwordCheck', ` body: account_name=${account_name}, password | ${account_name} 패스워드 불일치`))
 
                 let objJson = { message: "login failed", statusCode: 400 };
                 res.status(400).json(objJson);
@@ -121,24 +126,24 @@ exports.passwordCheck = async (req, res) => {
                     statusCode: 200,
                 };
 
-                logger.info(apiLogFormat('POST', '/passwordCheck', ` 비밀번호 확인 완료`))
-                console.log(apiLogFormat('POST', '/passwordCheck', ` 비밀번호 확인 완료`))
+                logger.info(apiLogFormat(req, 'POST', '/passwordCheck', ` body: account_name=${account_name}, password | ${account_name} 비밀번호 확인 완료`))
+                console.log(apiLogFormat(req, 'POST', '/passwordCheck', ` body: account_name=${account_name}, password | ${account_name} 비밀번호 확인 완료`))
 
                 res.status(200).json(objJson);
             }
             conn.release();
         }
         else {
-            logger.info(apiLogFormat('POST', '/passwordCheck', ` 유저 존재하지 않음`))
-            console.log(apiLogFormat('POST', '/passwordCheck', ` 유저 존재하지 않음`))
+            logger.info(apiLogFormat(req, 'POST', '/passwordCheck', ` body: account_name=${account_name}, password | ${account_name} 유저 존재하지 않음`))
+            console.log(apiLogFormat(req, 'POST', '/passwordCheck', ` body: account_name=${account_name}, password | ${account_name} 유저 존재하지 않음`))
 
             let objJson = { message: "login failed", statusCode: 400 };
             res.status(400).json(objJson);
         }
     } catch (err) {
-            console.log(err);
-        logger.error(apiLogFormat('POST', '/passwordCheck', ` ${err}`))
-        console.error(apiLogFormat('POST', '/passwordCheck', ` ${err}`))
+        console.log(err);
+        logger.error(apiLogFormat(req, 'POST', '/passwordCheck', ` ${err}`))
+        console.error(apiLogFormat(req, 'POST', '/passwordCheck', ` ${err}`))
 
         let objJson = { message: "error", statusCode: 500 };
         res.status(500).json(objJson);
@@ -148,35 +153,35 @@ exports.passwordCheck = async (req, res) => {
 exports.login = async (req, res, next) => {
     passport.authenticate('login', (authError, user, info) => {
         if (authError) {
-            logger.error(apiLogFormat('POST', '/login', ` ${authError}`))
-            console.error(apiLogFormat('POST', '/login', ` ${authError}`))
+            logger.error(apiLogFormat(req, 'POST', '/login', ` ${authError}`))
+            console.error(apiLogFormat(req, 'POST', '/login', ` ${authError}`))
             return next(authError);
         }
         if (!user) {
-            logger.info(apiLogFormat("POST", "/login", `유저가 존재하지 않음`));
+            logger.info(apiLogFormat(req, "POST", "/login", `유저가 존재하지 않음`));
             console.log(
-                apiLogFormat("POST", "/login", `유저가 존재하지 않음`)
+                apiLogFormat(req, "POST", "/login", `유저가 존재하지 않음`)
             );
             let objJson = { message: "login failed", statusCode: 401 };
             return res.status(401).json(objJson)
         }
         return req.login(user, (loginError) => {
             if (loginError) {
-                logger.error(apiLogFormat("POST", "/login", ` ${loginError}`));
-                console.error(apiLogFormat("POST", "/login", ` ${loginError}`));
+                logger.error(apiLogFormat(req, "POST", "/login", ` ${loginError}`));
+                console.error(apiLogFormat(req, "POST", "/login", ` ${loginError}`));
                 return next(loginError);
             }
 
-            logger.info(apiLogFormat('POST', '/login', ` [${user.account_name}] 로그인 완료`))
-            console.log(apiLogFormat('POST', '/login', ` [${user.account_name}] 로그인 완료`))
+            logger.info(apiLogFormat(req, 'POST', '/login', ` [${user.account_name}] 로그인 완료`))
+            console.log(apiLogFormat(req, 'POST', '/login', ` [${user.account_name}] 로그인 완료`))
             return res.redirect('/');
         });
     })(req, res, next);
 }
 
 exports.logout = async (req, res) => {
-    logger.info(apiLogFormat('GET', '/logout', ` 관리자 ${req.session.passport.user.user_name} 로그아웃 완료`))
-    console.log(apiLogFormat('GET', '/logout', ` 관리자 ${req.session.passport.user.user_name} 로그아웃 완료`))
+    logger.info(apiLogFormat(req, 'GET', '/logout', ` 관리자 ${req.session.passport.user.user_name} 로그아웃 완료`))
+    console.log(apiLogFormat(req, 'GET', '/logout', ` 관리자 ${req.session.passport.user.user_name} 로그아웃 완료`))
     req.session.destroy(() => {
         res.clearCookie('connect.sid');
         res.redirect('/');
@@ -260,6 +265,7 @@ exports.generateSecondaryToken = async (req, res) => {
         if (error) {
             logger.error(
                 apiLogFormat(
+                    req,
                     "POST",
                     "/secondary-email-send",
                     ` NCP Outbound Mailer 에러 ==> ${err}`
@@ -267,6 +273,7 @@ exports.generateSecondaryToken = async (req, res) => {
             );
             console.error(
                 apiLogFormat(
+                    req,
                     "POST",
                     "/secondary-email-send",
                     ` NCP Outbound Mailer 에러 ==> ${err}`
@@ -282,10 +289,10 @@ exports.generateSecondaryToken = async (req, res) => {
 
         if (response.body.count == 1) {
             logger.info(
-                apiLogFormat("POST", "/secondary-email-send", ` 완료`)
+                apiLogFormat(req, "POST", "/secondary-email-send", ` body: email_address=${email_address} | ${email_address}로 2차 인증번호 발송 완료`)
             );
             console.log(
-                apiLogFormat("POST", "/secondary-email-send", ` 완료`)
+                apiLogFormat(req, "POST", "/secondary-email-send", ` body: email_address=${email_address} | ${email_address}로 2차 인증번호 발송 완료`)
             );
             var objJson = {
                 message: "success",
@@ -297,16 +304,18 @@ exports.generateSecondaryToken = async (req, res) => {
         } else {
             logger.info(
                 apiLogFormat(
+                    req,
                     "POST",
                     "/secondary-email-send",
-                    ` 메일 발송 실패`
+                    ` body: email_address=${email_address} | ${email_address}로 메일 발송 실패`
                 )
             );
             console.log(
                 apiLogFormat(
+                    req,
                     "POST",
                     "/secondary-email-send",
-                    ` 메일 발송 실패`
+                    ` body: email_address=${email_address} | ${email_address}로 메일 발송 실패`
                 )
             );
             var objJson = {
@@ -331,20 +340,22 @@ exports.selectLockStatus = async (req, res) => {
         const is_lock = results[0][0].is_lock;
         const lock_count = results[0][0].lock_count
 
-        if(is_lock === 1) {
+        if (is_lock === 1) {
             const cur = moment();
             const latestTry = results[0][0].latest_try_login_date
             const latest = moment(latestTry)
 
-            const loginable = (cur.diff(latest, "minutes") >= 15*lock_count) ? true : false;
+            const loginable = (cur.diff(latest, "minutes") >= 15 * lock_count) ? true : false;
 
-            const activateTime = moment(latest.add(15*lock_count, 'minute')).format('HH:mm:ss')
+            const activateTime = moment(latest.add(15 * lock_count, 'minute')).format('HH:mm:ss')
 
             let objJson = {
                 message: 'success',
                 loginable: loginable,
                 activateTime: activateTime,
             }
+            logger.info(apiLogFormat(req, 'PUT', '/login/selectLockStatus', `body: account_name=${account_name} | ${account_name} lock status=1 확인 완료`))
+            console.log(apiLogFormat(req, 'PUT', '/login/selectLockStatus', `body: account_name=${account_name} | ${account_name} lock status=1 확인 완료`))
             res.status(200).json(objJson);
         }
         else {
@@ -352,13 +363,15 @@ exports.selectLockStatus = async (req, res) => {
                 message: 'success',
                 loginable: true
             }
+            logger.info(apiLogFormat(req, 'PUT', '/login/selectLockStatus', `body: account_name=${account_name} | ${account_name} lock status=0 확인 완료`))
+            console.log(apiLogFormat(req, 'PUT', '/login/selectLockStatus', `body: account_name=${account_name} | ${account_name} lock status=0 확인 완료`))
             res.status(200).json(objJson);
         }
         conn.release();
     } catch (err) {
-            console.log(err);
-        logger.error(apiLogFormat('PUT', '/login/selectLockStatus', ` ${err}`))
-        console.error(apiLogFormat('PUT', '/login/selectLockStatus', ` ${err}`))
+        console.log(err);
+        logger.error(apiLogFormat(req, 'PUT', '/login/selectLockStatus', ` ${err}`))
+        console.error(apiLogFormat(req, 'PUT', '/login/selectLockStatus', ` ${err}`))
 
         let objJson = { message: "error", statusCode: 500 };
         res.status(500).json(objJson);
@@ -368,7 +381,7 @@ exports.selectLockStatus = async (req, res) => {
 //로그인 실패시 LOGIN_FAIL_COUNT 하나 증가
 exports.plusLoginFailCount = async (req, res) => {
     let account_name = req.body.account_name;
-    
+
     let sql = `UPDATE admin set login_fail_count = login_fail_count + 1, latest_try_login_date = ? WHERE account_name = ?`
     let sql2 = `SELECT login_fail_count FROM admin WHERE account_name = ?`;
     const curDatetime = moment().format('YYYY-MM-DD HH:mm:ss');
@@ -377,9 +390,9 @@ exports.plusLoginFailCount = async (req, res) => {
         const conn = await adminPool.getConnection();
         await conn.query(sql, [curDatetime, account_name]);
 
-        logger.info(apiLogFormat('POST', '/selectLockStatus', ` 로그인 시도 이력 업데이트 완료`))
-        console.log(apiLogFormat('POST', '/selectLockStatus', ` 로그인 시도 이력 업데이트 완료`))
-        
+        logger.info(apiLogFormat(req, 'POST', '/selectLockStatus', ` body: account_name=${account_name} | ${account_name} 로그인 시도 이력 업데이트 완료`))
+        console.log(apiLogFormat(req, 'POST', '/selectLockStatus', ` body: account_name=${account_name} | ${account_name} 로그인 시도 이력 업데이트 완료`))
+
         const results = await conn.query(sql2, [account_name]);
         let login_fail_count = results[0][0].login_fail_count
 
@@ -391,9 +404,9 @@ exports.plusLoginFailCount = async (req, res) => {
         res.status(200).json(objJson);
         conn.release();
     } catch (err) {
-            console.log(err);
-        logger.error(apiLogFormat('POST', '/first-login', ` ${err}`))
-        console.error(apiLogFormat('POST', '/first-login', ` ${err}`))
+        console.log(err);
+        logger.error(apiLogFormat(req, 'POST', '/first-login', ` ${err}`))
+        console.error(apiLogFormat(req, 'POST', '/first-login', ` ${err}`))
 
         let objJson = { message: "error", statusCode: 500 };
         res.status(500).json(objJson);
@@ -410,9 +423,9 @@ exports.updateLockStatus = async (req, res) => {
         const conn = await adminPool.getConnection();
         await conn.query(sql, [lock_count, account_name]);
 
-        logger.info(apiLogFormat('PUT', '/login/lockStatus', ` 로그인 잠금`))
-        console.log(apiLogFormat('PUT', '/login/lockStatus', ` 로그인 잠금`))
-        
+        logger.info(apiLogFormat(req, 'PUT', '/login/lockStatus', ` body: account_name=${account_name} lock_count=${lock_count} | ${account_name} 로그인 잠금`))
+        console.log(apiLogFormat(req, 'PUT', '/login/lockStatus', ` body: account_name=${account_name} lock_count=${lock_count} | ${account_name} 로그인 잠금`))
+
         let objJson = {
             message: "success",
         }
@@ -420,9 +433,9 @@ exports.updateLockStatus = async (req, res) => {
         res.status(200).json(objJson);
         conn.release();
     } catch (err) {
-            console.log(err);
-        logger.error(apiLogFormat('PUT', '/login/lockStatus', ` ${err}`))
-        console.error(apiLogFormat('PUT', '/login/lockStatus', ` ${err}`))
+        console.log(err);
+        logger.error(apiLogFormat(req, 'PUT', '/login/lockStatus', ` ${err}`))
+        console.error(apiLogFormat(req, 'PUT', '/login/lockStatus', ` ${err}`))
 
         let objJson = { message: "error", statusCode: 500 };
         res.status(500).json(objJson);
@@ -438,8 +451,8 @@ exports.updateClearLoginFailCount = async (req, res) => {
         const conn = await adminPool.getConnection();
         await conn.query(sql, [account_name]);
 
-        logger.info(apiLogFormat('PUT', '/login/failCount/clear', ` 로그인 실패 횟수 0 초기화`))
-        console.log(apiLogFormat('PUT', '/login/failCount/clear', ` 로그인 실패 횟수 0 초기화`))
+        logger.info(apiLogFormat(req, 'PUT', '/login/failCount/clear', ` body: account_name=${account_name} | ${account_name} 로그인 실패 횟수 0 초기화`))
+        console.log(apiLogFormat(req, 'PUT', '/login/failCount/clear', ` body; account_name=${account_name} | ${account_name} 로그인 실패 횟수 0 초기화`))
 
         let objJson = {
             message: "success",
@@ -448,9 +461,9 @@ exports.updateClearLoginFailCount = async (req, res) => {
         res.status(200).json(objJson);
         conn.release();
     } catch (err) {
-            console.log(err);
-        logger.error(apiLogFormat('PUT', '/login/failCount/clear', ` ${err}`))
-        console.error(apiLogFormat('PUT', '/login/failCount/clear', ` ${err}`))
+        console.log(err);
+        logger.error(apiLogFormat(req, 'PUT', '/login/failCount/clear', ` ${err}`))
+        console.error(apiLogFormat(req, 'PUT', '/login/failCount/clear', ` ${err}`))
 
         let objJson = { message: "error", statusCode: 500 };
         res.status(500).json(objJson);
@@ -466,8 +479,8 @@ exports.updateClearLockCount = async (req, res) => {
         const conn = await adminPool.getConnection();
         await conn.query(sql, [account_name]);
 
-        logger.info(apiLogFormat('PUT', '/login/lockCount', ` lock_count 0 초기화`))
-        console.log(apiLogFormat('PUT', '/login/lockCount', ` lock_count 0 초기화`))
+        logger.info(apiLogFormat(req, 'PUT', '/login/lockCount', ` body; account_name=${account_name} | ${account_name} lock_count 0 초기화`))
+        console.log(apiLogFormat(req, 'PUT', '/login/lockCount', ` body; account_name=${account_name} | ${account_name} lock_count 0 초기화`))
 
         let objJson = {
             message: "success",
@@ -476,9 +489,9 @@ exports.updateClearLockCount = async (req, res) => {
         res.status(200).json(objJson);
         conn.release();
     } catch (err) {
-            console.log(err);
-        logger.error(apiLogFormat('PUT', '/login/lockCount', ` ${err}`))
-        console.error(apiLogFormat('PUT', '/login/lockCount', ` ${err}`))
+        console.log(err);
+        logger.error(apiLogFormat(req, 'PUT', '/login/lockCount', ` ${err}`))
+        console.error(apiLogFormat(req, 'PUT', '/login/lockCount', ` ${err}`))
 
         let objJson = { message: "error", statusCode: 500 };
         res.status(500).json(objJson);
@@ -506,7 +519,7 @@ exports.test = async (req, res) => {
         res.status(200).json(objJson);
         conn.release();
     } catch (err) {
-            console.log(err);
+        console.log(err);
         console.log(err);
     }
 }

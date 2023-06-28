@@ -31,8 +31,15 @@ const logger = require('../logger');
 const morganMiddleware = require('../morgan-middleware');
 app.use(morganMiddleware);
 
-function apiLogFormat(method, api, logStream) {
-    return `[NCP-API] ${method} ${api} - ${logStream}`;
+function apiLogFormat(req, method, api, logStream) {
+    if(req.session.passport) {
+        let accountName = req.session.passport.user.account_name;
+        let userName = req.session.passport.user.user_name;
+        return `[TENANT-API] [${accountName} ${userName}] ${method} ${api} - ${logStream}`;    
+    }
+    else {
+        return `[TENANT-API] [비로그인] ${method} ${api} - ${logStream}`;
+    }
 }
 
 const s3 = new AWS.S3({
@@ -96,13 +103,13 @@ exports.getDatabaseInstanceNo = async (req, res) => {
 
         if (result == 'success') {
             let objJson = { 'message': 'success', 'log': 'getCloudMysqlDatabaseList success', result: cloudMysqlInstanceNo };
-            logger.info(apiLogFormat('GET', '/database/instanceNumber', ` 데이터베이스 Instance No 조회 완료`))
-            console.log(apiLogFormat('GET', '/database/instanceNumber', ` 데이터베이스 Instance No 조회 완료`))
+            logger.info(apiLogFormat(req, 'GET', '/database/instanceNumber', ` DB instanceNo=${cloudMysqlInstanceNo} | 데이터베이스 Instance No 조회 완료`))
+            console.log(apiLogFormat(req, 'GET', '/database/instanceNumber', ` DB instanceNo=${cloudMysqlInstanceNo} | 데이터베이스 Instance No 조회 완료`))
             res.json(objJson);
         } else {
             let objJson = { 'message': 'fail', 'log': result };
-            logger.error(apiLogFormat('GET', '/database/instanceNumber', ` ${result}`))
-            console.error(apiLogFormat('GET', '/database/instanceNumber', ` ${result}`))
+            logger.error(apiLogFormat(req, 'GET', '/database/instanceNumber', ` ${result}`))
+            console.error(apiLogFormat(req, 'GET', '/database/instanceNumber', ` ${result}`))
             res.json(objJson);
         }
     });
@@ -125,8 +132,8 @@ exports.deleteTenantAccount = async (req, res) => {
         await conn.query(sql2, [tenantId, company_name, account_name, owner_name, telephone, email, register_date, 1, reason_code, reason_text, curDatetime]);
         await conn.query(sql3, [tenantId]);
 
-        logger.info(apiLogFormat('DELETE', '/tenant/account', ` 이용자 계정 삭제 완료`))
-        console.log(apiLogFormat('DELETE', '/tenant/account', ` 이용자 계정 삭제 완료`))
+        logger.info(apiLogFormat(req, 'DELETE', '/tenant/account', ` body: tenantId=${tenantId}, reason_code=${reason_code}, reason_text=${reason_text} | 이용자 계정 삭제 완료`))
+        console.log(apiLogFormat(req, 'DELETE', '/tenant/account', ` body: tenantId=${tenantId}, reason_code=${reason_code}, reason_text=${reason_text} | 이용자 계정 삭제 완료`))
 
         let objJson = {
             message: "success",
@@ -136,8 +143,8 @@ exports.deleteTenantAccount = async (req, res) => {
         conn.release();
     } catch (err) {
             console.log(err);
-        logger.error(apiLogFormat('DELETE', '/tenant/account', ` ${err}`))
-        console.error(apiLogFormat('DELETE', '/tenant/account', ` ${err}`))
+        logger.error(apiLogFormat(req, 'DELETE', '/tenant/account', ` ${err}`))
+        console.error(apiLogFormat(req, 'DELETE', '/tenant/account', ` ${err}`))
 
         let objJson = { message: "error", statusCode: 500 };
         res.status(500).json(objJson);
@@ -159,8 +166,8 @@ exports.deleteTenantDatabase = async (req, res) => {
         await conn.query(sql);
         await conn.query(sql2);
         let objJson = { 'message': 'success', 'log': 'Database ' + databaseName + ' delete success' };
-        logger.info(apiLogFormat('DELETE', '/tenant/database', ` ${databaseName} 삭제 완료`));
-        console.log(apiLogFormat('DELETE', '/tenant/database', ` ${databaseName} 삭제 완료`));
+        logger.info(apiLogFormat(req, 'DELETE', '/tenant/database', ` body: cloudMysqlInstanceNo=${cloudMysqlInstanceNo}, tenantId=${tenantId}, IPAddressRange=${IPAddressRange} | ${databaseName} 삭제 완료`));
+        console.log(apiLogFormat(req, 'DELETE', '/tenant/database', ` body: cloudMysqlInstanceNo=${cloudMysqlInstanceNo}, tenantId=${tenantId}, IPAddressRange=${IPAddressRange} | ${databaseName} 삭제 완료`));
         res.status(200).json(objJson);
     }
     else {
@@ -209,14 +216,14 @@ exports.deleteTenantDatabase = async (req, res) => {
 
             if (result == 'success') {
                 let objJson = { 'message': 'success', 'log': 'Database ' + databaseName + ' create success' };
-                logger.info(apiLogFormat('DELETE', '/tenant/database', ` ${databaseName} 삭제 완료`));
-                console.log(apiLogFormat('DELETE', '/tenant/database', ` ${databaseName} 삭제 완료`));
+                logger.info(apiLogFormat(req, 'DELETE', '/tenant/database', ` body: cloudMysqlInstanceNo=${cloudMysqlInstanceNo}, tenantId=${tenantId}, IPAddressRange=${IPAddressRange} | ${databaseName} 삭제 완료`));
+                console.log(apiLogFormat(req, 'DELETE', '/tenant/database', ` body: cloudMysqlInstanceNo=${cloudMysqlInstanceNo}, tenantId=${tenantId}, IPAddressRange=${IPAddressRange} | ${databaseName} 삭제 완료`));
                 res.status(200).json(objJson);
             } else {
                 let objJson = { 'message': 'fail', 'log': result };
 
-                logger.error(apiLogFormat('DELETE', '/tenant/database', ` ${result}`));
-                console.error(apiLogFormat('DELETE', '/tenant/database', ` ${result}`));
+                logger.error(apiLogFormat(req, 'DELETE', '/tenant/database', ` ${result}`));
+                console.error(apiLogFormat(req, 'DELETE', '/tenant/database', ` ${result}`));
                 res.status(400).json(objJson);
             }
         });
@@ -240,8 +247,8 @@ exports.deleteTenantBucket = async (req, res) => {
     }, 3000)
 
     let objJson = { 'message': 'success', 'log': 'Bucket ' + bucketName + ' delete success' };
-    logger.info(apiLogFormat('DELETE', '/tenant/bucket', ` ${bucketName} 삭제 완료`))
-    console.log(apiLogFormat('DELETE', '/tenant/bucket', ` ${bucketName} 삭제 완료`))
+    logger.info(apiLogFormat(req, 'DELETE', '/tenant/bucket', ` body: tenantId=${tenantId} | ${bucketName} 삭제 완료`))
+    console.log(apiLogFormat(req, 'DELETE', '/tenant/bucket', ` body: tenantId=${tenantId} | ${bucketName} 삭제 완료`))
     res.status(200).json(objJson);
 }
 

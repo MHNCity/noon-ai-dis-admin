@@ -20,15 +20,21 @@ const logger = require('../logger');
 const morganMiddleware = require('../morgan-middleware');
 app.use(morganMiddleware);
 
-function apiLogFormat(method, api, logStream) {
-    return `[DIS-API] ${method} ${api} - ${logStream}`;
+function apiLogFormat(req, method, api, logStream) {
+    if(req.session.passport) {
+        let accountName = req.session.passport.user.account_name;
+        let userName = req.session.passport.user.user_name;
+        return `[DIS-API] [${accountName} ${userName}] ${method} ${api} - ${logStream}`;    
+    }
+    else {
+        return `[DIS-API] [비로그인] ${method} ${api} - ${logStream}`;
+    }
 }
 
 exports.userInfo = async (req, res) => {
     var userInfo = req.session.passport.user;
-
-    logger.info(apiLogFormat('GET', '/user', ` 유저 정보조회 완료`))
-    console.log(apiLogFormat('GET', '/user', ` 유저 정보조회 완료`))
+    logger.info(apiLogFormat(req, 'GET', '/user', ` 로그인 세션에서 현재 접속한 유저 정보조회 완료`))
+    console.log(apiLogFormat(req, 'GET', '/user', ` 로그인 세션에서 현재 접속한 유저 정보조회 완료`))
     res.status(200).json(userInfo);
 }
 
@@ -38,8 +44,8 @@ exports.curEnvironment = async (req, res) => {
     else if (process.env.NODE_ENV == 'service') env = 'service'
 
     let objJson = { message: 'success', env: env }
-    logger.info(apiLogFormat('GET', '/env', ` 환경변수 조회 완료`))
-    console.log(apiLogFormat('GET', '/env', ` 환경변수 조회 완료`))
+    logger.info(apiLogFormat(req, 'GET', '/env', ` 현재 접속환경: ${env} | 환경변수 조회 완료`))
+    console.log(apiLogFormat(req, 'GET', '/env', ` 현재 접속환경: ${env} | 환경변수 조회 완료`))
     res.status(200).json(objJson);
 }
 
@@ -49,8 +55,8 @@ exports.requestList = async (req, res) => {
         let sql = "select * from signup_request";
         let results = await conn.query(sql);
 
-        logger.info(apiLogFormat('GET', '/signup/request', ` 가입요청 목록 조회 완료`))
-        console.log(apiLogFormat('GET', '/signup/request', ` 가입요청 목록 조회 완료`))
+        logger.info(apiLogFormat(req, 'GET', '/signup/request', ` 가입요청 목록 전체 조회 완료`))
+        console.log(apiLogFormat(req, 'GET', '/signup/request', ` 가입요청 목록 전체 조회 완료`))
 
         res.status(200).json(results[0]);
         conn.release();
@@ -58,8 +64,8 @@ exports.requestList = async (req, res) => {
             console.log(err);
         let objJson = { 'message': 'error' };
 
-        logger.error(apiLogFormat('GET', '/signup/request', ` ${err}`))
-        console.error(apiLogFormat('GET', '/signup/request', ` ${err}`))
+        logger.error(apiLogFormat(req, 'GET', '/signup/request', ` ${err}`))
+        console.error(apiLogFormat(req, 'GET', '/signup/request', ` ${err}`))
 
         res.status(400).json(objJson);
     }
@@ -77,8 +83,8 @@ exports.acceptSignup = async (req, res) => {
 
         var objJson = { 'message': 'success', 'log': '테넌트 회원가입 완료', tenantId: results[0].insertId }
 
-        logger.info(apiLogFormat('GET', '/signup/accept', ` 테넌트 회원가입 수락 완료`))
-        console.log(apiLogFormat('GET', '/signup/accept', ` 테넌트 회원가입 수락 완료`))
+        logger.info(apiLogFormat(req, 'GET', '/signup/accept', ` body: requestIndex=${requestIndex} | ${requestIndex} 요청 건 테넌트 회원가입 수락 완료`))
+        console.log(apiLogFormat(req, 'GET', '/signup/accept', ` body: requestIndex=${requestIndex} | ${requestIndex} 요청 건 테넌트 회원가입 수락 완료`))
 
         res.json(objJson);
         conn.release();
@@ -86,8 +92,8 @@ exports.acceptSignup = async (req, res) => {
             console.log(err);
         let objJson = { 'message': 'error' };
 
-        logger.error(apiLogFormat('GET', '/signup/request', ` ${err}`))
-        console.error(apiLogFormat('GET', '/signup/request', ` ${err}`))
+        logger.error(apiLogFormat(req, 'GET', '/signup/request', ` ${err}`))
+        console.error(apiLogFormat(req, 'GET', '/signup/request', ` ${err}`))
 
         res.status(400).json(objJson);
     }
@@ -102,8 +108,8 @@ exports.rejectSignup = async (req, res) => {
 
         let objJson = { 'message': 'success' }
 
-        logger.info(apiLogFormat('GET', '/signup/reject', ` 테넌트 회원가입 거절 완료`))
-        console.log(apiLogFormat('GET', '/signup/reject', ` 테넌트 회원가입 거절 완료`))
+        logger.info(apiLogFormat(req, 'GET', '/signup/reject', ` body: requestIndex=${requestIndex} | ${requestIndex} 요청 건 테넌트 회원가입 거절 완료`))
+        console.log(apiLogFormat(req, 'GET', '/signup/reject', ` body: requestIndex=${requestIndex} | ${requestIndex} 요청 건 테넌트 회원가입 거절 완료`))
 
         res.json(objJson);
         conn.release();
@@ -111,8 +117,8 @@ exports.rejectSignup = async (req, res) => {
             console.log(err);
         let objJson = { 'message': 'error' };
 
-        logger.error(apiLogFormat('GET', '/signup/request', ` ${err}`))
-        console.error(apiLogFormat('GET', '/signup/request', ` ${err}`))
+        logger.error(apiLogFormat(req, 'GET', '/signup/request', ` ${err}`))
+        console.error(apiLogFormat(req, 'GET', '/signup/request', ` ${err}`))
 
         res.status(400).json(objJson);
     }
@@ -135,8 +141,8 @@ exports.tenantList = async (req, res) => {
 
         let objJson = { message: 'success', result: results[0], databases: databaseList }
 
-        logger.info(apiLogFormat('GET', '/tenant', ` 테넌트 목록 조회 완료`))
-        console.log(apiLogFormat('GET', '/tenant', ` 테넌트 목록 조회 완료`))
+        logger.info(apiLogFormat(req, 'GET', '/tenant', ` 테넌트: ${results[0].length}명 존재함 | 테넌트 전체 목록 조회 완료`))
+        console.log(apiLogFormat(req, 'GET', '/tenant', ` 테넌트: ${results[0].length}명 존재함 | 테넌트 전체 목록 조회 완료`))
 
         res.status(200).json(objJson);
         conn.release();
@@ -144,8 +150,8 @@ exports.tenantList = async (req, res) => {
             console.log(err);
         let objJson = { 'message': 'error' };
 
-        logger.error(apiLogFormat('GET', '/signup/request', ` ${err}`))
-        console.error(apiLogFormat('GET', '/signup/request', `${err}`))
+        logger.error(apiLogFormat(req, 'GET', '/signup/request', ` ${err}`))
+        console.error(apiLogFormat(req, 'GET', '/signup/request', `${err}`))
 
         res.status(400).json(objJson);
     }
