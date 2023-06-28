@@ -223,7 +223,7 @@ exports.createTable = async (req, res) => {
     let envPre = (process.env.NODE_ENV == 'dev') ? 'dev-' : '';
     let databaseName = `${envPre}dis-tenant-${tenantId}`;
     let bucketName = `${envPre}tenant-${tenantId}`;
-    let IPAddressRange = (process.env.NODE_ENV == 'dev') ? `%` : `192.168.%`;
+    let IPAddressRange = (process.env.NODE_ENV == 'dev') ? `%` : `192.168.4.%`;
 
     var sql = `CREATE TABLE password_reset (
         id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
