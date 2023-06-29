@@ -140,8 +140,13 @@ exports.getDatabaseInstanceNo = async (req, res) => {
             var result = xmlToJson['getCloudMysqlInstanceListResponse']['returnMessage'];
             let cloudMysqlInstanceList = xmlToJson['getCloudMysqlInstanceListResponse']['cloudMysqlInstanceList']['cloudMysqlInstance'];
             let cloudMysqlInstanceNo = 0;
-            for(let i = 0; i < cloudMysqlInstanceList.length; i++) {
-                if(cloudMysqlInstanceList[i].cloudMysqlServiceName === 'noon-ai-dis') cloudMysqlInstanceNo = cloudMysqlInstanceList[i].cloudMysqlInstanceNo;
+            if(cloudMysqlInstanceList.cloudMysqlInstanceNo) {
+                cloudMysqlInstanceNo = cloudMysqlInstanceList.cloudMysqlInstanceNo
+            }
+            else {
+                for(let i = 0; i < cloudMysqlInstanceList.length; i++) {
+                    if(cloudMysqlInstanceList[i].cloudMysqlServiceName === 'noon-ai-dis') cloudMysqlInstanceNo = cloudMysqlInstanceList[i].cloudMysqlInstanceNo;
+                }
             }
             if (result == 'success') {
                 var objJson = { 'message': 'success', 'log': 'getCloudMysqlDatabaseList success', result: cloudMysqlInstanceNo };
