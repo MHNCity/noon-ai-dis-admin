@@ -578,6 +578,28 @@ exports.createTable = async (req, res) => {
         DO
             DELETE FROM rsa_key_pair WHERE expiry_datetime <= CURDATE();
     `
+    var sql30 = `CREATE TABLE additional_enc_request_list (
+        id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+        fk_enc_request_id int NOT NULL,
+        fk_sub_account_id int NOT NULL,
+        fk_rsa_key_pair_id int NOT NULL,
+        fk_account_auth_id int NOT NULL,
+        account_name varchar(100) NOT NULL,
+        user_name varchar(100) NOT NULL,
+        bucket_directory varchar(255) NOT NULL,
+        key_name varchar(100) NOT NULL,
+        request_file_list blob NOT NULL,
+        file_type varchar(10) NOT NULL,
+        file_count int NOT NULL,
+        request_date date NOT NULL,
+        request_time time NOT NULL,
+        reception_datetime datetime DEFAULT NULL,
+        status varchar(50) DEFAULT NULL,
+        log blob,
+        complete tinyint NOT NULL DEFAULT '0',
+        complete_date date DEFAULT NULL,
+        complete_time time DEFAULT NULL
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;`
 
     const requestDate = moment().format('YYYY-MM-DD');
 
@@ -647,6 +669,7 @@ exports.createTable = async (req, res) => {
         await subConn.query(sql27);
         await subConn.query(sql28);
         await subConn.query(sql29);
+        await subConn.query(sql30);
         objJson.msg = 'success';
         logger.info(apiLogFormat(req, 'GET', '/createTable', ` params: id=${req.params.id} | 테넌트에 할당될 13개의 테이블 생성 완료`));
         console.log(apiLogFormat(req, 'GET', '/createTable', ` params: id=${req.params.id} | 테넌트에 할당될 13개의 테이블 생성 완료`));
