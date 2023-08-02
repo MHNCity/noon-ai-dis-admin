@@ -242,7 +242,7 @@ init = {
 
     admin_account: function () {
         let curManager = comm.getUserAccount();
-        if (curManager !== 'admin') location.href = '/admin_manage';
+        if (curManager !== 'mhncity') location.href = '/admin_manage';
         admin.authentication();
 
         $(document).on("click", ".addSave", function () {
