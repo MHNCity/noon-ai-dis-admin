@@ -100,7 +100,7 @@ admin = {
                 </div>\
             </div>`
 
-            if (curUserAccount === 'admin') {
+            if (curUserAccount === 'mhncity') {
                 if (result[i].user_name === 'MHNCity') {
                     resultStr +=
                         `
