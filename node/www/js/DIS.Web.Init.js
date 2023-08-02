@@ -216,7 +216,7 @@ init = {
 
     admin_manage: function () {
         let curManager = comm.getUserAccount();
-        if (curManager === 'admin') admin.createManagerBtn();
+        if (curManager === 'mhncity') admin.createManagerBtn();
         let managerListHtml = admin.managerList();
         $(".reqBody").html(managerListHtml);
 
