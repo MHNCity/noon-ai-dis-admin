@@ -365,6 +365,7 @@ exports.createTable = async (req, res) => {
     var sql8 = `CREATE TABLE \`meter${env}-dis-tenant-${req.params.id}\` (
         id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
         fk_sub_account_id int NOT NULL,
+        fk_additional_request_id' int DEFAULT NULL,
         account_name varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
         user_name varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
         request_type varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -373,10 +374,12 @@ exports.createTable = async (req, res) => {
         file_name varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
         file_type varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
         file_extension varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+        duration int NOT NULL DEFAULT '0',
         frame int DEFAULT NULL,
         person int DEFAULT NULL,
         face int DEFAULT NULL,
         license_plate int DEFAULT NULL,
+        object_count float NOT NULL DEFAULT '0',
         file_size int DEFAULT NULL,
         file_width int DEFAULT NULL,
         file_height int DEFAULT NULL,
@@ -387,8 +390,12 @@ exports.createTable = async (req, res) => {
         request_time time DEFAULT NULL,
         complete_date date DEFAULT NULL,
         complete_time time DEFAULT NULL,
+        free_count tinyint DEFAULT '0',
+        basic_charge int NOT NULL DEFAULT '0',
+        extra_charge int NOT NULL DEFAULT '0',
         service_charge int NOT NULL DEFAULT '0', 
-        billed tinyint NOT NULL DEFAULT '0'
+        billed tinyint NOT NULL DEFAULT '0',
+        billed_datetime datetime DEFAULT NULL
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`;
 
     var sql9 = `CREATE VIEW enc_request_list_view AS
@@ -600,11 +607,82 @@ exports.createTable = async (req, res) => {
         request_time time NOT NULL,
         reception_datetime datetime DEFAULT NULL,
         status varchar(50) DEFAULT NULL,
+        additional_progress VARCHAR(50) DEFAULT NULL,
         log blob,
         complete tinyint NOT NULL DEFAULT '0',
         complete_date date DEFAULT NULL,
         complete_time time DEFAULT NULL
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;`
+
+    let sql31 = `CREATE TABLE additional_request (
+        id int NOT NULL AUTO_INCREMENT,
+        fk_enc_request_list_id int NOT NULL,
+        upload_filename varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+        upload_filesize int NOT NULL DEFAULT '0',
+        upload_datetime datetime DEFAULT NULL,
+        result_filename varchar(255) NOT NULL,
+        result_filesize int NOT NULL DEFAULT '0',
+        expiration_datetime datetime DEFAULT NULL,
+        save_directory varchar(255) NOT NULL,
+        file_type varchar(20) NOT NULL,
+        width int NOT NULL DEFAULT '0',
+        height int NOT NULL DEFAULT '0',
+        duration int NOT NULL DEFAULT '0',
+        fps int NOT NULL DEFAULT '0',
+        frame_count int NOT NULL DEFAULT '0',
+        person int NOT NULL DEFAULT '0',
+        face int NOT NULL DEFAULT '0',
+        license_plate int NOT NULL DEFAULT '0',
+        restoration tinyint NOT NULL DEFAULT '0',
+        add_frame_count int NOT NULL DEFAULT '0',
+        add_person varchar(100) DEFAULT NULL,
+        add_face varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+        add_license_plate varchar(100) DEFAULT NULL,
+        encrypt_datasize int NOT NULL DEFAULT '0',
+        restoration_count int NOT NULL DEFAULT '0',
+        restoration_success int NOT NULL DEFAULT '0',
+        free_restoration int NOT NULL DEFAULT '1',
+        masking_count int NOT NULL DEFAULT '0',
+        masking_success int NOT NULL DEFAULT '0',
+        free_masking int NOT NULL DEFAULT '1',
+        download_count int NOT NULL DEFAULT '0',
+        free_download int NOT NULL DEFAULT '1',
+        PRIMARY KEY (id)
+      ) ENGINE=InnoDB AUTO_INCREMENT=263 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;`;
+
+    let sql32 = `CREATE TABLE point_transaction (
+        id int NOT NULL AUTO_INCREMENT,
+        account_name varchar(255) NOT NULL,
+        fk_tenant_account_name varchar(255) NOT NULL,
+        transaction_type varchar(255) NOT NULL,
+        request_type varchar(255) NOT NULL,
+        amount int NOT NULL,
+        transaction_date date NOT NULL,
+        transaction_time time NOT NULL,
+        point_balance int NOT NULL,
+        PRIMARY KEY (id)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;`;
+
+    let sql33 = `CREATE TABLE enc_sector_request_list (
+        id int NOT NULL AUTO_INCREMENT,
+        fk_enc_request_id int NOT NULL,
+        fk_sub_account_id int NOT NULL,
+        fk_rsa_key_pair_id int NOT NULL,
+        fk_account_auth_id int NOT NULL,
+        account_name varchar(100) NOT NULL,
+        user_name varchar(100) NOT NULL,
+        bucket_directory varchar(255) NOT NULL,
+        sector_info blob NOT NULL,
+        request_date date NOT NULL,
+        request_time time NOT NULL,
+        reception_datetime datetime DEFAULT NULL,
+        status varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+        log blob,
+        complete tinyint NOT NULL DEFAULT '0',
+        complete_date date DEFAULT NULL,
+        complete_time time DEFAULT NULL,
+        PRIMARY KEY (id)
+      ) ENGINE=InnoDB AUTO_INCREMENT=280 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;`;
 
     const requestDate = moment().format('YYYY-MM-DD');
 
@@ -675,9 +753,13 @@ exports.createTable = async (req, res) => {
         await subConn.query(sql28);
         await subConn.query(sql29);
         await subConn.query(sql30);
+        await subConn.query(sql31);
+        await subConn.query(sql32);
+        await subConn.query(sql33);
+        let tenantDBTableCount = 17;
         objJson.msg = 'success';
-        logger.info(apiLogFormat(req, 'GET', '/createTable', ` params: id=${req.params.id} | 테넌트에 할당될 13개의 테이블 생성 완료`));
-        console.log(apiLogFormat(req, 'GET', '/createTable', ` params: id=${req.params.id} | 테넌트에 할당될 13개의 테이블 생성 완료`));
+        logger.info(apiLogFormat(req, 'GET', '/createTable', ` params: id=${req.params.id} | 테넌트에 할당될 ${tenantDBTableCount}개의 테이블 생성 완료`));
+        console.log(apiLogFormat(req, 'GET', '/createTable', ` params: id=${req.params.id} | 테넌트에 할당될 ${tenantDBTableCount}개의 테이블 생성 완료`));
         conn.release();
         subConn.end();
         res.status(200).json(objJson);
