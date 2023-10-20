@@ -131,7 +131,7 @@ requestTable = {
                             <div class='user_header'><h3>기관명</h3></div>\
                             <div class='encrypt_upload_header'><h3>비식별화 요청 건수</h3></div>\
                             <div class='decrypt_upload_header'><h3>복호화 요청 건수</h3></div>\
-                            <div class='encrypt_download_header'><h3>비식별화 파일 다운로드 건수</h3></div>\
+                            <div class='encrypt_download_header'><h3>파일 다운로드 건수</h3></div>\
                             <div class='total_download_header'><h3>총 다운로드 용량</h3></div>\
                         </div>\
                         <div class='tbBody'>"

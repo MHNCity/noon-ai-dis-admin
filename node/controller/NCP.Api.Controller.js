@@ -365,7 +365,7 @@ exports.createTable = async (req, res) => {
     var sql8 = `CREATE TABLE \`meter${env}-dis-tenant-${req.params.id}\` (
         id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
         fk_sub_account_id int NOT NULL,
-        fk_additional_request_id' int DEFAULT NULL,
+        fk_additional_request_id int DEFAULT NULL,
         account_name varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
         user_name varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
         request_type varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -617,6 +617,7 @@ exports.createTable = async (req, res) => {
     let sql31 = `CREATE TABLE additional_request (
         id int NOT NULL AUTO_INCREMENT,
         fk_enc_request_list_id int NOT NULL,
+        fk_account_name varchar(255), 
         upload_filename varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
         upload_filesize int NOT NULL DEFAULT '0',
         upload_datetime datetime DEFAULT NULL,

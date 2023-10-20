@@ -426,50 +426,55 @@
     border-right: solid 1px #bcc5cb;
 }
 
+.usageBox .tbHeader .tenant_header {
+    width: 140px;
+    height: 100%;
+}
+
 .usageBox .tbHeader .user_header {
-    width: 120px;
+    width: 160px;
     height: 100%;
 }
 
 .usageBox .tbHeader .encrypt_upload_header {
-    width: 200px;
+    width: 160px;
     height: 100%;
 }
 
 .usageBox .tbHeader .decrypt_upload_header {
-    width: 200px;
+    width: 160px;
     height: 100%;
 }
 
 .usageBox .tbHeader .encrypt_download_header {
-    width: 200px;
+    width: 160px;
     height: 100%;
 }
 
 .usageBox .tbHeader .total_download_header {
-    width: 200px;
+    width: 160px;
     height: 100%;
     border-right: none;
 }
 
 
 .usageBox .tbHeader .encrypt_charge_header {
-    width: calc(988px/4);
+    width: 160px;
     height: 100%;
 }
 
 .usageBox .tbHeader .decrypt_charge_header {
-    width: calc(988px/4);
+    width: 160px;
     height: 100%;
 }
 
 .usageBox .tbHeader .download_charge_header {
-    width: calc(988px/4);
+    width: 160px;
     height: 100%;
 }
 
 .usageBox .tbHeader .total_charge_header {
-    width: calc(988px/4);
+    width: 160px;
     height: 100%;
     border-right: none;
 }
@@ -516,50 +521,55 @@
     border-right: solid 1px #bcc5cb;
 }
 
+.usageBox .tbBody .tbContent .tenant_content {
+    width: 140px;
+    height: 100%;
+}
+
 .usageBox .tbBody .tbContent .user_content {
-    width: 120px;
+    width: 160px;
     height: 100%;
 }
 
 .usageBox .tbBody .tbContent .encrypt_upload_content {
-    width: 200px;
+    width: 160px;
     height: 100%;
 }
 
 .usageBox .tbBody .tbContent .decrypt_upload_content {
-    width: 200px;
+    width: 160px;
     height: 100%;
 }
 
 .usageBox .tbBody .tbContent .encrypt_download_content {
-    width: 200px;
+    width: 160px;
     height: 100%;
 }
 
 .usageBox .tbBody .tbContent .total_download_content {
-    width: 200px;
+    width: 160px;
     height: 100%;
     border-right: none;
 }
 
 
 .usageBox .tbBody .tbContent .encrypt_charge_content {
-    width: calc(988px/4);
+    width: 160px;
     height: 100%;
 }
 
 .usageBox .tbBody .tbContent .decrypt_charge_content {
-    width: calc(988px/4);
+    width: 160px;
     height: 100%;
 }
 
 .usageBox .tbBody .tbContent .download_charge_content {
-    width: calc(988px/4);
+    width: 160px;
     height: 100%;
 }
 
 .usageBox .tbBody .tbContent .total_charge_content {
-    width: calc(988px/4);
+    width: 160px;
     height: 100%;
     border-right: none;
 }
