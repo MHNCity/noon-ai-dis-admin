@@ -90,8 +90,7 @@ init = {
                         var result = false;
                         var tenantId = null;
                         [result, tenantId] = admin.accept(signupReqIdx);
-                        console.log(result)
-                        console.log(tenantId)
+                        tenantId = signupReqIdx;
                         resolve({ result, tenantId });
                     }).then(({ result, tenantId }) => {
                         admin.createDatabase(tenantId);

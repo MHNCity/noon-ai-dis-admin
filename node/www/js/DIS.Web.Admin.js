@@ -206,6 +206,7 @@ admin = {
         $.ajax({
             method: "get",
             url: "/api/database/instanceNumber",
+            async: false,
             success: function (data) {
                 if (data.message == 'success') {
                     var cloudMysqlInstanceNo = data.result;
@@ -213,11 +214,13 @@ admin = {
                     $.ajax({
                         method: "get",
                         url: "/api/createDatabase/" + parameter,
+                        async: false,
                         success: function (data) {
                             console.log(JSON.stringify(data));
                             $.ajax({
                                 method: "get",
                                 url: "/api/createTable/" + tenantId,
+                                async: false,
                                 success: function (data) {
                                     console.log(JSON.stringify(data));
                                 }, // success 

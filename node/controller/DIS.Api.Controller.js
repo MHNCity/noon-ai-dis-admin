@@ -74,7 +74,7 @@ exports.requestList = async (req, res) => {
 exports.acceptSignup = async (req, res) => {
     const { requestIndex } = req.body;
     try {
-        let sql = "INSERT INTO tenant (company_name, account_name, password, salt, owner_name, telephone, email, user_name) select company_name, account_name, password, salt, owner_name, telephone, email, user_name FROM signup_request WHERE id = ?"
+        let sql = "INSERT INTO tenant (id, company_name, account_name, password, salt, owner_name, telephone, email, user_name) select id, company_name, account_name, password, salt, owner_name, telephone, email, user_name FROM signup_request WHERE id = ?"
         const conn = await pool.getConnection();
         let results = await conn.query(sql, [requestIndex]);
 

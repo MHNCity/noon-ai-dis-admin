@@ -62,7 +62,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 /* 화이트 리스트 */
-var whitelist = ['http://127.0.0.1:5000', 'http://dis.noonai.kr']
+var whitelist = ['http://127.0.0.1:5000', 'http://dis.noonai.kr', 'http://admin.noonai.kr']
 var corsOptions = {
     origin: function (origin, callback) {
         var isWhitelisted = whitelist.indexOf(origin) !== -1;
@@ -94,6 +94,13 @@ const appList = [
     { domain: '223.130.173.198', servername: 'LocalWebAPI', path: '/api/auth', app: require('./api/auth-api.js') },  // Web API 설정
     { domain: '223.130.173.198', servername: 'LocalWebAPI', path: '/api/manager', app: require('./api/manager-api.js') },  // Web API 설정
     { domain: '223.130.173.198', servername: 'LocalWebAPI', path: '/api/tenant', app: require('./api/tenant-api.js') },  // Web API 설정
+
+    { domain: 'admin.noonai.kr', servername: 'AdminWebApp', path: '/web/', app: require('./www/www.js') },   // Web App 설정 
+    { domain: 'admin.noonai.kr', servername: 'AdminWebAPI', path: '/api/', app: require('./api/api.js') },  // Web API 설정
+    { domain: 'admin.noonai.kr', servername: 'AdminWebAPI', path: '/api/', app: require('./api/ncp-api.js') },  // Web API 설정
+    { domain: 'admin.noonai.kr', servername: 'AdminWebAPI', path: '/api/auth', app: require('./api/auth-api.js') },  // Web API 설정
+    { domain: 'admin.noonai.kr', servername: 'AdminWebAPI', path: '/api/manager', app: require('./api/manager-api.js') },  // Web API 설정
+    { domain: 'admin.noonai.kr', servername: 'AdminWebAPI', path: '/api/tenant', app: require('./api/tenant-api.js') },  // Web API 설정
 ];
 
 //

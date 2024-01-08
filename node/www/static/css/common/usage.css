@@ -441,6 +441,11 @@
     height: 100%;
 }
 
+.usageBox .tbHeader .additional_encrypt_upload_header {
+    width: 160px;
+    height: 100%;
+}
+
 .usageBox .tbHeader .decrypt_upload_header {
     width: 160px;
     height: 100%;
@@ -457,8 +462,12 @@
     border-right: none;
 }
 
-
 .usageBox .tbHeader .encrypt_charge_header {
+    width: 160px;
+    height: 100%;
+}
+
+.usageBox .tbHeader .additional_encrypt_charge_header {
     width: 160px;
     height: 100%;
 }
@@ -536,6 +545,11 @@
     height: 100%;
 }
 
+.usageBox .tbBody .tbContent .additional_encrypt_upload_content {
+    width: 160px;
+    height: 100%;
+}
+
 .usageBox .tbBody .tbContent .decrypt_upload_content {
     width: 160px;
     height: 100%;
@@ -554,6 +568,11 @@
 
 
 .usageBox .tbBody .tbContent .encrypt_charge_content {
+    width: 160px;
+    height: 100%;
+}
+
+.usageBox .tbBody .tbContent .additional_encrypt_charge_content {
     width: 160px;
     height: 100%;
 }

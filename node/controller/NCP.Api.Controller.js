@@ -165,6 +165,7 @@ exports.getDatabaseInstanceNo = async (req, res) => {
 
 exports.createDatabase = async (req, res) => {
     let databaseName = `dis-tenant-${req.params.id}`;
+    console.log('databaseName : ',databaseName);
 
     if (process.env.NODE_ENV === 'dev') {
         databaseName = 'dev-' + databaseName;
@@ -257,6 +258,7 @@ exports.createTable = async (req, res) => {
         db_access_auth varchar(20) NOT NULL,
         encrypt_auth tinyint NOT NULL,
         decrypt_auth tinyint NOT NULL,
+        additional_encrypt_auth tinyint NOT NULL,
         auth_log blob DEFAULT NULL,
         master tinyint NOT NULL DEFAULT '0',
         date date NOT NULL
@@ -278,7 +280,7 @@ exports.createTable = async (req, res) => {
         file_count int NOT NULL,
         request_date date NOT NULL,
         request_time time NOT NULL,
-        request_datetime datetime NOT NULL,
+        request_datetime datetime DEFAULT NULL,
         reception_datetime datetime DEFAULT NULL,
         health_check_process varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
         decrypt_progress varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0%',
@@ -288,7 +290,10 @@ exports.createTable = async (req, res) => {
         decrypt_log blob DEFAULT NULL,
         complete int NOT NULL DEFAULT '0',
         complete_date date DEFAULT NULL,
-        complete_time time DEFAULT NULL
+        complete_time time DEFAULT NULL,
+        expiration_datetime datetime DEFAULT NULL,
+        download_status varchar(20) DEFAULT NULL,
+        download_url text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_di
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`;
 
     var sql3 = `CREATE TABLE enc_request_list (
@@ -302,7 +307,7 @@ exports.createTable = async (req, res) => {
         encrypt_directory varchar(255) NOT NULL,
         restoration tinyint NOT NULL,
         encrypt_object blob,
-        request_file_list blob NOT NULL,
+        request_file_list blob,
         result_file_list blob DEFAULT NULL,
         file_type varchar(255) NOT NULL,
         file_count int NOT NULL,
@@ -310,14 +315,14 @@ exports.createTable = async (req, res) => {
         random tinyint NOT NULL DEFAULT '1',
         request_date date NOT NULL,
         request_time time NOT NULL,
-        request_datetime datetime NOT NULL,
+        request_datetime datetime DEFAULT NULL,
         reception_datetime datetime DEFAULT NULL,
         processing_time varchar(30) DEFAULT NULL,
         health_check_process varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
         encrypt_progress varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0%',
         upload_process varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
         status varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-        encrypt_log blob DEFAULT NULL,
+        encrypt_log mediumblob DEFAULT NULL,
         complete tinyint NOT NULL DEFAULT '0',
         complete_date date DEFAULT NULL,
         complete_time time DEFAULT NULL
@@ -329,6 +334,7 @@ exports.createTable = async (req, res) => {
         user_name varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
         key_name varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
         blob_public_key blob NOT NULL,
+        blob_enc_private_key blob DEFAULT NULL,
         generated_date date NOT NULL,
         generated_time time NOT NULL,
         key_memo varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
@@ -343,7 +349,7 @@ exports.createTable = async (req, res) => {
         company_name varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
         account_name varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
         password varchar(255) NOT NULL,
-        salt varchar(255) NOT NULL,
+        salt varchar(255) DEFAULT NULL,
         telephone varchar(255) DEFAULT NULL,
         email varchar(255) NOT NULL,
         user_name varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -359,7 +365,7 @@ exports.createTable = async (req, res) => {
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`;
 
     var sql6 = `SELECT * FROM tenant WHERE id = ?`;
-    var sql7 = `INSERT INTO auth (tenant, account_name, bucket_access_list, bucket_access_auth, db_access_list, db_access_auth, encrypt_auth, decrypt_auth, master, date) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+    var sql7 = `INSERT INTO auth (tenant, account_name, bucket_access_list, bucket_access_auth, db_access_list, db_access_auth, encrypt_auth, decrypt_auth, additional_encrypt_auth, master, date) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
     var env = (process.env.NODE_ENV == 'dev') ? '-dev' : '';
     var sql8 = `CREATE TABLE \`meter${env}-dis-tenant-${req.params.id}\` (
@@ -373,7 +379,7 @@ exports.createTable = async (req, res) => {
         request_id int NOT NULL,
         file_name varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
         file_type varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-        file_extension varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+        file_extension varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
         duration int NOT NULL DEFAULT '0',
         frame int DEFAULT NULL,
         person int DEFAULT NULL,
@@ -458,7 +464,7 @@ exports.createTable = async (req, res) => {
     GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, REFERENCES, INDEX, ALTER, CREATE VIEW, TRIGGER, SHOW VIEW ON \`${databaseName}\`.* TO '${envPre}tenant-${tenantId}'@'${IPAddressRange}'; ALTER USER '${envPre}tenant-${tenantId}'@'${IPAddressRange}' ;
     GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, REFERENCES, INDEX, ALTER, CREATE VIEW, TRIGGER, SHOW VIEW ON \`${envPre}dis-metering\`.\`meter${env}-dis-tenant-${tenantId}\` TO '${envPre}tenant-${tenantId}'@'${IPAddressRange}'; ALTER USER '${envPre}tenant-${tenantId}'@'${IPAddressRange}' ;
     `
-
+      
     var sql14 = `CREATE TABLE archived_enc_request_list LIKE enc_request_list;`
     var sql15 = `CREATE TABLE archived_dec_request_list LIKE dec_request_list;`
     var sql16 = `CREATE TABLE enc_request_log (
@@ -481,7 +487,9 @@ exports.createTable = async (req, res) => {
         file_type varchar(255) DEFAULT NULL,
         request_date date NOT NULL,
         request_time time NOT NULL,
-        request_datetime datetime NOT NULL
+        request_datetime datetime NOT NULL,
+        expiration_datetime datetime DEFAULT NULL,
+        download_status varchar(255) DEFAULT NULL
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;`
     var sql18 = `CREATE TABLE archived_enc_request_log LIKE enc_request_log;`
     var sql19 = `CREATE TABLE archived_dec_request_log LIKE dec_request_log;`
@@ -654,7 +662,9 @@ exports.createTable = async (req, res) => {
     let sql32 = `CREATE TABLE point_transaction (
         id int NOT NULL AUTO_INCREMENT,
         account_name varchar(255) NOT NULL,
+        user_name varchar(255) NOT NULL,
         fk_tenant_account_name varchar(255) NOT NULL,
+        file_name varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
         transaction_type varchar(255) NOT NULL,
         request_type varchar(255) NOT NULL,
         amount int NOT NULL,
@@ -685,6 +695,46 @@ exports.createTable = async (req, res) => {
         PRIMARY KEY (id)
       ) ENGINE=InnoDB AUTO_INCREMENT=280 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;`;
 
+    let sql34 = `CREATE EVENT update_download_url
+                ON SCHEDULE
+                EVERY 5 SECOND
+                STARTS CONCAT(CURRENT_DATE, ' 23:59:00')
+                DO
+                BEGIN
+                    UPDATE dec_request_list
+                    SET download_url = 'expired'
+                    WHERE expiration_datetime < NOW();
+                END`;
+    
+    let sql35 = `CREATE EVENT update_expired_status
+                ON SCHEDULE
+                EVENY 5 SECOND
+                STARTS CONCAT(CURRENT_DATE, ' 23:59:00')
+                DO
+                BEGIN
+                    UPDATE dec_request_list
+                    SET download_status = 'expired'
+                    WHERE expiration_datetime < NOW() AND download_status NOT IN ('downloaded', 'failed');
+                END`;
+
+    let sql36 = `DELIMITER $$
+                CREATE TRIGGER before_insert_point_balance BEFORE INSERT ON point_transaction FOR EACH ROW BEGIN
+                    IF NEW.point_balance < 0 THEN
+                        SET NEW.point_balance = 0;
+                    END IF;
+                END
+                $$
+                DELIMITER`;
+    
+    let sql37 = `DELIMITER $$
+                CREATE TRIGGER before_balance_update BEFORE UPDATE ON tenant FOR EACH ROW BEGIN
+                IF NEW.point_balance < 0 THEN
+                SET NEW.point_balance = 0;
+                END IF;
+                END
+                $$
+                DELIMITER`;
+    
     const requestDate = moment().format('YYYY-MM-DD');
 
     var tenantConfig =
@@ -728,7 +778,7 @@ exports.createTable = async (req, res) => {
         await subConn.query(sql5);
         const [result] = await conn.query(sql6, [req.params.id]);
 
-        await subConn.query(sql7, [databaseName, result[0].account_name, "'" + bucketName + "'", '111', "'" + databaseName + "'", '1111', 1, 1, 1, requestDate]);
+        await subConn.query(sql7, [databaseName, result[0].account_name, "'" + bucketName + "'", '111', "'" + databaseName + "'", '1111', 1, 1, 1, 1, requestDate]);
         await meterConn.query(sql8);
         await subConn.query(sql9);
         await subConn.query(sql10);
@@ -742,7 +792,7 @@ exports.createTable = async (req, res) => {
         await subConn.query(sql18);
         await subConn.query(sql19);
 
-        //스케줄링 20 ~ 27
+        //스케줄링 20 ~ 35
         await subConn.query(sql20);
         await subConn.query(sql21);
         await subConn.query(sql22);
@@ -757,6 +807,10 @@ exports.createTable = async (req, res) => {
         await subConn.query(sql31);
         await subConn.query(sql32);
         await subConn.query(sql33);
+        await subConn.query(sql34);
+        await subConn.query(sql35);
+        await subConn.query(sql36);
+        await conn.query(sql37);
         let tenantDBTableCount = 17;
         objJson.msg = 'success';
         logger.info(apiLogFormat(req, 'GET', '/createTable', ` params: id=${req.params.id} | 테넌트에 할당될 ${tenantDBTableCount}개의 테이블 생성 완료`));
@@ -871,9 +925,11 @@ exports.getMonthUsage = async (req, res, cb) => {
                 owner_name: tenant_info_list[i].owner_name,
                 user_name: tenant_info_list[i].user_name,
                 encrypt_request_count: 0,
+                additional_encrypt_request_count: 0,
                 decrypt_request_count: 0,
                 download_request_count: 0,
                 encrypt_request_charge: 0,
+                additional_encrypt_request_charge: 0,
                 decrypt_request_charge: 0,
                 download_request_charge: 0,
                 total_download: 0,
@@ -896,19 +952,24 @@ exports.getMonthUsage = async (req, res, cb) => {
                 for (var j = 0; j < result.length; j++) {
                     if (result[j].request_type == 'encrypt') {
                         objJson[tenantId]['encrypt_request_count'] = result[j]['count(*)'];
-                        objJson[tenantId]['encrypt_request_charge'] = result[j]['sum(service_charge)']
-                        console.log(tenantId + "1번")
+                        objJson[tenantId]['encrypt_request_charge'] = result[j]['sum(service_charge)'];
+                        console.log(tenantId + "1번");
                     }
                     else if (result[j].request_type == 'decrypt') {
                         objJson[tenantId]['decrypt_request_count'] = result[j]['count(*)'];
-                        objJson[tenantId]['decrypt_request_charge'] = result[j]['sum(service_charge)']
-                        console.log(tenantId + "2번")
+                        objJson[tenantId]['decrypt_request_charge'] = result[j]['sum(service_charge)'];
+                        console.log(tenantId + "2번");
                     }
                     else if (result[j].request_type == 'download') {
                         objJson[tenantId]['download_request_count'] = result[j]['count(*)'];
                         objJson[tenantId]['total_download'] += result[j]['sum(file_size)'];
-                        objJson[tenantId]['download_request_charge'] = result[j]['sum(service_charge)']
-                        console.log(tenantId + "3번")
+                        objJson[tenantId]['download_request_charge'] = result[j]['sum(service_charge)'];
+                        console.log(tenantId + "3번");
+                    }
+                    else if (result[j].request_type == 'additional_encrypt') {
+                        objJson[tenantId]['additional_encrypt_request_count'] = result[j]['count(*)'];
+                        objJson[tenantId]['additional_encrypt_request_charge'] = result[j]['sum(service_charge)'];
+                        console.log(tenantId + "4번");
                     }
                 }
             }

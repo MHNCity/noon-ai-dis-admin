@@ -174,7 +174,9 @@ exports.login = async (req, res, next) => {
 
             logger.info(apiLogFormat(req, 'POST', '/login', ` [${user.account_name}] 로그인 완료`))
             console.log(apiLogFormat(req, 'POST', '/login', ` [${user.account_name}] 로그인 완료`))
-            return res.redirect('/');
+            // return res.redirect('/');
+            const objJson = {message: 'login success', statusCode: 200};
+            return res.status(200).json(objJson);
         });
     })(req, res, next);
 }
