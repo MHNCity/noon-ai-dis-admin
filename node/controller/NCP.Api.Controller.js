@@ -293,7 +293,7 @@ exports.createTable = async (req, res) => {
         complete_time time DEFAULT NULL,
         expiration_datetime datetime DEFAULT NULL,
         download_status varchar(20) DEFAULT NULL,
-        download_url text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_di
+        download_url text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`;
 
     var sql3 = `CREATE TABLE enc_request_list (
