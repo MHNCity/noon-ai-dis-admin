@@ -708,7 +708,7 @@ exports.createTable = async (req, res) => {
     
     let sql35 = `CREATE EVENT update_expired_status
                 ON SCHEDULE
-                EVENY 5 SECOND
+                EVERY 5 SECOND
                 STARTS CONCAT(CURRENT_DATE, ' 23:59:00')
                 DO
                 BEGIN
@@ -717,23 +717,23 @@ exports.createTable = async (req, res) => {
                     WHERE expiration_datetime < NOW() AND download_status NOT IN ('downloaded', 'failed');
                 END`;
 
-    let sql36 = `DELIMITER $$
-                CREATE TRIGGER before_insert_point_balance BEFORE INSERT ON point_transaction FOR EACH ROW BEGIN
+    let sql36 = `
+                CREATE TRIGGER before_insert_point_balance BEFORE INSERT ON point_transaction FOR EACH ROW 
+                BEGIN
+                    IF NEW.point_balance < 0 THEN
+                        SET NEW.point_balance = 0;
+                    END IF;
+                END;
+                `;
+
+    let sql37 = `
+                CREATE TRIGGER before_balance_update BEFORE UPDATE ON tenant FOR EACH ROW 
+                BEGIN
                     IF NEW.point_balance < 0 THEN
                         SET NEW.point_balance = 0;
                     END IF;
                 END
-                $$
-                DELIMITER`;
-    
-    let sql37 = `DELIMITER $$
-                CREATE TRIGGER before_balance_update BEFORE UPDATE ON tenant FOR EACH ROW BEGIN
-                IF NEW.point_balance < 0 THEN
-                SET NEW.point_balance = 0;
-                END IF;
-                END
-                $$
-                DELIMITER`;
+                `;
     
     const requestDate = moment().format('YYYY-MM-DD');
 
@@ -777,8 +777,11 @@ exports.createTable = async (req, res) => {
         await subConn.query(sql4);
         await subConn.query(sql5);
         const [result] = await conn.query(sql6, [req.params.id]);
+        console.log('result>>>>',result)
+        console.log('result[0]>>>>>', result[0])
 
         await subConn.query(sql7, [databaseName, result[0].account_name, "'" + bucketName + "'", '111', "'" + databaseName + "'", '1111', 1, 1, 1, 1, requestDate]);
+        console.log('------------<><><><><><>------------------')
         await meterConn.query(sql8);
         await subConn.query(sql9);
         await subConn.query(sql10);
