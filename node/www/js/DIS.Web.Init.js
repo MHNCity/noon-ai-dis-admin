@@ -70,6 +70,67 @@ init = {
                 }
             }
         });
+
+        $(document).on("click", ".password_confirm", function () {
+            let tenantID = $(".tenantID").val();
+            let nowPassword = $(".nowPassword").val();
+            let newPassword = $(".newPassword").val();
+            let newPasswordConfirm = $(".newPasswordConfirm").val();
+
+            let check_num = /[0-9]/;    // 숫자 
+            let check_big = /[A-Z]/;    // 대문자
+            let check_small = /[a-z]/;    // 소문자
+            let check_symbol = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g; // 특수기호
+
+            if(tenantID=="" || nowPassword=="" || newPassword=="" || newPasswordConfirm==""){
+                Swal.fire({
+                    title: '모든 입력란에 정보를 입력해주세요.',
+                    showConfirmButton: false,
+                    showDenyButton: true,
+                    denyButtonText: "확 인",
+                    icon: "error"
+                })
+            }
+            else if (newPassword.length < 8) {
+                Swal.fire({
+                    title: '비밀번호는 8자 이상 입력해주세요.',
+                    showConfirmButton: false,
+                    showDenyButton: true,
+                    denyButtonText: "확 인",
+                    icon: "error"
+                })
+            }
+            else if (check_num.test(newPassword) != true || check_big.test(newPassword) != true || check_small.test(newPassword) != true || check_symbol.test(newPassword) != true) {
+                Swal.fire({
+                    title: '비밀번호는 대문자, 소문자, 숫자, 특수기호를 혼합하여 입력해주세요.',
+                    showConfirmButton: false,
+                    showDenyButton: true,
+                    denyButtonText: "확 인",
+                    icon: "error"
+                })
+            }
+            else if(nowPassword==newPassword){
+                Swal.fire({
+                    title: "현재 비밀번호와 동일한 비밀번호입니다.",
+                    showConfirmButton: false,
+                    showDenyButton: true,
+                    denyButtonText: "확 인",
+                    icon: "error"
+                });
+            }
+            else if(newPassword!=newPasswordConfirm){
+                Swal.fire({
+                    title: "비밀번호가 일치하지 않습니다.",
+                    showConfirmButton: false,
+                    showDenyButton: true,
+                    denyButtonText: "확 인",
+                    icon: "error"
+                });
+            }
+            else{
+                auth.passwordChange(tenantID, nowPassword, newPassword)
+            }
+        });
     },
 
     join: function () {

@@ -61,16 +61,48 @@ exports.firstLogin = async (req, res, next) => {
                     res.status(400).json(objJson);
                 }
                 else {
-                    let objJson = {
-                        message: "login success",
-                        statusCode: 200,
-                        admin_email: user.email
-                    };
+                    logger.info(apiLogFormat(req, 'POST', '/first-login', ` body: account_name=${account_name} | ${account_name} 패스워드 일치`))
+                    console.log(apiLogFormat(req, 'POST', '/first-login', ` body: account_name=${account_name} | ${account_name} 패스워드 일치`))
 
-                    logger.info(apiLogFormat(req, 'POST', '/first-login', ` body: account_name=${account_name} | ${account_name} 1차 로그인 완료`))
-                    console.log(apiLogFormat(req, 'POST', '/first-login', ` body: account_name=${account_name} | ${account_name} 1차 로그인 완료`))
+                    // 비밀번호 변경이 90일이 초과했는지 확인
+                    let passwordLastDate = user.password_date;
+                    passwordLastDate = new Date(passwordLastDate)
+                    // UTC 시간으로 간주하고, 9시간을 더해 KST로 변환
+                    let kstOffset = 9 * 60 * 60 * 1000; // 9시간을 밀리초로 변환
+                    passwordLastDate = new Date(passwordLastDate.getTime() + kstOffset);
 
-                    res.status(200).json(objJson);
+                    let nowLoginDate = new Date();
+                    nowLoginDate = new Date(nowLoginDate.getTime() + kstOffset);
+
+                    let ninetyDaysInMillis = 90 * 24 * 60 * 60 * 1000;
+
+                    let timeDifference = nowLoginDate - passwordLastDate;
+
+                    let isOverNinetyDays = timeDifference > ninetyDaysInMillis;
+
+                    console.log(isOverNinetyDays)
+
+                    if(isOverNinetyDays==true){
+                        logger.info(apiLogFormat(req, 'POST', '/first-login', ` body: account_name=${account_name} | ${account_name} 패스워드 90일 초과`))
+                        console.log(apiLogFormat(req, 'POST', '/first-login', ` body: account_name=${account_name} | ${account_name} 패스워드 90일 초과`))
+                        let objJson = {
+                            message: "password over 90days",
+                            statusCode: 200
+                        };
+                        res.status(200).json(objJson);
+                        conn.release();
+                    }
+                    else{
+                        logger.info(apiLogFormat(req, 'POST', '/first-login', ` body: account_name=${account_name} | ${account_name} 1차 로그인 완료`))
+                        console.log(apiLogFormat(req, 'POST', '/first-login', ` body: account_name=${account_name} | ${account_name} 1차 로그인 완료`))
+                        let objJson = {
+                            message: "login success",
+                            statusCode: 200,
+                            admin_email: user.email
+                        };
+                        res.status(200).json(objJson);
+                        conn.release();
+                    }
                 }
                 conn.release();
             }
@@ -180,6 +212,75 @@ exports.login = async (req, res, next) => {
         });
     })(req, res, next);
 }
+
+exports.passwordChange = async (req, res) => {
+    if (req.session.passport == undefined) {
+        let account_name = req.body.account_name;
+        let now_password = req.body.now_password;
+        let new_password = req.body.new_password;
+        try {
+            let sql = 'SELECT * FROM admin WHERE account_name = ?';
+            const conn = await adminPool.getConnection();
+            const results = await conn.query(sql, [account_name]);
+            const user = results[0][0];
+            if(user){
+                const userPassword = user.password;
+                const isPasswordValid = bcrypt.compareSync(now_password, userPassword);
+
+                if (!isPasswordValid) {
+                    logger.info(apiLogFormat(req, 'POST', '/password-change', ` 비밀번호 불일치`))
+                    console.log(apiLogFormat(req, 'POST', '/password-change', ` 비밀번호 불일치`))
+                    let objJson = { message: 'user_input_not_match', log: 'user input password not matched', statusCode: 400 };
+                    conn.release();
+                    res.status(objJson.statusCode).json(objJson);
+                }
+                else{
+                    const salt = await bcrypt.genSalt(10);
+                    const hashedPassword = bcrypt.hashSync(new_password, salt)
+                    const curDatetime = moment().format('YYYY-MM-DD HH:mm:ss');
+                    let sql2 = 'UPDATE admin SET password=?, password_date=? WHERE account_name = ?';
+                    await conn.query(sql2, [hashedPassword, curDatetime, account_name]);
+                    logger.info(apiLogFormat(req, 'POST', '/password-change', ` 비밀번호 변경 완료`))
+                    console.log(apiLogFormat(req, 'POST', '/password-change', ` 비밀번호 변경 완료`))
+                    let objJson = { message: 'success', log: 'master pw update success', statusCode: 200 }
+                    conn.release();
+                    res.status(objJson.statusCode).json(objJson);
+                }
+            }
+            else{
+                logger.error(
+                    apiLogFormat(
+                        "POST",
+                        "/password-change",
+                        `password change error ==> ID not found`
+                    )
+                );
+                console.log(
+                    apiLogFormat(
+                        "POST",
+                        "/password-change",
+                        `password change error ==> ID not found`
+                    )
+                );
+                // let objJson = { message: "login failed", reason: "ID not found", statusCode: 404 }; -------------------------
+                let objJson = { message: "ID not found", statusCode: 500 };
+                res.status(objJson.statusCode).json(objJson);
+                conn.release();
+            }
+        } catch (err) {
+            console.log(err);
+            logger.error(apiLogFormat('POST', '/password-change', `query error ==> ${err}`))
+            console.log(apiLogFormat('POST', '/password-change', `query error ==> ${err}`))
+            objJson = { message: 'password-change error', statusCode: 500 };
+            res.status(objJson.statusCode).json(objJson);
+        }
+    }
+    else {
+        let objJson = { message: "already password change", statusCode: 400 };
+        // let objJson = { message: "Forbidden", statusCode: 403 };
+        res.status(objJson.statusCode).json(objJson);
+    }
+};
 
 exports.logout = async (req, res) => {
     logger.info(apiLogFormat(req, 'GET', '/logout', ` 관리자 ${req.session.passport.user.user_name} 로그아웃 완료`))

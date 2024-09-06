@@ -72,27 +72,32 @@ auth = {
             },
             async: false,
             success: function (data) {
-                let lockStatus = null;
-                let loginable = false;
-                let activateTime = null;
-
-                lockStatus = auth.selectLockStatus(account_name);
-                loginable = lockStatus.loginable
-                activateTime = lockStatus.activateTime
-                
-                if(loginable) {
-                    $(".auth_id").val(data.admin_email);
-                    $("#authModal").addClass('active');   
+                if(data.message=="password over 90days"){
+                    $("#passwordModal").addClass('active')
                 }
-                else {
-                    Swal.fire({
-                        title: '계정 로그인 비활성화',
-                        text: `5회 이상 로그인에 실패하였습니다.\n ${activateTime} 이후 다시 시도해 주세요.`, 
-                        showConfirmButton: false,
-                        showDenyButton: true,
-                        denyButtonText: "확 인",
-                        icon: "error"
-                    });
+                else{
+                    let lockStatus = null;
+                    let loginable = false;
+                    let activateTime = null;
+    
+                    lockStatus = auth.selectLockStatus(account_name);
+                    loginable = lockStatus.loginable
+                    activateTime = lockStatus.activateTime
+                    
+                    if(loginable) {
+                        $(".auth_id").val(data.admin_email);
+                        $("#authModal").addClass('active');   
+                    }
+                    else {
+                        Swal.fire({
+                            title: '계정 로그인 비활성화',
+                            text: `5회 이상 로그인에 실패하였습니다.\n ${activateTime} 이후 다시 시도해 주세요.`, 
+                            showConfirmButton: false,
+                            showDenyButton: true,
+                            denyButtonText: "확 인",
+                            icon: "error"
+                        });
+                    }
                 }
             },
             error: function (xhr, status) {
@@ -128,6 +133,51 @@ auth = {
             error: function (xhr, status) {
                 // alert("error : " + xhr + " : " + JSON.stringify(status));
                 Swal.fire('로그인에 실패하였습니다.', '', 'error');
+            }
+        })
+    },
+
+    passwordChange: function (account_name, now_password, new_password) {
+
+        $.ajax({
+            method: "post",
+            url: '/api/auth/password-change',
+            data: {
+                account_name,
+                now_password,
+                new_password
+            },
+            success: function (data) {
+                Swal.fire({
+                    title: '비밀번호 변경이 완료되었습니다.',
+                    showConfirmButton: true,
+                    showDenyButton: false,
+                    confirmButtonText: "확 인",
+                    icon: "success"
+                }).then(() => {
+                    location.reload();
+                })
+            }, // success 
+            error: function (xhr, status) {
+                let message = xhr.responseJSON.message;
+                if (message == 'ID not found') {
+                    Swal.fire({
+                        title: '존재하지 않는 아이디입니다.',
+                        showConfirmButton: false,
+                        showDenyButton: true,
+                        denyButtonText: "확 인",
+                        icon: "error"
+                    })
+                }
+                else if (message == 'user_input_not_match') {
+                    Swal.fire({
+                        title: '현재 비밀번호가 일치하지 않습니다.',
+                        showConfirmButton: false,
+                        showDenyButton: true,
+                        denyButtonText: "확 인",
+                        icon: "error"
+                    })
+                }
             }
         })
     },

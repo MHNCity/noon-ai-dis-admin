@@ -944,7 +944,10 @@ exports.getMonthUsage = async (req, res, cb) => {
 
         for (var i = 0; i < table_name_list.length; i++) {
             var tableName = table_name_list[i];
-            sql = `SELECT request_type, count(*), sum(file_size), sum(service_charge) FROM \`${tableName}\` WHERE file_type!='json' AND request_date LIKE \'${searchMonth}%\' group by request_type;`
+            sql = `SELECT request_type, count(*), sum(file_size), sum(service_charge) 
+                    FROM \`${tableName}\` 
+                    WHERE file_type!='json' AND request_date LIKE \'${searchMonth}%\' 
+                    GROUP BY request_type;`
             
             let result = await meterConn.query(sql);
             result = result[0];

@@ -16,6 +16,11 @@ router.post("/first-login", AuthApiController.firstLogin);
 router.post("/passwordCheck", AuthApiController.passwordCheck);
 router.post("/secondary-email-send", isNotLoggedIn, AuthApiController.generateSecondaryToken); //유틸 API
 
+/**
+ * 관리자 계정 1차 로그인 시 비밀번호 변경한지 90일 이상이면 비밀번호 변경하는 API
+ */
+router.post("/password-change", AuthApiController.passwordChange);
+
 router.post("/selectLockStatus", isNotLoggedIn, AuthApiController.selectLockStatus);
 router.put("/failCount/plus", isNotLoggedIn, AuthApiController.plusLoginFailCount);
 router.put("/failCount/clear", isNotLoggedIn, AuthApiController.updateClearLoginFailCount);
