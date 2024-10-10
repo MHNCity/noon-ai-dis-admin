@@ -43,6 +43,52 @@ function apiLogFormat(req, method, api, logStream) {
     }
 }
 
+function getKoreanTime() {
+    let date = new Date();
+
+    let utc = date.getTime() + (date.getTimezoneOffset() * 60 * 1000);
+
+    let KR_TIME_DIFF = 9 * 60 * 60 * 1000;
+
+    let koreanTime = new Date(utc + (KR_TIME_DIFF));
+
+    // 원하는 형식으로 출력
+    let eventDate = `${koreanTime.getFullYear()}-${(koreanTime.getMonth() + 1).toString().padStart(2, '0')}-${koreanTime.getDate().toString().padStart(2, '0')}`;
+    let eventTime = `${koreanTime.getHours().toString().padStart(2, '0')}:${koreanTime.getMinutes().toString().padStart(2, '0')}:${koreanTime.getSeconds().toString().padStart(2, '0')}`;
+
+    return { "date": eventDate, "time": eventTime }
+}  
+
+function logAction(action, apiName, message) {
+    // 오늘 날짜를 YYYY-MM-DD 형식으로 가져오기
+    const today = getKoreanTime(); // '2024-09-23' 같은 형식
+    // 환경 변수에 따른 기본 로그 디렉토리 설정
+    const baseLogDir = `${process.cwd()}/logs`
+  
+    // 최종 로그 디렉토리 (날짜 및 액션에 맞춰 생성)
+    const logDir = path.join(baseLogDir, today["date"], action); // 예: logs/2024-09-23/access
+  
+    // 로그 파일 경로 설정
+    const logFilePath = path.join(logDir, `${action}.log`); // logs/2024-09-23/access/access.log
+  
+    try {
+      // 로그 디렉토리가 없으면 생성 (동기적으로)
+      if (!fs.existsSync(logDir)) {
+        fs.mkdirSync(logDir, { recursive: true });
+      }
+  
+      // 로그 메시지에 날짜, 시간, API 이름, 메시지 추가
+      const logMessage = `${today["date"]} ${today["time"]} - [API: ${apiName}] - ${message}\n`;
+  
+      // 로그 파일에 이어쓰기 (없으면 새로 생성)
+      fs.appendFileSync(logFilePath, logMessage, 'utf8');
+      
+      console.log(`Log written to ${logFilePath}`);
+    } catch (err) {
+      console.error('Error writing log:', err);
+    }
+}
+
 const s3 = new AWS.S3({
     endpoint: endpoint,
     region: region,
@@ -173,6 +219,7 @@ exports.createDatabase = async (req, res) => {
         const conn = await pool.getConnection();
         await conn.query(sql);
         var objJson = { 'message': 'success', 'log': 'Database ' + databaseName + ' create success' };
+        logAction("create", "/createDatabase", `[GET] params: id=${req.params.id} | ${databaseName} 생성 완료`)
         logger.info(apiLogFormat(req, 'GET', '/createDatabase', ` params: id=${req.params.id} | ${databaseName} 생성 완료`));
         console.log(apiLogFormat(req, 'GET', '/createDatabase', ` params: id=${req.params.id} | ${databaseName} 생성 완료`));
         res.status(200).json(objJson);
@@ -221,11 +268,13 @@ exports.createDatabase = async (req, res) => {
 
             if (result == 'success') {
                 let objJson = { 'message': 'success', 'log': 'Database ' + databaseName + ' create success' };
+                logAction("create", "/createDatabase", `[GET] params: id=${req.params.id} | ${databaseName} 생성 완료`)
                 logger.info(apiLogFormat(req, 'GET', '/createDatabase', ` params: id=${req.params.id} | ${databaseName} 생성 완료`));
                 console.log(apiLogFormat(req, 'GET', '/createDatabase', ` params: id=${req.params.id} | ${databaseName} 생성 완료`));
                 res.status(200).json(objJson);
             } else {
                 let objJson = { 'message': 'fail', 'log': result };
+                logAction("create_error", "/createDatabase", `[GET] ${result}`)
                 logger.error(apiLogFormat(req, 'GET', '/createDatabase', ` ${result}`));
                 console.error(apiLogFormat(req, 'GET', '/createDatabase', ` ${result}`));
                 res.status(400).json(objJson);
@@ -777,11 +826,8 @@ exports.createTable = async (req, res) => {
         await subConn.query(sql4);
         await subConn.query(sql5);
         const [result] = await conn.query(sql6, [req.params.id]);
-        console.log('result>>>>',result)
-        console.log('result[0]>>>>>', result[0])
 
         await subConn.query(sql7, [databaseName, result[0].account_name, "'" + bucketName + "'", '111', "'" + databaseName + "'", '1111', 1, 1, 1, 1, requestDate]);
-        console.log('------------<><><><><><>------------------')
         await meterConn.query(sql8);
         await subConn.query(sql9);
         await subConn.query(sql10);
@@ -816,6 +862,7 @@ exports.createTable = async (req, res) => {
         await conn.query(sql37);
         let tenantDBTableCount = 17;
         objJson.msg = 'success';
+        logAction("create", "/createTable", `[GET] params: id=${req.params.id} | 테넌트에 할당될 ${tenantDBTableCount}개의 테이블 생성 완료`)
         logger.info(apiLogFormat(req, 'GET', '/createTable', ` params: id=${req.params.id} | 테넌트에 할당될 ${tenantDBTableCount}개의 테이블 생성 완료`));
         console.log(apiLogFormat(req, 'GET', '/createTable', ` params: id=${req.params.id} | 테넌트에 할당될 ${tenantDBTableCount}개의 테이블 생성 완료`));
         conn.release();
@@ -825,6 +872,7 @@ exports.createTable = async (req, res) => {
         console.log(err);
         objJson.msg = 'error';
         objJson.result = err.message;
+        logAction("create_error", "/createTable", `[GET] ${err}`)
         logger.error(apiLogFormat(req, 'GET', '/createTable', ` ${err}`));
         console.error(apiLogFormat(req, 'GET', '/createTable', ` ${err}`));
         conn.release();
@@ -839,6 +887,7 @@ exports.createBucket = async (req, res) => {
 
     createS3Bucket(bucketName)
     let objJson = { 'message': 'success', 'log': 'Bucket ' + bucketName + ' create success' };
+    logAction("create", "/bucket", `[GET] body: tenantId=${tenantId} | ${bucketName} 생성 완료`)
     logger.info(apiLogFormat(req, 'POST', '/bucket', ` body: tenantId=${tenantId} | ${bucketName} 생성 완료`))
     console.log(apiLogFormat(req, 'POST', '/bucket', ` body: tenantId=${tenantId} | ${bucketName} 생성 완료`))
     res.status(200).json(objJson);

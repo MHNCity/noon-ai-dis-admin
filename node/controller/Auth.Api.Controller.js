@@ -5,6 +5,7 @@ const app = asyncify(express());
 const request = require("request")
 const moment = require('moment');
 require('moment-timezone');
+const fs = require('fs-extra');
 const path = require("path");
 var os = require('os');
 const pool = require('../user_modules/db.js').pool
@@ -32,6 +33,52 @@ function apiLogFormat(req, method, api, logStream) {
     }
 }
 
+function getKoreanTime() {
+    let date = new Date();
+
+    let utc = date.getTime() + (date.getTimezoneOffset() * 60 * 1000);
+
+    let KR_TIME_DIFF = 9 * 60 * 60 * 1000;
+
+    let koreanTime = new Date(utc + (KR_TIME_DIFF));
+
+    // 원하는 형식으로 출력
+    let eventDate = `${koreanTime.getFullYear()}-${(koreanTime.getMonth() + 1).toString().padStart(2, '0')}-${koreanTime.getDate().toString().padStart(2, '0')}`;
+    let eventTime = `${koreanTime.getHours().toString().padStart(2, '0')}:${koreanTime.getMinutes().toString().padStart(2, '0')}:${koreanTime.getSeconds().toString().padStart(2, '0')}`;
+
+    return { "date": eventDate, "time": eventTime }
+}  
+
+function logAction(action, apiName, message) {
+    // 오늘 날짜를 YYYY-MM-DD 형식으로 가져오기
+    const today = getKoreanTime(); // '2024-09-23' 같은 형식
+    // 환경 변수에 따른 기본 로그 디렉토리 설정
+    const baseLogDir = `${process.cwd()}/logs`
+  
+    // 최종 로그 디렉토리 (날짜 및 액션에 맞춰 생성)
+    const logDir = path.join(baseLogDir, today["date"], action); // 예: logs/2024-09-23/access
+  
+    // 로그 파일 경로 설정
+    const logFilePath = path.join(logDir, `${action}.log`); // logs/2024-09-23/access/access.log
+  
+    try {
+      // 로그 디렉토리가 없으면 생성 (동기적으로)
+      if (!fs.existsSync(logDir)) {
+        fs.mkdirSync(logDir, { recursive: true });
+      }
+  
+      // 로그 메시지에 날짜, 시간, API 이름, 메시지 추가
+      const logMessage = `${today["date"]} ${today["time"]} - [API: ${apiName}] - ${message}\n`;
+  
+      // 로그 파일에 이어쓰기 (없으면 새로 생성)
+      fs.appendFileSync(logFilePath, logMessage, 'utf8');
+      
+      console.log(`Log written to ${logFilePath}`);
+    } catch (err) {
+      console.error('Error writing log:', err);
+    }
+}
+
 exports.firstLogin = async (req, res, next) => {
     if (req.session.passport == undefined) {
         let account_name = req.body.account_name;
@@ -54,6 +101,7 @@ exports.firstLogin = async (req, res, next) => {
                     let sql2 = `INSERT INTO login_log (user_id, status_code, fail_reason, login_date) values (?, ?, ?, ?)`;
                     await conn.query(sql2, [user_id, 0, 1, curDatetime]);
 
+                    logAction("access_error", "/first-login", `[POST] body: account_name=${account_name} | ${account_name} 로그인 시도 - 패스워드 불일치`)
                     logger.info(apiLogFormat(req, 'POST', '/first-login', ` body: account_name=${account_name} | ${account_name} 로그인 시도 - 패스워드 불일치`))
                     console.log(apiLogFormat(req, 'POST', '/first-login', ` body: account_name=${account_name} | ${account_name} 로그인 시도 - 패스워드 불일치`))
 
@@ -61,6 +109,7 @@ exports.firstLogin = async (req, res, next) => {
                     res.status(400).json(objJson);
                 }
                 else {
+                    logAction("access", "/first-login", `[POST] body: account_name=${account_name} | ${account_name} 패스워드 일치`)
                     logger.info(apiLogFormat(req, 'POST', '/first-login', ` body: account_name=${account_name} | ${account_name} 패스워드 일치`))
                     console.log(apiLogFormat(req, 'POST', '/first-login', ` body: account_name=${account_name} | ${account_name} 패스워드 일치`))
 
@@ -83,6 +132,7 @@ exports.firstLogin = async (req, res, next) => {
                     console.log(isOverNinetyDays)
 
                     if(isOverNinetyDays==true){
+                        logAction("access_error", "/first-login", `[POST] body: account_name=${account_name} | ${account_name} 패스워드 90일 초과`)
                         logger.info(apiLogFormat(req, 'POST', '/first-login', ` body: account_name=${account_name} | ${account_name} 패스워드 90일 초과`))
                         console.log(apiLogFormat(req, 'POST', '/first-login', ` body: account_name=${account_name} | ${account_name} 패스워드 90일 초과`))
                         let objJson = {
@@ -93,6 +143,7 @@ exports.firstLogin = async (req, res, next) => {
                         conn.release();
                     }
                     else{
+                        logAction("access", "/first-login", `[POST] body: account_name=${account_name} | ${account_name} 1차 로그인 완료`)
                         logger.info(apiLogFormat(req, 'POST', '/first-login', ` body: account_name=${account_name} | ${account_name} 1차 로그인 완료`))
                         console.log(apiLogFormat(req, 'POST', '/first-login', ` body: account_name=${account_name} | ${account_name} 1차 로그인 완료`))
                         let objJson = {
@@ -107,6 +158,7 @@ exports.firstLogin = async (req, res, next) => {
                 conn.release();
             }
             else {
+                logAction("access_error", "/first-login", `[POST] body: account_name=${account_name} | ${account_name} 유저 존재하지 않음`)
                 logger.info(apiLogFormat(req, 'POST', '/first-login', ` body: account_name=${account_name} | ${account_name} 유저 존재하지 않음`))
                 console.log(apiLogFormat(req, 'POST', '/first-login', ` body: account_name=${account_name} | ${account_name} 유저 존재하지 않음`))
 
@@ -115,6 +167,7 @@ exports.firstLogin = async (req, res, next) => {
             }
         } catch (err) {
             console.log(err);
+            logAction("access_error", "/first-login", `[POST] ${err}`)
             logger.error(apiLogFormat(req, 'POST', '/first-login', ` ${err}`))
             console.error(apiLogFormat(req, 'POST', '/first-login', ` ${err}`))
 
@@ -124,6 +177,7 @@ exports.firstLogin = async (req, res, next) => {
     }
     else {
         let objJson = { message: "already login", statusCode: 400 };
+        logAction("access_error", "/first-login", `[POST] 이미 로그인중인 사용자`)
         logger.info(apiLogFormat(req, 'POST', '/first-login', ` 이미 로그인중인 사용자`))
         console.log(apiLogFormat(req, 'POST', '/first-login', ` 이미 로그인중인 사용자`))
         res.status(400).json(objJson);
@@ -146,6 +200,7 @@ exports.passwordCheck = async (req, res) => {
             const isPasswordValid = bcrypt.compareSync(password, userPassword);
 
             if (!isPasswordValid) {
+                logAction("access_error", "/passwordCheck", `[POST] body: account_name=${account_name}, password | ${account_name} 패스워드 불일치`)
                 logger.info(apiLogFormat(req, 'POST', '/passwordCheck', ` body: account_name=${account_name}, password | ${account_name} 패스워드 불일치`))
                 console.log(apiLogFormat(req, 'POST', '/passwordCheck', ` body: account_name=${account_name}, password | ${account_name} 패스워드 불일치`))
 
@@ -158,6 +213,7 @@ exports.passwordCheck = async (req, res) => {
                     statusCode: 200,
                 };
 
+                logAction("access", "/passwordCheck", `[POST] body: account_name=${account_name}, password | ${account_name} 비밀번호 확인 완료`)
                 logger.info(apiLogFormat(req, 'POST', '/passwordCheck', ` body: account_name=${account_name}, password | ${account_name} 비밀번호 확인 완료`))
                 console.log(apiLogFormat(req, 'POST', '/passwordCheck', ` body: account_name=${account_name}, password | ${account_name} 비밀번호 확인 완료`))
 
@@ -166,6 +222,7 @@ exports.passwordCheck = async (req, res) => {
             conn.release();
         }
         else {
+            logAction("access_error", "/passwordCheck", `[POST] body: account_name=${account_name}, password | ${account_name} 유저 존재하지 않음`)
             logger.info(apiLogFormat(req, 'POST', '/passwordCheck', ` body: account_name=${account_name}, password | ${account_name} 유저 존재하지 않음`))
             console.log(apiLogFormat(req, 'POST', '/passwordCheck', ` body: account_name=${account_name}, password | ${account_name} 유저 존재하지 않음`))
 
@@ -174,6 +231,7 @@ exports.passwordCheck = async (req, res) => {
         }
     } catch (err) {
         console.log(err);
+        logAction("access_error", "/passwordCheck", `[POST] ${err}`)
         logger.error(apiLogFormat(req, 'POST', '/passwordCheck', ` ${err}`))
         console.error(apiLogFormat(req, 'POST', '/passwordCheck', ` ${err}`))
 
@@ -190,6 +248,7 @@ exports.login = async (req, res, next) => {
             return next(authError);
         }
         if (!user) {
+            logAction("access_error", "/login", `[POST] 유저가 존재하지 않음`)
             logger.info(apiLogFormat(req, "POST", "/login", `유저가 존재하지 않음`));
             console.log(
                 apiLogFormat(req, "POST", "/login", `유저가 존재하지 않음`)
@@ -199,11 +258,13 @@ exports.login = async (req, res, next) => {
         }
         return req.login(user, (loginError) => {
             if (loginError) {
+                logAction("access_error", "/login", `[POST] ${loginError}`)
                 logger.error(apiLogFormat(req, "POST", "/login", ` ${loginError}`));
                 console.error(apiLogFormat(req, "POST", "/login", ` ${loginError}`));
                 return next(loginError);
             }
 
+            logAction("access", "/login", `[POST] [${user.account_name}] 로그인 완료`)
             logger.info(apiLogFormat(req, 'POST', '/login', ` [${user.account_name}] 로그인 완료`))
             console.log(apiLogFormat(req, 'POST', '/login', ` [${user.account_name}] 로그인 완료`))
             // return res.redirect('/');
@@ -228,6 +289,7 @@ exports.passwordChange = async (req, res) => {
                 const isPasswordValid = bcrypt.compareSync(now_password, userPassword);
 
                 if (!isPasswordValid) {
+                    logAction("modify_error", "/password-change", `[POST] 비밀번호 불일치`)
                     logger.info(apiLogFormat(req, 'POST', '/password-change', ` 비밀번호 불일치`))
                     console.log(apiLogFormat(req, 'POST', '/password-change', ` 비밀번호 불일치`))
                     let objJson = { message: 'user_input_not_match', log: 'user input password not matched', statusCode: 400 };
@@ -240,6 +302,7 @@ exports.passwordChange = async (req, res) => {
                     const curDatetime = moment().format('YYYY-MM-DD HH:mm:ss');
                     let sql2 = 'UPDATE admin SET password=?, password_date=? WHERE account_name = ?';
                     await conn.query(sql2, [hashedPassword, curDatetime, account_name]);
+                    logAction("modify", "/password-change", `[POST] 비밀번호 변경 완료`)
                     logger.info(apiLogFormat(req, 'POST', '/password-change', ` 비밀번호 변경 완료`))
                     console.log(apiLogFormat(req, 'POST', '/password-change', ` 비밀번호 변경 완료`))
                     let objJson = { message: 'success', log: 'master pw update success', statusCode: 200 }
@@ -248,6 +311,7 @@ exports.passwordChange = async (req, res) => {
                 }
             }
             else{
+                logAction("modify_error", "/password-change", `[POST] password change error ==> ID not found`)
                 logger.error(
                     apiLogFormat(
                         "POST",
@@ -269,6 +333,7 @@ exports.passwordChange = async (req, res) => {
             }
         } catch (err) {
             console.log(err);
+            logAction("modify_error", "/password-change", `[POST] query error ==> ${err}`)
             logger.error(apiLogFormat('POST', '/password-change', `query error ==> ${err}`))
             console.log(apiLogFormat('POST', '/password-change', `query error ==> ${err}`))
             objJson = { message: 'password-change error', statusCode: 500 };
@@ -283,6 +348,7 @@ exports.passwordChange = async (req, res) => {
 };
 
 exports.logout = async (req, res) => {
+    logAction("logout", "/logout", `[GET] 관리자 ${req.session.passport.user.user_name} 로그아웃 완료`)
     logger.info(apiLogFormat(req, 'GET', '/logout', ` 관리자 ${req.session.passport.user.user_name} 로그아웃 완료`))
     console.log(apiLogFormat(req, 'GET', '/logout', ` 관리자 ${req.session.passport.user.user_name} 로그아웃 완료`))
     req.session.destroy(() => {
@@ -391,6 +457,7 @@ exports.generateSecondaryToken = async (req, res) => {
         }
 
         if (response.body.count == 1) {
+            logAction("access", "/secondary-email-send", `[POST] body: email_address=${email_address} | ${email_address}로 2차 인증번호 발송 완료`)
             logger.info(
                 apiLogFormat(req, "POST", "/secondary-email-send", ` body: email_address=${email_address} | ${email_address}로 2차 인증번호 발송 완료`)
             );
@@ -405,6 +472,7 @@ exports.generateSecondaryToken = async (req, res) => {
             };
             res.json(objJson);
         } else {
+            logAction("access_error", "/secondary-email-send", `[POST] body: email_address=${email_address} | ${email_address}로 메일 발송 실패`)
             logger.info(
                 apiLogFormat(
                     req,
@@ -457,6 +525,7 @@ exports.selectLockStatus = async (req, res) => {
                 loginable: loginable,
                 activateTime: activateTime,
             }
+            logAction("access", "/login/selectLockStatus", `[PUT] body: account_name=${account_name} | ${account_name} lock status=1 확인 완료`)
             logger.info(apiLogFormat(req, 'PUT', '/login/selectLockStatus', `body: account_name=${account_name} | ${account_name} lock status=1 확인 완료`))
             console.log(apiLogFormat(req, 'PUT', '/login/selectLockStatus', `body: account_name=${account_name} | ${account_name} lock status=1 확인 완료`))
             res.status(200).json(objJson);
@@ -466,6 +535,7 @@ exports.selectLockStatus = async (req, res) => {
                 message: 'success',
                 loginable: true
             }
+            logAction("access", "/login/selectLockStatus", `[PUT] body: account_name=${account_name} | ${account_name} lock status=0 확인 완료`)
             logger.info(apiLogFormat(req, 'PUT', '/login/selectLockStatus', `body: account_name=${account_name} | ${account_name} lock status=0 확인 완료`))
             console.log(apiLogFormat(req, 'PUT', '/login/selectLockStatus', `body: account_name=${account_name} | ${account_name} lock status=0 확인 완료`))
             res.status(200).json(objJson);
@@ -473,6 +543,7 @@ exports.selectLockStatus = async (req, res) => {
         conn.release();
     } catch (err) {
         console.log(err);
+        logAction("access_error", "/secondary-email-send", `[POST] ${err}`)
         logger.error(apiLogFormat(req, 'PUT', '/login/selectLockStatus', ` ${err}`))
         console.error(apiLogFormat(req, 'PUT', '/login/selectLockStatus', ` ${err}`))
 
@@ -493,6 +564,7 @@ exports.plusLoginFailCount = async (req, res) => {
         const conn = await adminPool.getConnection();
         await conn.query(sql, [curDatetime, account_name]);
 
+        logAction("access", "/selectLockStatus", `[POST] body: account_name=${account_name} | ${account_name} 로그인 시도 이력 업데이트 완료`)
         logger.info(apiLogFormat(req, 'POST', '/selectLockStatus', ` body: account_name=${account_name} | ${account_name} 로그인 시도 이력 업데이트 완료`))
         console.log(apiLogFormat(req, 'POST', '/selectLockStatus', ` body: account_name=${account_name} | ${account_name} 로그인 시도 이력 업데이트 완료`))
 
@@ -508,8 +580,9 @@ exports.plusLoginFailCount = async (req, res) => {
         conn.release();
     } catch (err) {
         console.log(err);
-        logger.error(apiLogFormat(req, 'POST', '/first-login', ` ${err}`))
-        console.error(apiLogFormat(req, 'POST', '/first-login', ` ${err}`))
+        logAction("access", "/selectLockStatus", `[POST] ${err}`)
+        logger.error(apiLogFormat(req, 'POST', '/selectLockStatus', ` ${err}`))
+        console.error(apiLogFormat(req, 'POST', '/selectLockStatus', ` ${err}`))
 
         let objJson = { message: "error", statusCode: 500 };
         res.status(500).json(objJson);
@@ -526,6 +599,7 @@ exports.updateLockStatus = async (req, res) => {
         const conn = await adminPool.getConnection();
         await conn.query(sql, [lock_count, account_name]);
 
+        logAction("access", "/login/lockStatus", `[PUT] body: account_name=${account_name} lock_count=${lock_count} | ${account_name} 로그인 잠금`)
         logger.info(apiLogFormat(req, 'PUT', '/login/lockStatus', ` body: account_name=${account_name} lock_count=${lock_count} | ${account_name} 로그인 잠금`))
         console.log(apiLogFormat(req, 'PUT', '/login/lockStatus', ` body: account_name=${account_name} lock_count=${lock_count} | ${account_name} 로그인 잠금`))
 
@@ -537,6 +611,7 @@ exports.updateLockStatus = async (req, res) => {
         conn.release();
     } catch (err) {
         console.log(err);
+        logAction("access_error", "/login/lockStatus", `[PUT] ${err}`)
         logger.error(apiLogFormat(req, 'PUT', '/login/lockStatus', ` ${err}`))
         console.error(apiLogFormat(req, 'PUT', '/login/lockStatus', ` ${err}`))
 
@@ -554,6 +629,7 @@ exports.updateClearLoginFailCount = async (req, res) => {
         const conn = await adminPool.getConnection();
         await conn.query(sql, [account_name]);
 
+        logAction("modify", "/login/failCount/clear", `[PUT] body: account_name=${account_name} | ${account_name} 로그인 실패 횟수 0 초기화`)
         logger.info(apiLogFormat(req, 'PUT', '/login/failCount/clear', ` body: account_name=${account_name} | ${account_name} 로그인 실패 횟수 0 초기화`))
         console.log(apiLogFormat(req, 'PUT', '/login/failCount/clear', ` body; account_name=${account_name} | ${account_name} 로그인 실패 횟수 0 초기화`))
 
@@ -565,6 +641,7 @@ exports.updateClearLoginFailCount = async (req, res) => {
         conn.release();
     } catch (err) {
         console.log(err);
+        logAction("modify_error", "/login/failCount/clear", `[PUT] ${err}`)
         logger.error(apiLogFormat(req, 'PUT', '/login/failCount/clear', ` ${err}`))
         console.error(apiLogFormat(req, 'PUT', '/login/failCount/clear', ` ${err}`))
 
@@ -582,6 +659,7 @@ exports.updateClearLockCount = async (req, res) => {
         const conn = await adminPool.getConnection();
         await conn.query(sql, [account_name]);
 
+        logAction("modify", "/login/lockCount", `[PUT] body; account_name=${account_name} | ${account_name} lock_count 0 초기화`)
         logger.info(apiLogFormat(req, 'PUT', '/login/lockCount', ` body; account_name=${account_name} | ${account_name} lock_count 0 초기화`))
         console.log(apiLogFormat(req, 'PUT', '/login/lockCount', ` body; account_name=${account_name} | ${account_name} lock_count 0 초기화`))
 
@@ -593,6 +671,7 @@ exports.updateClearLockCount = async (req, res) => {
         conn.release();
     } catch (err) {
         console.log(err);
+        logAction("modify_error", "/login/lockCount", `[PUT] ${err}`)
         logger.error(apiLogFormat(req, 'PUT', '/login/lockCount', ` ${err}`))
         console.error(apiLogFormat(req, 'PUT', '/login/lockCount', ` ${err}`))
 
